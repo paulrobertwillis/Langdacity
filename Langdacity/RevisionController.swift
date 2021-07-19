@@ -11,14 +11,16 @@ class RevisionController: NSObject {
     
     var cards: [Card]!
     
-    func cardCreator() {
+    override init() {
         let card1 = Card(english: "english1", french: "french1")
         let card2 = Card(english: "english2", french: "french2")
         let card3 = Card(english: "english3", french: "french3")
-        cards.append(card1)
-        cards.append(card2)
-        cards.append(card3)
-
+        
+        self.cards = [card1, card2, card3]
+    }
+    
+    func getCards() -> [Card] {
+        return cards
     }
 
 }
