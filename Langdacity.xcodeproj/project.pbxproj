@@ -15,6 +15,9 @@
 		7BCAEE4526A4A88500075507 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BCAEE4326A4A88500075507 /* LaunchScreen.storyboard */; };
 		7BCAEE5026A4A88500075507 /* LangdacityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAEE4F26A4A88500075507 /* LangdacityTests.swift */; };
 		7BCAEE5B26A4A88500075507 /* LangdacityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAEE5A26A4A88500075507 /* LangdacityUITests.swift */; };
+		7BCAEE6926A4AACB00075507 /* RevisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAEE6826A4AACB00075507 /* RevisionViewController.swift */; };
+		7BCAEE6B26A4B1A400075507 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAEE6A26A4B1A400075507 /* Card.swift */; };
+		7BCAEE6D26A5B74700075507 /* RevisionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAEE6C26A5B74700075507 /* RevisionController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		7BCAEE5626A4A88500075507 /* LangdacityUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LangdacityUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BCAEE5A26A4A88500075507 /* LangdacityUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LangdacityUITests.swift; sourceTree = "<group>"; };
 		7BCAEE5C26A4A88500075507 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7BCAEE6826A4AACB00075507 /* RevisionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevisionViewController.swift; sourceTree = "<group>"; };
+		7BCAEE6A26A4B1A400075507 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		7BCAEE6C26A5B74700075507 /* RevisionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevisionController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +108,9 @@
 				7BCAEE3826A4A88400075507 /* AppDelegate.swift */,
 				7BCAEE3A26A4A88400075507 /* SceneDelegate.swift */,
 				7BCAEE3C26A4A88400075507 /* ViewController.swift */,
+				7BCAEE6826A4AACB00075507 /* RevisionViewController.swift */,
+				7BCAEE6C26A5B74700075507 /* RevisionController.swift */,
+				7BCAEE6A26A4B1A400075507 /* Card.swift */,
 				7BCAEE3E26A4A88400075507 /* Main.storyboard */,
 				7BCAEE4126A4A88500075507 /* Assets.xcassets */,
 				7BCAEE4326A4A88500075507 /* LaunchScreen.storyboard */,
@@ -259,7 +268,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BCAEE3D26A4A88400075507 /* ViewController.swift in Sources */,
+				7BCAEE6926A4AACB00075507 /* RevisionViewController.swift in Sources */,
+				7BCAEE6B26A4B1A400075507 /* Card.swift in Sources */,
 				7BCAEE3926A4A88400075507 /* AppDelegate.swift in Sources */,
+				7BCAEE6D26A5B74700075507 /* RevisionController.swift in Sources */,
 				7BCAEE3B26A4A88400075507 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -445,7 +457,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.Langdacity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -463,7 +475,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.Langdacity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
