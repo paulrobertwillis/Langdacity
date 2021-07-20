@@ -85,6 +85,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="HXY-98-T52"/>
                     <connections>
+                        <outlet property="memorised" destination="60g-Lb-3BE" id="gKx-jp-zGO"/>
                         <outlet property="translateFrom" destination="Cnc-Sq-r9F" id="4ec-T6-DhO"/>
                         <outlet property="translateTo" destination="bQi-ec-41A" id="b9f-ut-ypg"/>
                     </connections>

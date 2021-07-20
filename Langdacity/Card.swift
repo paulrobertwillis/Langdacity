@@ -21,9 +21,12 @@ class Card: NSObject {
 
     func setDateNextRevise() {
         let modifiedDate = Calendar.current.date(byAdding: .day, value: 1, to: dateNextRevise)!
-        print(modifiedDate)
+        print("\(toString()): \(modifiedDate)")
         dateNextRevise = modifiedDate
     }
     
+    func toString() -> String {
+        return english
+    }
 
 }

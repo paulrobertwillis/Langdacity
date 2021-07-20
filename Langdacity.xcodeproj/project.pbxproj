@@ -105,11 +105,13 @@
 		7BCAEE3726A4A88400075507 /* Langdacity */ = {
 			isa = PBXGroup;
 			children = (
+				7BCAEE7126A605AF00075507 /* Controller */,
+				7BCAEE6F26A605A300075507 /* View */,
+				7BCAEE6E26A6059800075507 /* Model */,
 				7BCAEE3826A4A88400075507 /* AppDelegate.swift */,
 				7BCAEE3A26A4A88400075507 /* SceneDelegate.swift */,
 				7BCAEE3C26A4A88400075507 /* ViewController.swift */,
 				7BCAEE6826A4AACB00075507 /* RevisionViewController.swift */,
-				7BCAEE6C26A5B74700075507 /* RevisionController.swift */,
 				7BCAEE6A26A4B1A400075507 /* Card.swift */,
 				7BCAEE3E26A4A88400075507 /* Main.storyboard */,
 				7BCAEE4126A4A88500075507 /* Assets.xcassets */,
@@ -135,6 +137,28 @@
 				7BCAEE5C26A4A88500075507 /* Info.plist */,
 			);
 			path = LangdacityUITests;
+			sourceTree = "<group>";
+		};
+		7BCAEE6E26A6059800075507 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7BCAEE6F26A605A300075507 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7BCAEE7126A605AF00075507 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7BCAEE6C26A5B74700075507 /* RevisionController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
