@@ -1,0 +1,5 @@
+hello,salut
+good morning,bonjour
+good evening,bonsoir
+good night,bonne nuit
+goodbye,au revoir

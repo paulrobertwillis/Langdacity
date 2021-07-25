@@ -8,6 +8,7 @@
 import UIKit
 
 class RevisionViewController: UIViewController {
+        
     @IBOutlet var translateFrom: UILabel!
     @IBOutlet var translateTo: UILabel!
     @IBOutlet var memorised: UIButton!
@@ -15,7 +16,7 @@ class RevisionViewController: UIViewController {
     var cardsToRevise: [Card]!
     var cardToDisplay: Card!
     
-    let rc = RevisionController()
+    let rc = Revision()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,6 @@ class RevisionViewController: UIViewController {
         updateLabels()
         
         print("\(cardToDisplay.toString()): \(cardToDisplay.dateNextRevise)")
-        
     }
     
     @IBAction func memorisedButtonTapped(_ sender: Any) {
@@ -37,14 +37,14 @@ class RevisionViewController: UIViewController {
         } else {
             print("end of revision!")
             // Sends back to previous view controller
-            
+                        
             _ = navigationController?.popViewController(animated: true)
         }
     }
     
     func changeRevisionDate() {
         print("button pressed!")
-        cardToDisplay.setDateNextRevise()
+        rc.setCardRevisionDate(index: 0)
     }
     
     func updateLabels() {
