@@ -1,5 +1,72 @@
-hello,salut
-good morning,bonjour
-good evening,bonsoir
-good night,bonne nuit
-goodbye,au revoir
+[
+    {
+        "english": "hi",
+        "french": "salut",
+        "notes": [
+            {
+                "translateFrom": "hi",
+                "translateTo": "salut"
+            },
+            {
+                "translateFrom": "salut",
+                "translateTo": "hi"
+            }
+        ]
+    },
+    {
+        "english": "good morning",
+        "french": "bonjour",
+        "notes": [
+            {
+                "translateFrom": "good morning",
+                "translateTo": "bonjour"
+            },
+            {
+                "translateFrom": "bonjour",
+                "translateTo": "good morning"
+            }
+        ]
+    },
+    {
+        "english": "good evening",
+        "french": "bonsoir",
+        "notes": [
+            {
+                "translateFrom": "good evening",
+                "translateTo": "bonsoir"
+            },
+            {
+                "translateFrom": "bonsoir",
+                "translateTo": "good evening"
+            }
+        ]
+    },
+    {
+        "english": "good night",
+        "french": "bonne nuit",
+        "notes": [
+            {
+                "translateFrom": "good night",
+                "translateTo": "bonne nuit"
+            },
+            {
+                "translateFrom": "bonne nuit",
+                "translateTo": "good night"
+            }
+        ]
+    },
+    {
+        "english": "good bye",
+        "french": "au revoir",
+        "notes": [
+            {
+                "translateFrom": "good bye",
+                "translateTo": "au revoir"
+            },
+            {
+                "translateFrom": "au revoir",
+                "translateTo": "good bye"
+            }
+        ]
+    }
+]

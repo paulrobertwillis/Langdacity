@@ -14,8 +14,9 @@ class Revision {
     var notesToRevise = [Note]()
     
     init() {
-        loadCardsFromFile()
-        notesToRevise = getNotesToRevise()
+//        loadCardsFromFile()
+        self.cards = Card.decodeFromJSON()!
+        self.notesToRevise = getNotesToRevise()
     }
     
     func loadCardsFromFile() {
@@ -44,10 +45,10 @@ class Revision {
     
     func getNotesToRevise() -> [Note] {
         var notes = [Note]()
+        let calendar = Calendar.current
         
         for card in cards {
             for note in card.notes {
-                let calendar = Calendar.current
                 let dateNextRevise = note.dateNextRevise
                 
                 if calendar.isDateInToday(dateNextRevise) {
@@ -75,7 +76,7 @@ class Revision {
     }
     
     func removeFirstNoteFromRevision() {
-        notesToRevise.remove(at: 0)
+        notesToRevise.removeFirst()
     }
     
     func setNoteRevisionDate(index: Int) {

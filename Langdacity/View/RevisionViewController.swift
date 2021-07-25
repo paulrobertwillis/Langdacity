@@ -24,7 +24,10 @@ class RevisionViewController: UIViewController {
         super.viewDidLoad()
         
         noteToDisplay = rc.getNextNote()
-        updateLabels()
+        
+        if noteToDisplay != nil {
+            updateLabels()
+        }
     }
     
     @IBAction func memorisedButtonTapped(_ sender: Any) {

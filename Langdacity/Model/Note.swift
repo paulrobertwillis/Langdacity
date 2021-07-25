@@ -7,7 +7,9 @@
 
 import Foundation
 
-class Note {
+class Note: CustomStringConvertible{
+    var description: String { return "Note \(UUID)"}
+    
     let translateFrom: String
     let translateTo: String
     var dateNextRevise: Date

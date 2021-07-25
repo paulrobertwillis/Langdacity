@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7BCA3DF226AD97780068895E /* Lesson01.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7BCA3DF126AD97780068895E /* Lesson01.txt */; };
 		7BCA3DF426ADA3310068895E /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA3DF326ADA3310068895E /* Note.swift */; };
+		7BCA3DF626ADDED90068895E /* Lesson01.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BCA3DF526ADDED90068895E /* Lesson01.json */; };
 		7BCAEE3926A4A88400075507 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAEE3826A4A88400075507 /* AppDelegate.swift */; };
 		7BCAEE3B26A4A88400075507 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAEE3A26A4A88400075507 /* SceneDelegate.swift */; };
 		7BCAEE3D26A4A88400075507 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAEE3C26A4A88400075507 /* ViewController.swift */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		7BCA3DF126AD97780068895E /* Lesson01.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Lesson01.txt; sourceTree = "<group>"; };
 		7BCA3DF326ADA3310068895E /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		7BCA3DF526ADDED90068895E /* Lesson01.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Lesson01.json; sourceTree = "<group>"; };
 		7BCAEE3526A4A88400075507 /* Langdacity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Langdacity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BCAEE3826A4A88400075507 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BCAEE3A26A4A88400075507 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				7BCA3DF126AD97780068895E /* Lesson01.txt */,
+				7BCA3DF526ADDED90068895E /* Lesson01.json */,
 				7BCAEE6A26A4B1A400075507 /* Card.swift */,
 				7BCA3DF326ADA3310068895E /* Note.swift */,
 			);
@@ -273,6 +276,7 @@
 				7BCAEE4526A4A88500075507 /* LaunchScreen.storyboard in Resources */,
 				7BCA3DF226AD97780068895E /* Lesson01.txt in Resources */,
 				7BCAEE4226A4A88500075507 /* Assets.xcassets in Resources */,
+				7BCA3DF626ADDED90068895E /* Lesson01.json in Resources */,
 				7BCAEE4026A4A88400075507 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
