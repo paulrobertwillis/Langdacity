@@ -10,29 +10,29 @@ import UIKit
 class RevisionViewController: UIViewController {
         
     @IBOutlet var translateFrom: UILabel!
+    
     @IBOutlet var translateTo: UILabel!
+    
     @IBOutlet var memorised: UIButton!
     
-    var cardsToRevise: [Card]!
-    var cardToDisplay: Card!
+    var notesToRevise: [Note]!
+    var noteToDisplay: Note!
     
     let rc = Revision()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        cardToDisplay = rc.getNextCard()
+        noteToDisplay = rc.getNextNote()
         updateLabels()
-        
-        print("\(cardToDisplay.toString()): \(cardToDisplay.dateNextRevise)")
     }
     
     @IBAction func memorisedButtonTapped(_ sender: Any) {
         changeRevisionDate()
-        rc.removeFirstCardFromRevision()
+        rc.removeFirstNoteFromRevision()
         
-        if rc.getNumCardsToRevise() > 0 {
-            cardToDisplay = rc.getNextCard()
+        if rc.getNumNotesToRevise() > 0 {
+            noteToDisplay = rc.getNextNote()
             updateLabels()
         } else {
             print("end of revision!")
@@ -43,13 +43,12 @@ class RevisionViewController: UIViewController {
     }
     
     func changeRevisionDate() {
-        print("button pressed!")
-        rc.setCardRevisionDate(index: 0)
+        rc.setNoteRevisionDate(index: 0)
     }
     
     func updateLabels() {
-        translateFrom.text? = cardToDisplay.english
-        translateTo.text? = cardToDisplay.french
+        translateFrom.text? = noteToDisplay.translateFrom
+        translateTo.text? = noteToDisplay.translateTo
     }
     
     

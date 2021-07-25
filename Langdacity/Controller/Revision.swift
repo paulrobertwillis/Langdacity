@@ -11,24 +11,14 @@ class Revision {
     
     var cards = [Card]()
     var cardsToRevise = [Card]()
+    var notesToRevise = [Note]()
     
     init() {
-        loadNotesFromFile()
-        
-//        let card1 = Card(english: "english1", french: "french1")
-//        let card2 = Card(english: "english2", french: "french2")
-//        let card3 = Card(english: "english3", french: "french3")
-//
-//        self.cards = [card1, card2, card3]
-        
-        //TODO only allow cards that are due to revise on day
-        self.cardsToRevise = cards
-        
-        
-        
+        loadCardsFromFile()
+        notesToRevise = getNotesToRevise()
     }
     
-    func loadNotesFromFile() {
+    func loadCardsFromFile() {
         
         if let lessonURL = Bundle.main.url(forResource:
         "Lesson01", withExtension: "txt") {
@@ -50,31 +40,48 @@ class Revision {
                 }
             }
         }
+    }
+    
+    func getNotesToRevise() -> [Note] {
+        var notes = [Note]()
         
+        for card in cards {
+            for note in card.notes {
+                let calendar = Calendar.current
+                let dateNextRevise = note.dateNextRevise
+                
+                if calendar.isDateInToday(dateNextRevise) {
+                    notes.append(note)
+                }
+            }
+        }
+        
+        return notes
     }
     
     func getCards() -> [Card] {
         return cards
     }
     
-    func getNextCard() -> Card {
-        return cardsToRevise[0]
+    func getNextNote() -> Note? {
+        if notesToRevise.count > 0 {
+            return notesToRevise[0]
+        }
+        return nil
+    }
+        
+    func getNumNotesToRevise() -> Int {
+        return notesToRevise.count
     }
     
-    func getCardsToRevise() -> [Card] {
-        return cardsToRevise
+    func removeFirstNoteFromRevision() {
+        notesToRevise.remove(at: 0)
     }
     
-    func getNumCardsToRevise() -> Int {
-        return cardsToRevise.count
-    }
-    
-    func removeFirstCardFromRevision() {
-        cardsToRevise.remove(at: 0)
-    }
-    
-    func setCardRevisionDate(index: Int) {
-        cards[index].setDateNextRevise()
+    func setNoteRevisionDate(index: Int) {
+        if notesToRevise.count > 0 {
+            notesToRevise[index].setDateNextRevise()
+        }
     }
 
 }

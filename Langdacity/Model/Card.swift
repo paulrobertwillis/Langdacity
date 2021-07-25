@@ -11,25 +11,23 @@ class Card {
     
     var english: String
     var french: String
-    var dateNextRevise: Date
-    var notes: [Note]?
+    var notes: [Note]
     
     init(english: String, french: String) {
         self.english = english
         self.french = french
-        self.dateNextRevise = NSDate() as Date
         self.notes = []
         
-        let englishToFrench = Note(translateFrom: english, translateTo: french)
-        let frenchToEnglish = Note(translateFrom: french, translateTo: english)
-        
+        createNotes()
     }
-
-    func setDateNextRevise() {
-        // TODO change how this is calculated
-        let modifiedDate = Calendar.current.date(byAdding: .day, value: 1, to: dateNextRevise)!
-        print("\(toString()): \(modifiedDate)")
-        dateNextRevise = modifiedDate
+    
+    func createNotes() {
+        if let note = Note.createNote(card: self, direction: "toFrench") {
+            notes.append(note)
+        }
+        if let note = Note.createNote(card: self, direction: "toEnglish") {
+            notes.append(note)
+        }
     }
     
     func toString() -> String {
