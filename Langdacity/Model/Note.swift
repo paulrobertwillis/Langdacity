@@ -47,7 +47,9 @@ class Note: CustomStringConvertible, Codable {
         let formattedDateNextRevise = dateNextRevise.getFormattedDate(format: "yyyy-MM-dd")
         let formattedModifiedDate = modifiedDate.getFormattedDate(format: "yyyy-MM-dd")
         
+        // TODO: Remove this print statement
         print("\(toString()): \(formattedDateNextRevise) changed to \(formattedModifiedDate)")
+        
         dateNextRevise = modifiedDate
     }
     

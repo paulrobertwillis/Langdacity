@@ -32,21 +32,21 @@ class RevisionViewController: UIViewController {
     
     @IBAction func memorisedButtonTapped(_ sender: Any) {
         changeRevisionDate()
-        rc.removeFirstNoteFromRevision()
         
         if rc.getNumNotesToRevise() > 0 {
             noteToDisplay = rc.getNextNote()
             updateLabels()
         } else {
             print("end of revision!")
+            
             // Sends back to previous view controller
-                        
             _ = navigationController?.popViewController(animated: true)
         }
     }
     
     func changeRevisionDate() {
         rc.setNoteRevisionDate(index: 0)
+        rc.removeFirstNoteFromRevision()
     }
     
     func updateLabels() {

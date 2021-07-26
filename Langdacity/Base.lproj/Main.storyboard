@@ -8,20 +8,21 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Student Homepage View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Langdacity" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="StudentHomepageViewController" customModule="Langdacity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KqB-F0-Cv5">
                                 <rect key="frame" x="169.5" y="454.5" width="75" height="41"/>
+                                <accessibility key="accessibilityConfiguration" identifier="ReviseButton"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Revise!"/>
                                 <connections>
-                                    <segue destination="dPg-MB-5yh" kind="show" id="aEu-am-iIV"/>
+                                    <action selector="ReviseButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eho-bM-3u1"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -33,6 +34,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zTp-gZ-9Sd"/>
+                    <connections>
+                        <segue destination="dPg-MB-5yh" kind="show" identifier="ReviseTextSegue" id="1dA-2f-lmg"/>
+                        <segue destination="mF9-CY-O2B" kind="show" identifier="NoNotesToReviseSegue" id="e5z-8R-NsT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -92,7 +97,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zHr-rm-g0V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1850.7246376811595" y="87.723214285714278"/>
+            <point key="canvasLocation" x="1849" y="-222"/>
+        </scene>
+        <!--No Notes To Revise View Controller-->
+        <scene sceneID="op8-Du-iNj">
+            <objects>
+                <viewController storyboardIdentifier="NoNotesToRevise" id="mF9-CY-O2B" customClass="NoNotesToReviseViewController" customModule="Langdacity" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eXV-Gd-gqb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="tNt-mp-kH6"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="0h3-Ea-Ubx"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c20-3b-hKF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1848" y="441"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XVM-p5-CNZ">
