@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Note: CustomStringConvertible{
+class Note: CustomStringConvertible, Codable {
     var description: String { return "Note \(UUID)"}
     
     let translateFrom: String

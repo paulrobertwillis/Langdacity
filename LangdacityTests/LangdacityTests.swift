@@ -10,6 +10,10 @@ import XCTest
 
 class LangdacityTests: XCTestCase {
 
+//    override func setUp() {
+//        let revision = Revision()
+//    }
+    
 //    override func setUpWithError() throws {
 //        // Put setup code here. This method is called before the invocation of each test method in the class.
 //    }
@@ -31,14 +35,15 @@ class LangdacityTests: XCTestCase {
 //        }
 //    }
     
-    func testSumOfTwoNumbers() {
-        let num1 = 10
-        let num2 = 20
-        let sum = num1 + num2
-        XCTAssertEqual(sum, 30, "sum should be 30")
-    }
+//    func testSumOfTwoNumbers() {
+//        let num1 = 10
+//        let num2 = 20
+//        let sum = num1 + num2
+//        XCTAssertEqual(sum, 30, "sum should be 30")
+//    }
     
-    func testRevisionLabelText() {
-        
-    }
+//    func testRevisionLabelText() {
+//
+//
+//    }
 }
