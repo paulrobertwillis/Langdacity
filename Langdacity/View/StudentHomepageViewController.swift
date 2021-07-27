@@ -16,20 +16,16 @@ class StudentHomepageViewController: UIViewController {
                 
         // Temp card creation
     }
-    
-    enum RevisionViewToSegue {
-        case text
-        case empty
-    }
-    
+        
     @IBAction func ReviseButtonTapped(_ sender: Any) {
-        
+        if RevisionData.notesToRevise.count > 0 {
+            // segue to RevisionViewController
+            performSegue(withIdentifier: "ReviseTextSegue", sender: self)
+        } else {
+            // segue to NoNotesToReviseViewController
+            performSegue(withIdentifier: "NoNotesToReviseSegue", sender: self)
+        }
         
         
     }
-    
-    func segue() {
-        
-    }
-    
 }

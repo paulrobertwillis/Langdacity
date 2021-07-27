@@ -22,7 +22,7 @@ class Note: CustomStringConvertible, Codable {
         self.translateFrom = translateFrom
         self.translateTo = translateTo
         self.dateNextRevise = Date(timeIntervalSinceNow: 0)
-        self.UUID = Note.getUniqueIdentifier()
+        self.UUID = Note.createUniqueIdentifier()
     }
     
     static func createNote(card: Card, direction: String) -> Note? {
@@ -35,7 +35,7 @@ class Note: CustomStringConvertible, Codable {
         }
     }
     
-    static func getUniqueIdentifier() -> Int {
+    static private func createUniqueIdentifier() -> Int {
         Note.identifierFactory += 1
         return Note.identifierFactory
     }
@@ -48,13 +48,9 @@ class Note: CustomStringConvertible, Codable {
         let formattedModifiedDate = modifiedDate.getFormattedDate(format: "yyyy-MM-dd")
         
         // TODO: Remove this print statement
-        print("\(toString()): \(formattedDateNextRevise) changed to \(formattedModifiedDate)")
+        print("\(description): \(formattedDateNextRevise) changed to \(formattedModifiedDate)")
         
         dateNextRevise = modifiedDate
-    }
-    
-    func toString() -> String {
-        return "Note UUID: \(String(UUID))"
     }
 }
 

@@ -18,7 +18,7 @@ class RevisionViewController: UIViewController {
     var notesToRevise: [Note]!
     var noteToDisplay: Note!
     
-    let rc = Revision()
+    let rc = Revision.getInstance()
     
     override func viewDidLoad() {
         super.viewDidLoad()

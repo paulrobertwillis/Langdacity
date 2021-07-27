@@ -9,12 +9,21 @@ import Foundation
 
 class Revision {
     
+    private static let instance = Revision()
+    
     var cards = [Card]()
     var notesToRevise = [Note]()
     
-    init() {
+    
+    static func getInstance() -> Revision {
+        return instance
+    }
+    
+    
+    private init() {
 //        loadCardsFromFile()
         let array = jsonInterface.decodeLessonCardsFromJSON()
+        
         if array != nil {
             self.cards = array!
         }
@@ -76,7 +85,6 @@ class Revision {
             jsonInterface.encodeLessonCardsToJSON(cards: cards, lessonName: "Lesson01")
         }
     }
-
 }
 
 extension Array where Element: Equatable {
