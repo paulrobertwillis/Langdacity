@@ -68,10 +68,27 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="60g-Lb-3BE">
-                                <rect key="frame" x="168.5" y="522" width="77" height="30"/>
-                                <state key="normal" title="Memorised"/>
+                                <rect key="frame" x="188" y="522" width="38" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Easy"/>
+                                <state key="normal" title="Good"/>
                                 <connections>
-                                    <action selector="memorisedButtonTapped:" destination="dPg-MB-5yh" eventType="touchUpInside" id="gZc-fx-sod"/>
+                                    <action selector="difficultyButtonTapped:" destination="dPg-MB-5yh" eventType="touchUpInside" id="gZc-fx-sod"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aC8-0e-qeX">
+                                <rect key="frame" x="72" y="522" width="39" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Again"/>
+                                <state key="normal" title="Again"/>
+                                <connections>
+                                    <action selector="difficultyButtonTapped:" destination="dPg-MB-5yh" eventType="touchUpInside" id="4IE-R5-eay"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EY7-ME-Roi">
+                                <rect key="frame" x="314.5" y="522" width="34" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Hard"/>
+                                <state key="normal" title="Hard"/>
+                                <connections>
+                                    <action selector="difficultyButtonTapped:" destination="dPg-MB-5yh" eventType="touchUpInside" id="ZPs-O2-ZQN"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -83,16 +100,23 @@
                             <constraint firstItem="bQi-ec-41A" firstAttribute="centerX" secondItem="NZZ-1y-FQ6" secondAttribute="centerX" id="9sy-y2-V1F"/>
                             <constraint firstItem="60g-Lb-3BE" firstAttribute="top" secondItem="bQi-ec-41A" secondAttribute="bottom" constant="141" id="H5F-nz-aUe"/>
                             <constraint firstItem="bQi-ec-41A" firstAttribute="top" secondItem="Cnc-Sq-r9F" secondAttribute="bottom" constant="77" id="TLZ-go-n4S"/>
+                            <constraint firstItem="aC8-0e-qeX" firstAttribute="leading" secondItem="NZZ-1y-FQ6" secondAttribute="leading" constant="72" id="cFI-Ix-0zt"/>
                             <constraint firstItem="bQi-ec-41A" firstAttribute="width" secondItem="Cnc-Sq-r9F" secondAttribute="width" id="gDK-Jl-cTQ"/>
+                            <constraint firstItem="EY7-ME-Roi" firstAttribute="centerY" secondItem="60g-Lb-3BE" secondAttribute="centerY" id="jLZ-La-EGQ"/>
+                            <constraint firstItem="EY7-ME-Roi" firstAttribute="leading" secondItem="60g-Lb-3BE" secondAttribute="trailing" constant="88.5" id="lQD-dP-TlR"/>
+                            <constraint firstItem="aC8-0e-qeX" firstAttribute="centerY" secondItem="60g-Lb-3BE" secondAttribute="centerY" id="rhP-Mb-VOr"/>
                             <constraint firstItem="bQi-ec-41A" firstAttribute="height" secondItem="Cnc-Sq-r9F" secondAttribute="height" id="tNm-Ol-CEj"/>
                             <constraint firstItem="60g-Lb-3BE" firstAttribute="centerX" secondItem="NZZ-1y-FQ6" secondAttribute="centerX" id="yN8-do-6eS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="HXY-98-T52"/>
                     <connections>
-                        <outlet property="memorised" destination="60g-Lb-3BE" id="gKx-jp-zGO"/>
+                        <outlet property="difficulty" destination="60g-Lb-3BE" id="gKx-jp-zGO"/>
                         <outlet property="translateFrom" destination="Cnc-Sq-r9F" id="4ec-T6-DhO"/>
                         <outlet property="translateTo" destination="bQi-ec-41A" id="b9f-ut-ypg"/>
+                        <outletCollection property="difficultyButtons" destination="EY7-ME-Roi" collectionClass="NSMutableArray" id="wif-Ec-K6u"/>
+                        <outletCollection property="difficultyButtons" destination="aC8-0e-qeX" collectionClass="NSMutableArray" id="1zM-5g-rAy"/>
+                        <outletCollection property="difficultyButtons" destination="60g-Lb-3BE" collectionClass="NSMutableArray" id="CYI-le-PM5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zHr-rm-g0V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

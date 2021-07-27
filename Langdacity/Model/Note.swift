@@ -15,6 +15,12 @@ class Note: CustomStringConvertible, Codable {
     var dateNextRevise: Date
     var UUID: Int
     
+    enum status {
+        case learning
+        case learnt
+        case relearning
+    }
+    
     static var identifierFactory = 0
 
     private init(translateFrom: String, translateTo: String) {

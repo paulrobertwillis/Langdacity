@@ -13,7 +13,9 @@ class RevisionViewController: UIViewController {
     
     @IBOutlet var translateTo: UILabel!
     
-    @IBOutlet var memorised: UIButton!
+    @IBOutlet var difficultyButtons: [UIButton]!
+    
+    @IBOutlet var difficulty: UIButton!
     
 //    var notesToRevise: [Note]!
 //    var noteToDisplay: Note!
@@ -28,7 +30,26 @@ class RevisionViewController: UIViewController {
         updateLabels(noteToDisplay: note)
     }
     
-    @IBAction func memorisedButtonTapped(_ sender: Any) {
+    @IBAction func difficultyButtonTapped(_ sender: UIButton) {
+        let buttonName = sender.currentTitle
+        
+        switch buttonName {
+        case "Again":
+            print("'Again' pressed")
+            
+            
+        case "Good":
+            print("'Good' pressed")
+            
+            
+        case "Hard":
+            print("'Hard' pressed")
+            
+            
+        default:
+            print("Error")
+        }
+        
         let noteToDisplay = rc.getFirstNote()!
         
         // set revision date for the currently displayed note
