@@ -84,9 +84,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EY7-ME-Roi">
-                                <rect key="frame" x="314.5" y="522" width="34" height="30"/>
+                                <rect key="frame" x="314.5" y="522" width="33" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Hard"/>
-                                <state key="normal" title="Hard"/>
+                                <state key="normal" title="Easy"/>
                                 <connections>
                                     <action selector="difficultyButtonTapped:" destination="dPg-MB-5yh" eventType="touchUpInside" id="ZPs-O2-ZQN"/>
                                 </connections>

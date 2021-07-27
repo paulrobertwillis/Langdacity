@@ -13,9 +13,13 @@ class Note: CustomStringConvertible, Codable {
     let translateFrom: String
     let translateTo: String
     var dateNextRevise: Date
+    var easeFactor: Double
+    var interval: Int
+    var learningStatus: status
+    var stepsIndex: Int
     var UUID: Int
     
-    enum status {
+    enum status: String, Codable {
         case learning
         case learnt
         case relearning
@@ -24,9 +28,15 @@ class Note: CustomStringConvertible, Codable {
     static var identifierFactory = 0
 
     private init(translateFrom: String, translateTo: String) {
+        let newNoteVariables = schedulingDataConstants().newNoteVariables
+        
         self.translateFrom = translateFrom
         self.translateTo = translateTo
         self.dateNextRevise = Date(timeIntervalSinceNow: 0)
+        self.easeFactor = newNoteVariables.startingEase // calculated from global constant
+        self.interval = newNoteVariables.graduatingInterval // calculated from global constant
+        self.learningStatus = status.learning
+        self.stepsIndex = 0
         self.UUID = Note.createUniqueIdentifier()
     }
     
@@ -48,6 +58,32 @@ class Note: CustomStringConvertible, Codable {
     func setDateNextRevise() {
         // TODO change how this is calculated
         let modifiedDate = Calendar.current.date(byAdding: .day, value: 1, to: dateNextRevise)!
+        
+        let formattedDateNextRevise = dateNextRevise.getFormattedDate(format: "yyyy-MM-dd")
+        let formattedModifiedDate = modifiedDate.getFormattedDate(format: "yyyy-MM-dd")
+        
+        // TODO: Remove this print statement
+        print("\(description): \(formattedDateNextRevise) changed to \(formattedModifiedDate)")
+        
+        dateNextRevise = modifiedDate
+    }
+    
+    func setDateNextRevise(days: Int) {
+        // TODO change how this is calculated
+        let modifiedDate = Calendar.current.date(byAdding: .day, value: days, to: dateNextRevise)!
+        
+        let formattedDateNextRevise = dateNextRevise.getFormattedDate(format: "yyyy-MM-dd")
+        let formattedModifiedDate = modifiedDate.getFormattedDate(format: "yyyy-MM-dd")
+        
+        // TODO: Remove this print statement
+        print("\(description): \(formattedDateNextRevise) changed to \(formattedModifiedDate)")
+        
+        dateNextRevise = modifiedDate
+    }
+    
+    func setDateNextRevise(minutes: Int) {
+        // TODO change how this is calculated
+        let modifiedDate = Calendar.current.date(byAdding: .minute, value: minutes, to: dateNextRevise)!
         
         let formattedDateNextRevise = dateNextRevise.getFormattedDate(format: "yyyy-MM-dd")
         let formattedModifiedDate = modifiedDate.getFormattedDate(format: "yyyy-MM-dd")

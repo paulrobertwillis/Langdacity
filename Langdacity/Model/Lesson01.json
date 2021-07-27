@@ -7,12 +7,20 @@
                 "translateFrom": "hi",
                 "translateTo": "salut",
                 "dateNextRevise": "2021-07-27T00:00:00Z",
+                "easeFactor": 2.50,
+                "interval": 1,
+                "learningStatus": "learning",
+                "stepsIndex": 0,
                 "UUID": 0
             },
             {
                 "translateFrom": "salut",
                 "translateTo": "hi",
                 "dateNextRevise": "2021-07-27T00:00:00Z",
+                "easeFactor": 2.50,
+                "interval": 1,
+                "learningStatus": "learning",
+                "stepsIndex": 0,
                 "UUID": 1
             }
         ]

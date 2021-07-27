@@ -20,17 +20,13 @@ class Revision {
     
 
     private init() {
-        
         let array = JsonInterface.decodeLessonCardsFromJSON()
-        
         if array != nil {
             self.cards = array!
         }
-        
         self.notesToRevise = getNotesToRevise()
-        
+        //TODO: remove print statements
         print(cards)
-        
         for card in cards {
             for note in card.notes {
                 print(note.description, note.dateNextRevise)
@@ -73,13 +69,6 @@ class Revision {
             notesToRevise.removeFirst()
         }
     }
-    
-//    func setNoteRevisionDate(index: Int) {
-//        if notesToRevise.count > 0 {
-//            notesToRevise[index].setDateNextRevise()
-//            jsonInterface.encodeLessonCardsToJSON(cards: cards, lessonName: "Lesson01")
-//        }
-//    }
 }
 
 extension Array where Element: Equatable {
