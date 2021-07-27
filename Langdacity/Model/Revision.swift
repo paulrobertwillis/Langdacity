@@ -11,18 +11,17 @@ class Revision {
     
     private static let instance = Revision()
     
-    var cards = [Card]()
-    var notesToRevise = [Note]()
-    
+    private(set) var cards = [Card]()
+    private(set) var notesToRevise = [Note]()
     
     static func getInstance() -> Revision {
         return instance
     }
     
-    
+
     private init() {
-//        loadCardsFromFile()
-        let array = jsonInterface.decodeLessonCardsFromJSON()
+        
+        let array = JsonInterface.decodeLessonCardsFromJSON()
         
         if array != nil {
             self.cards = array!
@@ -62,29 +61,25 @@ class Revision {
         return cards
     }
     
-    func getNextNote() -> Note? {
+    func getFirstNote() -> Note? {
         if notesToRevise.count > 0 {
             return notesToRevise[0]
         }
         return nil
     }
-        
-    func getNumNotesToRevise() -> Int {
-        return notesToRevise.count
-    }
-    
+            
     func removeFirstNoteFromRevision() {
         if notesToRevise.count > 0 {
             notesToRevise.removeFirst()
         }
     }
     
-    func setNoteRevisionDate(index: Int) {
-        if notesToRevise.count > 0 {
-            notesToRevise[index].setDateNextRevise()
-            jsonInterface.encodeLessonCardsToJSON(cards: cards, lessonName: "Lesson01")
-        }
-    }
+//    func setNoteRevisionDate(index: Int) {
+//        if notesToRevise.count > 0 {
+//            notesToRevise[index].setDateNextRevise()
+//            jsonInterface.encodeLessonCardsToJSON(cards: cards, lessonName: "Lesson01")
+//        }
+//    }
 }
 
 extension Array where Element: Equatable {

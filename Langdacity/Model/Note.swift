@@ -17,7 +17,6 @@ class Note: CustomStringConvertible, Codable {
     
     static var identifierFactory = 0
 
-    
     private init(translateFrom: String, translateTo: String) {
         self.translateFrom = translateFrom
         self.translateTo = translateTo

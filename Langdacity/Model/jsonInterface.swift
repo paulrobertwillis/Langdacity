@@ -7,7 +7,7 @@
 
 import Foundation
 
-class jsonInterface {
+class JsonInterface {
     
     static func decodeLessonCardsFromJSON() -> [Card]? {
         guard
@@ -19,7 +19,6 @@ class jsonInterface {
         }
         
         do {
-            print("attempting cards array creation")
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
             let cards: [Card] = try decoder.decode([Card].self, from: data)
@@ -36,7 +35,6 @@ class jsonInterface {
         
         // find URL of lesson
         guard let fileURL = Bundle.main.url(forResource: lesson, withExtension: "json") else { return }
-        print(fileURL)
                 
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601

@@ -49,33 +49,4 @@ class Card: CustomStringConvertible, Codable {
     func toString() -> String {
         return english
     }
-    
-//    func notesDueToRevise() -> [Note] {
-//        return notes
-//    }
-    
-//    static func decodeFromJSON() -> [Card]? {
-//        guard
-//            let path = Bundle.main.path(forResource: "Lesson01", ofType: "json"),
-//            let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-//        else {
-//            print("Error: cannot locate JSON file")
-//            return nil
-//        }
-//        
-//        do {
-//            print("attempting cards array creation")
-//            let decoder = JSONDecoder()
-//            decoder.dateDecodingStrategy = .iso8601
-//            let cards: [Card] = try decoder.decode([Card].self, from: data)
-//            return cards
-//        } catch {
-//            // handle error
-//            print("error in decoding JSON file")
-//        }
-//
-//        return nil
-//    }
-    
-
 }

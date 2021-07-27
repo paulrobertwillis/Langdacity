@@ -15,27 +15,32 @@ class RevisionViewController: UIViewController {
     
     @IBOutlet var memorised: UIButton!
     
-    var notesToRevise: [Note]!
-    var noteToDisplay: Note!
+//    var notesToRevise: [Note]!
+//    var noteToDisplay: Note!
+    
     
     let rc = Revision.getInstance()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        noteToDisplay = rc.getNextNote()
-        
-        if noteToDisplay != nil {
-            updateLabels()
-        }
+        let note = rc.getFirstNote()!
+        updateLabels(noteToDisplay: note)
     }
     
     @IBAction func memorisedButtonTapped(_ sender: Any) {
-        changeRevisionDate()
+        let noteToDisplay = rc.getFirstNote()!
         
-        if rc.getNumNotesToRevise() > 0 {
-            noteToDisplay = rc.getNextNote()
-            updateLabels()
+        // set revision date for the currently displayed note
+        noteToDisplay.setDateNextRevise()
+        
+        // save the new note and all cards in its lesson to JSON
+        JsonInterface.encodeLessonCardsToJSON(cards: rc.cards, lessonName: "Lesson01")
+        
+        rc.removeFirstNoteFromRevision()
+                        
+        if let newNoteToDisplay = rc.getFirstNote() {
+            updateLabels(noteToDisplay: newNoteToDisplay)
         } else {
             print("end of revision!")
             
@@ -43,15 +48,10 @@ class RevisionViewController: UIViewController {
             _ = navigationController?.popViewController(animated: true)
         }
     }
-    
-    func changeRevisionDate() {
-        rc.setNoteRevisionDate(index: 0)
-        rc.removeFirstNoteFromRevision()
-    }
-    
-    func updateLabels() {
-        translateFrom.text? = noteToDisplay.translateFrom
-        translateTo.text? = noteToDisplay.translateTo
+        
+    func updateLabels(noteToDisplay note: Note) {
+        translateFrom.text? = note.translateFrom
+        translateTo.text? = note.translateTo
     }
     
     

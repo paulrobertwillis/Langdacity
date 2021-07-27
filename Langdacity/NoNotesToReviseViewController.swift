@@ -9,4 +9,7 @@ import UIKit
 
 class NoNotesToReviseViewController: UIViewController {
 
+    override func viewDidLoad() {
+        print("no notes accessed")
+    }
 }
