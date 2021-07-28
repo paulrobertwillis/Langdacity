@@ -13,12 +13,16 @@ class Revision {
     
     private(set) var cards = [Card]()
     private(set) var notesToRevise = [Note]()
+        
+//    private var helloWorldTimer = Timer.scheduledTimer(timeInterval: 60.0, target: .self, selector: #selector(self.perMinuteUpdate()), userInfo: nil, repeats: true)
     
-    static func getInstance() -> Revision {
-        return instance
-    }
+//    var timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) {
+//        (_) in
+//        self.notesToRevise = getNotesToRevise()
+//    }
     
-
+    weak var timer: Timer?
+    
     private init() {
         let array = JsonInterface.decodeLessonCardsFromJSON()
         if array != nil {
@@ -32,6 +36,33 @@ class Revision {
                 print(note.description, note.dateNextRevise)
             }
         }
+        startRevisionUpdateTimer()
+    }
+    
+    private func startRevisionUpdateTimer() {
+        stopTimer() // prevents accidental second timer creation
+        timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [weak self] _ in
+            print("test")
+            let instance = Revision.getInstance()
+            instance.notesToRevise = instance.getNotesToRevise()
+        }
+    }
+    
+    func stopTimer() {
+        timer?.invalidate()
+    }
+
+//    deinit {
+//        stopTimer()
+//    }
+        
+    static func getInstance() -> Revision {
+        return instance
+    }
+    
+    @objc
+    func perMinuteUpdate() {
+        print("minute!")
     }
         
     func getNotesToRevise() -> [Note] {
