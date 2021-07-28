@@ -82,11 +82,9 @@ class RevisionViewController: UIViewController {
         
         switch buttonTitle {
         case "Again":
-            print("'Again' pressed for learning card")
             noteToDisplay.stepsIndex = 0
             noteToDisplay.setDateNextRevise(minutes: newNote.newSteps[noteToDisplay.stepsIndex])
         case "Good":
-            print("'Good' pressed")
             noteToDisplay.stepsIndex += 1
             if (noteToDisplay.stepsIndex) < newNote.newSteps.count {
                 noteToDisplay.setDateNextRevise(minutes: newNote.newSteps[noteToDisplay.stepsIndex])
@@ -97,7 +95,6 @@ class RevisionViewController: UIViewController {
                 noteToDisplay.setDateNextRevise(days: noteToDisplay.interval)
             }
         case "Easy":
-            print("'Easy' pressed")
             // note graduates from 'learning' to 'learnt'
             noteToDisplay.learningStatus = .learnt
             if noteToDisplay.stepsIndex == 0 {
@@ -121,17 +118,14 @@ class RevisionViewController: UIViewController {
 
         switch buttonTitle {
         case "Again":
-            print("'Again' pressed")
             noteToDisplay.learningStatus = .relearning
             noteToDisplay.stepsIndex = 0
             noteToDisplay.easeFactor = 130 // hardcoded value that resets ease factor as percentage
             noteToDisplay.setDateNextRevise(minutes: newNote.newSteps[noteToDisplay.stepsIndex])
         case "Good":
-            print("'Good' pressed")
             noteToDisplay.interval = (noteToDisplay.interval * noteToDisplay.easeFactor/100 * review.intervalModifier/100)
             noteToDisplay.setDateNextRevise(days: min(review.maximumInterval, noteToDisplay.interval)) // enforces maximum interval
         case "Easy":
-            print("'Easy' pressed")
             noteToDisplay.easeFactor += 15
             noteToDisplay.interval = (noteToDisplay.interval * noteToDisplay.easeFactor/100 * review.intervalModifier/100 * review.easyBonus/100)
             noteToDisplay.setDateNextRevise(days: min(review.maximumInterval, noteToDisplay.interval)) // enforces maximum interval
@@ -150,11 +144,9 @@ class RevisionViewController: UIViewController {
 
         switch buttonTitle {
         case "Again":
-            print("'Again' pressed")
             noteToDisplay.stepsIndex = 0
             noteToDisplay.setDateNextRevise(minutes: noteToDisplay.stepsIndex)
         case "Good":
-            print("'Good' pressed")
             noteToDisplay.stepsIndex = 0
             if (noteToDisplay.stepsIndex) < lapse.lapseSteps.count {
                 noteToDisplay.setDateNextRevise(minutes: lapse.lapseSteps[noteToDisplay.stepsIndex])
@@ -165,7 +157,6 @@ class RevisionViewController: UIViewController {
                 noteToDisplay.setDateNextRevise(days: noteToDisplay.interval)
             }
         case "Easy":
-            print("'Easy' pressed")
             // TODO: remove this option and redesign storyboard around it?
             noteToDisplay.stepsIndex = 0
             if (noteToDisplay.stepsIndex) < lapse.lapseSteps.count {
@@ -176,7 +167,6 @@ class RevisionViewController: UIViewController {
                 noteToDisplay.interval = max(lapse.minimumInterval, noteToDisplay.interval * review.intervalModifier/100)
                 noteToDisplay.setDateNextRevise(days: noteToDisplay.interval)
             }
-
         default:
             print("Error")
         }
