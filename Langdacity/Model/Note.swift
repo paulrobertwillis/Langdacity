@@ -13,7 +13,7 @@ class Note: CustomStringConvertible, Codable {
     let translateFrom: String
     let translateTo: String
     var dateNextRevise: Date
-    var easeFactor: Double
+    var easeFactor: Int
     var interval: Int
     var learningStatus: status
     var stepsIndex: Int
@@ -54,39 +54,25 @@ class Note: CustomStringConvertible, Codable {
         Note.identifierFactory += 1
         return Note.identifierFactory
     }
-        
-    func setDateNextRevise() {
-        // TODO change how this is calculated
-        let modifiedDate = Calendar.current.date(byAdding: .day, value: 1, to: dateNextRevise)!
-        
-        let formattedDateNextRevise = dateNextRevise.getFormattedDate(format: "yyyy-MM-dd")
-        let formattedModifiedDate = modifiedDate.getFormattedDate(format: "yyyy-MM-dd")
-        
-        // TODO: Remove this print statement
-        print("\(description): \(formattedDateNextRevise) changed to \(formattedModifiedDate)")
-        
-        dateNextRevise = modifiedDate
-    }
-    
+            
     func setDateNextRevise(days: Int) {
         // TODO change how this is calculated
         let modifiedDate = Calendar.current.date(byAdding: .day, value: days, to: dateNextRevise)!
-        
-        let formattedDateNextRevise = dateNextRevise.getFormattedDate(format: "yyyy-MM-dd")
-        let formattedModifiedDate = modifiedDate.getFormattedDate(format: "yyyy-MM-dd")
-        
-        // TODO: Remove this print statement
-        print("\(description): \(formattedDateNextRevise) changed to \(formattedModifiedDate)")
-        
-        dateNextRevise = modifiedDate
+        setDateNextRevise(modifiedDate)
     }
     
     func setDateNextRevise(minutes: Int) {
         // TODO change how this is calculated
         let modifiedDate = Calendar.current.date(byAdding: .minute, value: minutes, to: dateNextRevise)!
+        setDateNextRevise(modifiedDate)
+    }
+    
+    private func setDateNextRevise(_ modifiedDate: Date) {
+//        let formattedDateNextRevise = dateNextRevise.getFormattedDate(format: "yyyy-MM-dd")
+//        let formattedModifiedDate = modifiedDate.getFormattedDate(format: "yyyy-MM-dd")
         
-        let formattedDateNextRevise = dateNextRevise.getFormattedDate(format: "yyyy-MM-dd")
-        let formattedModifiedDate = modifiedDate.getFormattedDate(format: "yyyy-MM-dd")
+        let formattedDateNextRevise = dateNextRevise.getFormattedDate(format: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+        let formattedModifiedDate = modifiedDate.getFormattedDate(format: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
         
         // TODO: Remove this print statement
         print("\(description): \(formattedDateNextRevise) changed to \(formattedModifiedDate)")

@@ -15,21 +15,21 @@ class schedulingDataConstants {
     
     // TODO: incorporate steps into algorithm
     struct newNoteVariables {
-        var newSteps = [5, 60] // in minutes
+        var newSteps = [5, 30] // in minutes
         var graduatingInterval = 1 // in days
-        var easyInterval = 4 // in days
-        var startingEase = 2.50 // in percent
+        var easyInterval = 3 // in days
+        var startingEase = 250 // in percent
     }
     
     struct reviewVariables {
-        var easyBonus = 1.30 // in percent
-        var intervalModifier = 1.0 // in percent
+        var easyBonus = 130 // in percent
+        var intervalModifier = 100 // in percent
         var maximumInterval = 365 // in days
     }
     
     struct lapseVariables {
         var lapseSteps = [10] // in minutes
-        var newInterval = 0.70 // in percent
+        var newInterval = 70 // in percent
         var minimumInterval = 1 // in days
     }
         

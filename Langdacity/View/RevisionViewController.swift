@@ -91,7 +91,8 @@ class RevisionViewController: UIViewController {
             noteToDisplay.setDateNextRevise(minutes: newNote.newSteps[noteToDisplay.stepsIndex])
         case "Good":
             print("'Good' pressed")
-            if (noteToDisplay.stepsIndex + 1) < newNote.newSteps.count {
+            noteToDisplay.stepsIndex += 1
+            if (noteToDisplay.stepsIndex) < newNote.newSteps.count {
                 noteToDisplay.setDateNextRevise(minutes: newNote.newSteps[noteToDisplay.stepsIndex])
             } else {
                 // note graduates from 'learning' to 'learnt'
@@ -103,7 +104,11 @@ class RevisionViewController: UIViewController {
             print("'Easy' pressed")
             // note graduates from 'learning' to 'learnt'
             noteToDisplay.learningStatus = .learnt
-            noteToDisplay.interval = newNote.easyInterval
+            if noteToDisplay.stepsIndex == 0 {
+                noteToDisplay.interval = newNote.graduatingInterval
+            } else {
+                noteToDisplay.interval = newNote.easyInterval
+            }
             noteToDisplay.setDateNextRevise(days: noteToDisplay.interval)
         default:
             print("Error")
@@ -114,19 +119,26 @@ class RevisionViewController: UIViewController {
     // Accessed: 2021-07-27
     // Author: riceissa
     func learntNoteScheduler(buttonTitle: String?) {
+        let data = schedulingDataConstants()
+        let newNote = data.newNoteVariables
+        let review = data.reviewVariables
+
         switch buttonTitle {
         case "Again":
             print("'Again' pressed")
-            
-            
+            noteToDisplay.learningStatus = .relearning
+            noteToDisplay.stepsIndex = 0
+            noteToDisplay.easeFactor = 130 // hardcoded value that resets ease factor as percentage
+            noteToDisplay.setDateNextRevise(minutes: newNote.newSteps[noteToDisplay.stepsIndex])
         case "Good":
             print("'Good' pressed")
-            
-            
+            noteToDisplay.interval = (noteToDisplay.interval * noteToDisplay.easeFactor/100 * review.intervalModifier/100)
+            noteToDisplay.setDateNextRevise(days: min(review.maximumInterval, noteToDisplay.interval)) // enforces maximum interval
         case "Easy":
             print("'Easy' pressed")
-            
-            
+            noteToDisplay.easeFactor += 15
+            noteToDisplay.interval = (noteToDisplay.interval * noteToDisplay.easeFactor/100 * review.intervalModifier/100 * review.easyBonus/100)
+            noteToDisplay.setDateNextRevise(days: min(review.maximumInterval, noteToDisplay.interval)) // enforces maximum interval
         default:
             print("Error")
         }
@@ -136,28 +148,42 @@ class RevisionViewController: UIViewController {
     // Accessed: 2021-07-27
     // Author: riceissa
     func relearningNoteScheduler(buttonTitle: String?) {
+        let data = schedulingDataConstants()
+        let review = data.reviewVariables
+        let lapse = data.lapseVariables
+
         switch buttonTitle {
         case "Again":
             print("'Again' pressed")
-            
-            
+            noteToDisplay.stepsIndex = 0
+            noteToDisplay.setDateNextRevise(minutes: noteToDisplay.stepsIndex)
         case "Good":
             print("'Good' pressed")
-            
-            
+            noteToDisplay.stepsIndex = 0
+            if (noteToDisplay.stepsIndex) < lapse.lapseSteps.count {
+                noteToDisplay.setDateNextRevise(minutes: lapse.lapseSteps[noteToDisplay.stepsIndex])
+            } else {
+                // note re-graduates from 'relearning' to 'learnt'
+                noteToDisplay.learningStatus = .learnt
+                noteToDisplay.interval = max(lapse.minimumInterval, noteToDisplay.interval * lapse.newInterval/100)
+                noteToDisplay.setDateNextRevise(days: noteToDisplay.interval)
+            }
         case "Easy":
             print("'Easy' pressed")
-            
-            
+            // TODO: remove this option and redesign storyboard around it?
+            noteToDisplay.stepsIndex = 0
+            if (noteToDisplay.stepsIndex) < lapse.lapseSteps.count {
+                noteToDisplay.setDateNextRevise(minutes: lapse.lapseSteps[noteToDisplay.stepsIndex])
+            } else {
+                // note re-graduates from 'relearning' to 'learnt'
+                noteToDisplay.learningStatus = .learnt
+                noteToDisplay.interval = max(lapse.minimumInterval, noteToDisplay.interval * review.intervalModifier/100)
+                noteToDisplay.setDateNextRevise(days: noteToDisplay.interval)
+            }
+
         default:
             print("Error")
         }
     }
-    
-//    func minutesToDays(minutes: Int) -> Int {
-//        return minutes / (60 * 24)
-//    }
-    
-    
 }
 

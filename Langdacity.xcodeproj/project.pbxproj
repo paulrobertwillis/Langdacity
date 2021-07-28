@@ -24,6 +24,8 @@
 		7BCAEE6B26A4B1A400075507 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAEE6A26A4B1A400075507 /* Card.swift */; };
 		7BCAEE6D26A5B74700075507 /* Revision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAEE6C26A5B74700075507 /* Revision.swift */; };
 		7BCD5F7F26B0A2630096621E /* SchedulingDataConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCD5F7E26B0A2630096621E /* SchedulingDataConstants.swift */; };
+		7BCD5F8126B1A03B0096621E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCD5F8026B1A03B0096621E /* LoginViewController.swift */; };
+		7BCD5F8326B1A0540096621E /* TeacherHomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCD5F8226B1A0540096621E /* TeacherHomepageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		7BCAEE6A26A4B1A400075507 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		7BCAEE6C26A5B74700075507 /* Revision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Revision.swift; sourceTree = "<group>"; };
 		7BCD5F7E26B0A2630096621E /* SchedulingDataConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulingDataConstants.swift; sourceTree = "<group>"; };
+		7BCD5F8026B1A03B0096621E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Langdacity/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
+		7BCD5F8226B1A0540096621E /* TeacherHomepageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherHomepageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +178,8 @@
 		7BCAEE7126A605AF00075507 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7BCD5F8026B1A03B0096621E /* LoginViewController.swift */,
+				7BCD5F8226B1A0540096621E /* TeacherHomepageViewController.swift */,
 				7BCA3DF926AF1A960068895E /* StudentHomepageController.swift */,
 			);
 			path = Controller;
@@ -310,6 +316,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BCD5F8126B1A03B0096621E /* LoginViewController.swift in Sources */,
 				7BCAEE3D26A4A88400075507 /* StudentHomepageViewController.swift in Sources */,
 				7BCA3DF826AEF74C0068895E /* JsonInterface.swift in Sources */,
 				7BCD5F7F26B0A2630096621E /* SchedulingDataConstants.swift in Sources */,
@@ -321,6 +328,7 @@
 				7BCAEE6D26A5B74700075507 /* Revision.swift in Sources */,
 				7BCA3DFA26AF1A960068895E /* StudentHomepageController.swift in Sources */,
 				7BCAEE3B26A4A88400075507 /* SceneDelegate.swift in Sources */,
+				7BCD5F8326B1A0540096621E /* TeacherHomepageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

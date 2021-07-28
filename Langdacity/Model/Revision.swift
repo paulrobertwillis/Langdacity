@@ -45,6 +45,8 @@ class Revision {
                     
                     if calendar.isDateInToday(dateNextRevise) {
                         notes.append(note)
+                    } else if dateNextRevise.timeIntervalSinceNow.sign == .minus {
+                        notes.append(note)
                     }
                 }
             }
