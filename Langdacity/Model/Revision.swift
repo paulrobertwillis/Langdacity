@@ -13,15 +13,7 @@ class Revision {
     
     private(set) var cards = [Card]()
     private(set) var notesToRevise = [Note]()
-        
-//    private var helloWorldTimer = Timer.scheduledTimer(timeInterval: 60.0, target: .self, selector: #selector(self.perMinuteUpdate()), userInfo: nil, repeats: true)
-    
-//    var timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) {
-//        (_) in
-//        self.notesToRevise = getNotesToRevise()
-//    }
-    // test
-    
+            
     weak var timer: Timer?
     
     private init() {
