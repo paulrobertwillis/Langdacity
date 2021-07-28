@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kXH-qg-vHK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DNE-PL-xHE">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18092"/>
@@ -41,7 +41,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="944.92753623188412" y="88.392857142857139"/>
+            <point key="canvasLocation" x="945" y="88"/>
         </scene>
         <!--Revision View Controller-->
         <scene sceneID="PoV-Oa-s15">
@@ -141,24 +141,6 @@
             </objects>
             <point key="canvasLocation" x="945" y="887"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="XVM-p5-CNZ">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bDw-Y7-rcy" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qS2-kT-v46">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ZfD-hV-JAq"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="w81-OK-2iV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-28" y="88"/>
-        </scene>
         <!--Login View Controller-->
         <scene sceneID="Cfo-ml-RXM">
             <objects>
@@ -167,24 +149,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qkz-am-LtT">
-                                <rect key="frame" x="180" y="325" width="55" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qkz-am-LtT">
+                                <rect key="frame" x="179.5" y="369" width="55" height="30"/>
                                 <state key="normal" title="Teacher"/>
+                                <connections>
+                                    <segue destination="oHs-0Y-UYy" kind="show" id="hG1-2j-VRP"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U1m-sG-ggB">
-                                <rect key="frame" x="180" y="497" width="55" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U1m-sG-ggB">
+                                <rect key="frame" x="179.5" y="541" width="55" height="30"/>
                                 <state key="normal" title="Student"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="NUq-0N-VYW"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8F8-86-14V"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="qkz-am-LtT" firstAttribute="top" secondItem="8F8-86-14V" secondAttribute="top" constant="281" id="99R-EH-dDB"/>
+                            <constraint firstItem="qkz-am-LtT" firstAttribute="centerX" secondItem="8F8-86-14V" secondAttribute="centerX" id="ICZ-w3-ktY"/>
+                            <constraint firstItem="U1m-sG-ggB" firstAttribute="centerX" secondItem="8F8-86-14V" secondAttribute="centerX" id="Mdk-oP-BCw"/>
+                            <constraint firstItem="U1m-sG-ggB" firstAttribute="height" secondItem="qkz-am-LtT" secondAttribute="height" id="Mio-do-qdg"/>
+                            <constraint firstItem="U1m-sG-ggB" firstAttribute="width" secondItem="qkz-am-LtT" secondAttribute="width" id="j5Z-QO-RbZ"/>
+                            <constraint firstItem="U1m-sG-ggB" firstAttribute="top" secondItem="qkz-am-LtT" secondAttribute="bottom" constant="142" id="jtb-Zp-9vO"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Fh7-3W-anq"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZyN-O0-hpW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1094" y="88"/>
+            <point key="canvasLocation" x="-175" y="-265"/>
         </scene>
         <!--Teacher Homepage View Controller-->
         <scene sceneID="qmS-6N-9gn">
@@ -201,6 +196,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jfd-pm-HBg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="945" y="-678"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Smg-he-144">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DNE-PL-xHE" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lkj-OY-qvx">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="kXH-qg-vHK" kind="relationship" relationship="rootViewController" id="kFe-Cm-Gf0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O4k-Kf-yke" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1086" y="-265"/>
         </scene>
     </scenes>
     <resources>

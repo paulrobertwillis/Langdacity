@@ -41,6 +41,7 @@ class Note: CustomStringConvertible, Codable {
     }
     
     static func createNote(card: Card, direction: String) -> Note? {
+        //TODO: replace hardcoded "toFrench"/"toEnglish" values
         if direction == "toFrench" {
             return Note.init(translateFrom: card.english, translateTo: card.french)
         } else if direction == "toEnglish" {
@@ -56,21 +57,18 @@ class Note: CustomStringConvertible, Codable {
     }
             
     func setDateNextRevise(days: Int) {
-        // TODO change how this is calculated
-        let modifiedDate = Calendar.current.date(byAdding: .day, value: days, to: dateNextRevise)!
+        let currentDate = Date()
+        let modifiedDate = Calendar.current.date(byAdding: .day, value: days, to: currentDate)!
         setDateNextRevise(modifiedDate)
     }
     
     func setDateNextRevise(minutes: Int) {
-        // TODO change how this is calculated
-        let modifiedDate = Calendar.current.date(byAdding: .minute, value: minutes, to: dateNextRevise)!
+        let currentDate = Date()
+        let modifiedDate = Calendar.current.date(byAdding: .minute, value: minutes, to: currentDate)!
         setDateNextRevise(modifiedDate)
     }
     
     private func setDateNextRevise(_ modifiedDate: Date) {
-//        let formattedDateNextRevise = dateNextRevise.getFormattedDate(format: "yyyy-MM-dd")
-//        let formattedModifiedDate = modifiedDate.getFormattedDate(format: "yyyy-MM-dd")
-        
         let formattedDateNextRevise = dateNextRevise.getFormattedDate(format: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
         let formattedModifiedDate = modifiedDate.getFormattedDate(format: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
         

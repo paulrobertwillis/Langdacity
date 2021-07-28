@@ -10,6 +10,7 @@ import Foundation
 class Card: CustomStringConvertible, Codable {
     var description: String { return "Card '\(english)'"}
     
+    //TODO: rename hardcoded variables to generics
     var english: String
     var french: String
     var notes: [Note]
@@ -38,6 +39,7 @@ class Card: CustomStringConvertible, Codable {
     }
     
     func createNotes() {
+        //TODO: remove hardcoded "toFrench"/"toEnglish" values
         if let note = Note.createNote(card: self, direction: "toFrench") {
             notes.append(note)
         }
