@@ -11,20 +11,18 @@ class Revision {
     
     private static let instance = Revision()
     
-    private(set) var cards = [Card]()
-    private(set) var notesToRevise = [Note]()
-        
-//    private var helloWorldTimer = Timer.scheduledTimer(timeInterval: 60.0, target: .self, selector: #selector(self.perMinuteUpdate()), userInfo: nil, repeats: true)
-    
-//    var timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) {
-//        (_) in
-//        self.notesToRevise = getNotesToRevise()
-//    }
-    
+    var cards = [Card]()
+    private(set) var notesToRevise = [Note]() {
+        didSet {
+            print("notesToRevise array changed")
+        }
+    }
+            
     weak var timer: Timer?
     
     private init() {
-        let array = JsonInterface.decodeLessonCardsFromJSON()
+        // TODO: repeat for every lesson to be loaded
+        let array = JsonInterface.decodeLessonCardsFromJSON(fileName: "Lesson01")
         if array != nil {
             self.cards = array!
         }
@@ -41,8 +39,8 @@ class Revision {
     
     private func startRevisionUpdateTimer() {
         stopTimer() // prevents accidental second timer creation
-        timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [weak self] _ in
-            print("test")
+        timer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { _ in
+            print("Checking notes to revise ...")
             let instance = Revision.getInstance()
             instance.notesToRevise = instance.getNotesToRevise()
         }

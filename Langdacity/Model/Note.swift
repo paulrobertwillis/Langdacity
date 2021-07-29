@@ -18,6 +18,7 @@ class Note: CustomStringConvertible, Codable {
     var learningStatus: status
     var stepsIndex: Int
     var UUID: Int
+//    let card: Card
     
     enum status: String, Codable {
         case learning
@@ -27,25 +28,27 @@ class Note: CustomStringConvertible, Codable {
     
     static var identifierFactory = 0
 
-    private init(translateFrom: String, translateTo: String) {
+    private init(parentCard: Card) {
         let newNoteVariables = schedulingDataConstants().newNoteVariables
         
-        self.translateFrom = translateFrom
-        self.translateTo = translateTo
+        self.translateFrom = parentCard.english
+        self.translateTo = parentCard.french
         self.dateNextRevise = Date(timeIntervalSinceNow: 0)
         self.easeFactor = newNoteVariables.startingEase // calculated from global constant
         self.interval = newNoteVariables.graduatingInterval // calculated from global constant
         self.learningStatus = status.learning
         self.stepsIndex = 0
         self.UUID = Note.createUniqueIdentifier()
+//        self.card = parentCard
     }
     
     static func createNote(card: Card, direction: String) -> Note? {
         //TODO: replace hardcoded "toFrench"/"toEnglish" values
+        //TODO: replace hardcoded "language" value
         if direction == "toFrench" {
-            return Note.init(translateFrom: card.english, translateTo: card.french)
+            return Note.init(parentCard: card)
         } else if direction == "toEnglish" {
-            return Note.init(translateFrom: card.french, translateTo: card.english)
+            return Note.init(parentCard: card)
         } else {
             return nil
         }

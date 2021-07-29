@@ -25,6 +25,9 @@
 		7BCD5F7F26B0A2630096621E /* SchedulingDataConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCD5F7E26B0A2630096621E /* SchedulingDataConstants.swift */; };
 		7BCD5F8126B1A03B0096621E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCD5F8026B1A03B0096621E /* LoginViewController.swift */; };
 		7BCD5F8326B1A0540096621E /* TeacherHomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCD5F8226B1A0540096621E /* TeacherHomepageViewController.swift */; };
+		7BCD5F8526B1C20F0096621E /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCD5F8426B1C20F0096621E /* SplashViewController.swift */; };
+		7BCD5F8726B1C4B00096621E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCD5F8626B1C4B00096621E /* Extensions.swift */; };
+		7BCD5F8D26B1E8D50096621E /* UnlockedLessons.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BCD5F8C26B1E8D50096621E /* UnlockedLessons.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,9 @@
 		7BCD5F7E26B0A2630096621E /* SchedulingDataConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulingDataConstants.swift; sourceTree = "<group>"; };
 		7BCD5F8026B1A03B0096621E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Langdacity/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
 		7BCD5F8226B1A0540096621E /* TeacherHomepageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherHomepageViewController.swift; sourceTree = "<group>"; };
+		7BCD5F8426B1C20F0096621E /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = SOURCE_ROOT; };
+		7BCD5F8626B1C4B00096621E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Langdacity/Model/Extensions.swift; sourceTree = SOURCE_ROOT; };
+		7BCD5F8C26B1E8D50096621E /* UnlockedLessons.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = UnlockedLessons.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,12 +158,14 @@
 		7BCAEE6E26A6059800075507 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7BCD5F8626B1C4B00096621E /* Extensions.swift */,
 				7BCAEE6A26A4B1A400075507 /* Card.swift */,
 				7BCA3DF726AEF74C0068895E /* JsonInterface.swift */,
 				7BCA3DF326ADA3310068895E /* Note.swift */,
 				7BCAEE6C26A5B74700075507 /* Revision.swift */,
 				7BCD5F7E26B0A2630096621E /* SchedulingDataConstants.swift */,
 				7BCA3DF526ADDED90068895E /* Lesson01.json */,
+				7BCD5F8C26B1E8D50096621E /* UnlockedLessons.json */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -165,6 +173,7 @@
 		7BCAEE7126A605AF00075507 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7BCD5F8426B1C20F0096621E /* SplashViewController.swift */,
 				7BCD5F8026B1A03B0096621E /* LoginViewController.swift */,
 				7BCA3DFB26AF1E390068895E /* NoNotesToReviseViewController.swift */,
 				7BCAEE6826A4AACB00075507 /* RevisionViewController.swift */,
@@ -280,6 +289,7 @@
 				7BCAEE4526A4A88500075507 /* LaunchScreen.storyboard in Resources */,
 				7BCAEE4226A4A88500075507 /* Assets.xcassets in Resources */,
 				7BCA3DF626ADDED90068895E /* Lesson01.json in Resources */,
+				7BCD5F8D26B1E8D50096621E /* UnlockedLessons.json in Resources */,
 				7BCAEE4026A4A88400075507 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,6 +317,7 @@
 			files = (
 				7BCD5F8126B1A03B0096621E /* LoginViewController.swift in Sources */,
 				7BCAEE3D26A4A88400075507 /* StudentHomepageViewController.swift in Sources */,
+				7BCD5F8526B1C20F0096621E /* SplashViewController.swift in Sources */,
 				7BCA3DF826AEF74C0068895E /* JsonInterface.swift in Sources */,
 				7BCD5F7F26B0A2630096621E /* SchedulingDataConstants.swift in Sources */,
 				7BCAEE6926A4AACB00075507 /* RevisionViewController.swift in Sources */,
@@ -317,6 +328,7 @@
 				7BCAEE6D26A5B74700075507 /* Revision.swift in Sources */,
 				7BCAEE3B26A4A88400075507 /* SceneDelegate.swift in Sources */,
 				7BCD5F8326B1A0540096621E /* TeacherHomepageViewController.swift in Sources */,
+				7BCD5F8726B1C4B00096621E /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

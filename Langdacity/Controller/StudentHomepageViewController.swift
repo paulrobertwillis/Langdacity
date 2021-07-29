@@ -13,7 +13,6 @@ class StudentHomepageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
     }
         
     @IBAction func ReviseButtonTapped(_ sender: Any) {

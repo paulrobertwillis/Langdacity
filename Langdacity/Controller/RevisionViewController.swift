@@ -8,7 +8,12 @@
 import UIKit
 
 class RevisionViewController: UIViewController {
-        
+    
+    
+    @IBOutlet var revisionInstructions: UILabel!
+    //TODO: update this label when [Notes] array in Revision is updated
+    @IBOutlet var NotesRemaining: UILabel!
+    
     @IBOutlet var translateFrom: UILabel!
     
     @IBOutlet var translateTo: UILabel!
@@ -17,18 +22,36 @@ class RevisionViewController: UIViewController {
     
     @IBOutlet var difficulty: UIButton!
     
+    @IBAction func tapAction(_ sender: Any) {
+        translateTo.isHidden = false
+        for UIButton in difficultyButtons {
+            UIButton.isHidden = false
+        }
+    }
+    
     let rc = Revision.getInstance()
     
-    var noteToDisplay: Note {
-        rc.getFirstNote()!
+    lazy var noteToDisplay: Note = rc.getFirstNote()! {
+//        rc.getFirstNote()!
+        didSet {
+            revisionInstructions.text = "Translate into \(noteToDisplay.translateTo)"
+        }
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let noteToDisplay = rc.getFirstNote()!
+        setToHidden()
         updateLabels()
+        
+    }
+    
+    func setToHidden() {
+        translateTo.isHidden = true
+        for UIButton in difficultyButtons {
+            UIButton.isHidden = true
+        }
     }
     
     @IBAction func difficultyButtonTapped(_ sender: UIButton) {
@@ -55,11 +78,13 @@ class RevisionViewController: UIViewController {
         
         // save the new note and all cards in its lesson to JSON
         JsonInterface.encodeLessonCardsToJSON(cards: rc.cards, lessonName: "Lesson01")
-        
+                
         rc.removeFirstNoteFromRevision()
                         
         if rc.getFirstNote() != nil {
+            noteToDisplay = rc.getFirstNote()!
             updateLabels()
+            setToHidden()
         } else {
             print("end of revision!")
             
