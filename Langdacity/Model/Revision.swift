@@ -15,6 +15,7 @@ class Revision {
     private(set) var notesToRevise = [Note]() {
         didSet {
             print("notesToRevise array changed")
+            self.cards = JsonInterface.decodeLessonCardsFromJSON(fileName: "Lesson01")!
         }
     }
             

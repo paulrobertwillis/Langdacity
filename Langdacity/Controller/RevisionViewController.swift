@@ -38,7 +38,6 @@ class RevisionViewController: UIViewController {
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,7 +74,6 @@ class RevisionViewController: UIViewController {
             print("Error: \(LocalizedError.self)")
         }
                         
-        
         // save the new note and all cards in its lesson to JSON
         JsonInterface.encodeLessonCardsToJSON(cards: rc.cards, lessonName: "Lesson01")
                 
