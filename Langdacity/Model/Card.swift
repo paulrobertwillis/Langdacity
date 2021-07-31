@@ -48,7 +48,7 @@ class Card: CustomStringConvertible, Codable {
         }
     }
     
-    func toString() -> String {
-        return english
-    }
+//    func toString() -> String {
+//        return english
+//    }
 }

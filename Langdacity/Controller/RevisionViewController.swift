@@ -31,11 +31,8 @@ class RevisionViewController: UIViewController {
     
     let rc = Revision.getInstance()
     
-    lazy var noteToDisplay: Note = rc.getFirstNote()! {
-//        rc.getFirstNote()!
-        didSet {
-            revisionInstructions.text = "Translate into \(noteToDisplay.translateTo)"
-        }
+    var noteToDisplay: Note {
+        rc.getFirstNote()!
     }
     
     override func viewDidLoad() {

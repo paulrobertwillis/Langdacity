@@ -11,7 +11,7 @@ class Revision {
     
     private static let instance = Revision()
     
-    var cards = [Card]()
+    private(set) var cards = [Card]()
     private(set) var notesToRevise = [Note]() {
         didSet {
             print("notesToRevise array changed")
