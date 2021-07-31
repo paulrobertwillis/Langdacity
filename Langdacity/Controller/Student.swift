@@ -8,7 +8,7 @@
 import Foundation
 
 class Student: CustomStringConvertible, Codable {
-    var description: String { return "Student: \(UUID)"}
+    var description: String { return "\(forename) \(surname): #\(UUID)"}
 
     var forename: String
     var surname: String
@@ -21,7 +21,7 @@ class Student: CustomStringConvertible, Codable {
     init(forename: String, surname: String, classUUID: Int) {
         self.forename = forename
         self.surname = surname
-        self.UUID = 0
+        self.UUID = Student.createUniqueIdentifier()
         self.classUUID = classUUID
         self.points = 0
     }
