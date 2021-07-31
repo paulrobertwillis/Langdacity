@@ -32,17 +32,14 @@ class TeacherHomepageViewController: UIViewController {
         
         var teacher: Teacher?
         
-        do {
-            teacher = try Teacher(title: "Mr", forename: "Adam", surname: "Smith", classes: [class1.UUID])
-            if teacher != nil {
-                JsonInterface.encodeToJSON(teacher: teacher!, fileName: "Teacher")
-            }
-        } catch {
-            print("Error in: TeacherHomepageViewController, viewDidLoad()")
+        
+        // Creating a Teacher object that can be used to represent the server sending a new JSON to the app
+        if let loggedInTeacher = try? Teacher(title: "Mr", forename: "Adam", surname: "Smith", classes: [class1]) {
+            JsonInterface.encodeToJSON(teacher: loggedInTeacher)
+            
+            // Setting the Teacher object that is logged in to the loggedInTeacher constant that has been 'sent' from the server
+            teacher = JsonInterface.decodeTeacherFromJSON(teacherUUID: loggedInTeacher.UUID)
         }
-        
-        let teacher2 = JsonInterface.decodeTeacherFromJSON(teacherUUID: teacher!.UUID)
-        
         
     }
     

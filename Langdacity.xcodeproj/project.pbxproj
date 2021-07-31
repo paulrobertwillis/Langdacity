@@ -13,6 +13,7 @@
 		7B77861826B5B89300E289EB /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B77861726B5B89300E289EB /* Class.swift */; };
 		7B77861D26B5BE9000E289EB /* PROF-0001.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B77861C26B5BE9000E289EB /* PROF-0001.json */; };
 		7B77861F26B5C43A00E289EB /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B77861E26B5C43A00E289EB /* Errors.swift */; };
+		7B77862126B5DFA700E289EB /* ClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B77862026B5DFA700E289EB /* ClassViewController.swift */; };
 		7BCA3DF426ADA3310068895E /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA3DF326ADA3310068895E /* Note.swift */; };
 		7BCA3DF626ADDED90068895E /* Lesson01.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BCA3DF526ADDED90068895E /* Lesson01.json */; };
 		7BCA3DF826AEF74C0068895E /* JsonInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA3DF726AEF74C0068895E /* JsonInterface.swift */; };
@@ -60,6 +61,7 @@
 		7B77861726B5B89300E289EB /* Class.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
 		7B77861C26B5BE9000E289EB /* PROF-0001.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "PROF-0001.json"; sourceTree = "<group>"; };
 		7B77861E26B5C43A00E289EB /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		7B77862026B5DFA700E289EB /* ClassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClassViewController.swift; path = Langdacity/ClassViewController.swift; sourceTree = SOURCE_ROOT; };
 		7BCA3DF326ADA3310068895E /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		7BCA3DF526ADDED90068895E /* Lesson01.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Lesson01.json; sourceTree = "<group>"; };
 		7BCA3DF726AEF74C0068895E /* JsonInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonInterface.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 		7BCAEE7126A605AF00075507 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7B77862026B5DFA700E289EB /* ClassViewController.swift */,
 				7B77861126B49A7F00E289EB /* ClassListTableViewController.swift */,
 				7BCD5F8426B1C20F0096621E /* SplashViewController.swift */,
 				7BCD5F8026B1A03B0096621E /* LoginViewController.swift */,
@@ -343,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BCD5F8126B1A03B0096621E /* LoginViewController.swift in Sources */,
+				7B77862126B5DFA700E289EB /* ClassViewController.swift in Sources */,
 				7B77861226B49A7F00E289EB /* ClassListTableViewController.swift in Sources */,
 				7BCAEE3D26A4A88400075507 /* StudentHomepageViewController.swift in Sources */,
 				7BCD5F8526B1C20F0096621E /* SplashViewController.swift in Sources */,

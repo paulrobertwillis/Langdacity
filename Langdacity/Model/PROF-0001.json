@@ -1,10 +1,50 @@
 {
   "classes" : [
-    1
+    {
+      "language" : "french",
+      "UUID" : 1,
+      "name" : "7Fr1",
+      "students" : [
+        {
+          "points" : 0,
+          "forename" : "Sarah",
+          "surname" : "Bell",
+          "UUID" : 1,
+          "classUUID" : 1
+        },
+        {
+          "points" : 0,
+          "forename" : "Student2",
+          "surname" : "Surname",
+          "UUID" : 2,
+          "classUUID" : 1
+        },
+        {
+          "points" : 0,
+          "forename" : "Student3",
+          "surname" : "Surname",
+          "UUID" : 3,
+          "classUUID" : 1
+        },
+        {
+          "points" : 0,
+          "forename" : "Student4",
+          "surname" : "Surname",
+          "UUID" : 4,
+          "classUUID" : 1
+        },
+        {
+          "points" : 0,
+          "forename" : "Student5",
+          "surname" : "Surname",
+          "UUID" : 5,
+          "classUUID" : 1
+        }
+      ]
+    }
   ],
   "forename" : "Adam",
   "title" : "Mr",
   "surname" : "Smith",
   "UUID" : "PROF-0001"
 }
-

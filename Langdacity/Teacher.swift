@@ -7,18 +7,18 @@
 
 import Foundation
 
-class Teacher: CustomStringConvertible, Codable {
+struct Teacher: CustomStringConvertible, Codable {
     var description: String { return "Teacher: \(UUID)"}
     
     var title: String
     var forename: String
     var surname: String
     var UUID: String
-    var classes: [Int]
+    var classes: [Class]
     
     static var identifierFactory = 0
 
-    init(title: String, forename: String, surname: String, classes: [Int]) throws {
+    init(title: String, forename: String, surname: String, classes: [Class] = []) throws {
         self.title = title
         self.forename = forename
         self.surname = surname
