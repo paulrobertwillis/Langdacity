@@ -54,8 +54,6 @@ class RevisionViewController: UIViewController {
     @IBAction func difficultyButtonTapped(_ sender: UIButton) {
         let buttonTitle = sender.currentTitle
         
-        //TODO: Set date to revise from current date/time, not from previous revision date
-        
         if noteToDisplay.learningStatus == .learning {
             // what to do for a new card
             learningNoteScheduler(buttonTitle: buttonTitle)
@@ -71,6 +69,7 @@ class RevisionViewController: UIViewController {
         } else {
             print("Error: \(LocalizedError.self)")
         }
+                
                         
         // save the new note and all cards in its lesson to JSON
         JsonInterface.encodeLessonCardsToJSON(cards: rc.cards, lessonName: "Lesson01")
@@ -100,7 +99,7 @@ class RevisionViewController: UIViewController {
     func learningNoteScheduler(buttonTitle: String?) {
         let data = schedulingDataConstants()
         let newNote = data.newNoteVariables
-        
+                
         switch buttonTitle {
         case "Again":
             noteToDisplay.stepsIndex = 0
@@ -136,6 +135,8 @@ class RevisionViewController: UIViewController {
         let data = schedulingDataConstants()
         let newNote = data.newNoteVariables
         let review = data.reviewVariables
+        
+
 
         switch buttonTitle {
         case "Again":
@@ -162,6 +163,7 @@ class RevisionViewController: UIViewController {
         let data = schedulingDataConstants()
         let review = data.reviewVariables
         let lapse = data.lapseVariables
+        
 
         switch buttonTitle {
         case "Again":

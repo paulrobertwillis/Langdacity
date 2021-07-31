@@ -47,5 +47,6 @@ class JsonInterface {
             // handle error
             print("Failed to write JSON data: \(error.localizedDescription)")
         }
+        
     }
 }

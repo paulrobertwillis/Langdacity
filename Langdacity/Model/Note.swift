@@ -78,7 +78,7 @@ class Note: CustomStringConvertible, Codable {
         // TODO: Remove this print statement
         print("\(description): \(formattedDateNextRevise) changed to \(formattedModifiedDate)")
         
-        dateNextRevise = modifiedDate
+        self.dateNextRevise = modifiedDate
     }
 }
 

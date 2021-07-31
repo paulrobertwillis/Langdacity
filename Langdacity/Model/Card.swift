@@ -47,8 +47,4 @@ class Card: CustomStringConvertible, Codable {
             notes.append(note)
         }
     }
-    
-//    func toString() -> String {
-//        return english
-//    }
 }

@@ -20,7 +20,7 @@
                 "easeFactor": 250,
                 "interval": 1,
                 "learningStatus": "learning",
-                "stepsIndex": 1,
+                "stepsIndex": 0,
                 "UUID": 1
             }
         ]

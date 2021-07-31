@@ -14,8 +14,8 @@ class Revision {
     private(set) var cards = [Card]()
     private(set) var notesToRevise = [Note]() {
         didSet {
-            print("notesToRevise array changed")
-            self.cards = JsonInterface.decodeLessonCardsFromJSON(fileName: "Lesson01")!
+//            print("notesToRevise array set")
+//            self.cards = JsonInterface.decodeLessonCardsFromJSON(fileName: "Lesson01")!
         }
     }
             
@@ -29,7 +29,6 @@ class Revision {
         }
         self.notesToRevise = getNotesToRevise()
         //TODO: remove print statements
-        print(cards)
         for card in cards {
             for note in card.notes {
                 print(note.description, note.dateNextRevise)
@@ -58,25 +57,25 @@ class Revision {
     static func getInstance() -> Revision {
         return instance
     }
-    
-    @objc
-    func perMinuteUpdate() {
-        print("minute!")
-    }
         
     func getNotesToRevise() -> [Note] {
         var notes = [Note]()
         let calendar = Calendar.current
-        
+                
+        // appending separately for learning/relearning and learnt stops learning/relearning cards being immediately readded in the next notes check
         if cards.count > 0 {
             for card in cards {
                 for note in card.notes {
                     let dateNextRevise = note.dateNextRevise
                     
-                    if calendar.isDateInToday(dateNextRevise) {
+                    if note.learningStatus == .learnt && calendar.isDateInToday(dateNextRevise) {
+                        //if notes are learnt, append based on day
                         notes.append(note)
-                    } else if dateNextRevise.timeIntervalSinceNow.sign == .minus {
-                        notes.append(note)
+                    } else if note.learningStatus == .learning || note.learningStatus == .relearning {
+                        // check if time to revise is in the past
+                        if dateNextRevise.timeIntervalSinceNow.sign != .plus {
+                                notes.append(note)
+                        }
                     }
                 }
             }
