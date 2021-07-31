@@ -32,7 +32,7 @@ class RevisionViewController: UIViewController {
     let rc = Revision.getInstance()
     
     var noteToDisplay: Note {
-        rc.getFirstNote()!
+        return rc.getFirstNote()!
     }
     
     override func viewDidLoad() {
@@ -42,6 +42,7 @@ class RevisionViewController: UIViewController {
         updateLabels()
         
     }
+    
     
     func setToHidden() {
         translateTo.isHidden = true
@@ -77,7 +78,7 @@ class RevisionViewController: UIViewController {
         rc.removeFirstNoteFromRevision()
                         
         if rc.getFirstNote() != nil {
-            noteToDisplay = rc.getFirstNote()!
+//            noteToDisplay = rc.getFirstNote()!
             updateLabels()
             setToHidden()
         } else {
