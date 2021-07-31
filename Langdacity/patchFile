@@ -1,0 +1,677 @@
+diff --git a/Langdacity.xcodeproj/project.pbxproj b/Langdacity.xcodeproj/project.pbxproj
+index ba48b75..392f78c 100644
+--- a/Langdacity.xcodeproj/project.pbxproj
++++ b/Langdacity.xcodeproj/project.pbxproj
+@@ -25,6 +25,9 @@
+ 		7BCD5F7F26B0A2630096621E /* SchedulingDataConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCD5F7E26B0A2630096621E /* SchedulingDataConstants.swift */; };
+ 		7BCD5F8126B1A03B0096621E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCD5F8026B1A03B0096621E /* LoginViewController.swift */; };
+ 		7BCD5F8326B1A0540096621E /* TeacherHomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCD5F8226B1A0540096621E /* TeacherHomepageViewController.swift */; };
++		7BCD5F8526B1C20F0096621E /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCD5F8426B1C20F0096621E /* SplashViewController.swift */; };
++		7BCD5F8726B1C4B00096621E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCD5F8626B1C4B00096621E /* Extensions.swift */; };
++		7BCD5F8D26B1E8D50096621E /* UnlockedLessons.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BCD5F8C26B1E8D50096621E /* UnlockedLessons.json */; };
+ /* End PBXBuildFile section */
+ 
+ /* Begin PBXContainerItemProxy section */
+@@ -69,6 +72,9 @@
+ 		7BCD5F7E26B0A2630096621E /* SchedulingDataConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulingDataConstants.swift; sourceTree = "<group>"; };
+ 		7BCD5F8026B1A03B0096621E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Langdacity/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
+ 		7BCD5F8226B1A0540096621E /* TeacherHomepageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherHomepageViewController.swift; sourceTree = "<group>"; };
++		7BCD5F8426B1C20F0096621E /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = SOURCE_ROOT; };
++		7BCD5F8626B1C4B00096621E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Langdacity/Model/Extensions.swift; sourceTree = SOURCE_ROOT; };
++		7BCD5F8C26B1E8D50096621E /* UnlockedLessons.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = UnlockedLessons.json; sourceTree = "<group>"; };
+ /* End PBXFileReference section */
+ 
+ /* Begin PBXFrameworksBuildPhase section */
+@@ -152,12 +158,14 @@
+ 		7BCAEE6E26A6059800075507 /* Model */ = {
+ 			isa = PBXGroup;
+ 			children = (
++				7BCD5F8626B1C4B00096621E /* Extensions.swift */,
+ 				7BCAEE6A26A4B1A400075507 /* Card.swift */,
+ 				7BCA3DF726AEF74C0068895E /* JsonInterface.swift */,
+ 				7BCA3DF326ADA3310068895E /* Note.swift */,
+ 				7BCAEE6C26A5B74700075507 /* Revision.swift */,
+ 				7BCD5F7E26B0A2630096621E /* SchedulingDataConstants.swift */,
+ 				7BCA3DF526ADDED90068895E /* Lesson01.json */,
++				7BCD5F8C26B1E8D50096621E /* UnlockedLessons.json */,
+ 			);
+ 			path = Model;
+ 			sourceTree = "<group>";
+@@ -165,6 +173,7 @@
+ 		7BCAEE7126A605AF00075507 /* Controller */ = {
+ 			isa = PBXGroup;
+ 			children = (
++				7BCD5F8426B1C20F0096621E /* SplashViewController.swift */,
+ 				7BCD5F8026B1A03B0096621E /* LoginViewController.swift */,
+ 				7BCA3DFB26AF1E390068895E /* NoNotesToReviseViewController.swift */,
+ 				7BCAEE6826A4AACB00075507 /* RevisionViewController.swift */,
+@@ -280,6 +289,7 @@
+ 				7BCAEE4526A4A88500075507 /* LaunchScreen.storyboard in Resources */,
+ 				7BCAEE4226A4A88500075507 /* Assets.xcassets in Resources */,
+ 				7BCA3DF626ADDED90068895E /* Lesson01.json in Resources */,
++				7BCD5F8D26B1E8D50096621E /* UnlockedLessons.json in Resources */,
+ 				7BCAEE4026A4A88400075507 /* Main.storyboard in Resources */,
+ 			);
+ 			runOnlyForDeploymentPostprocessing = 0;
+@@ -307,6 +317,7 @@
+ 			files = (
+ 				7BCD5F8126B1A03B0096621E /* LoginViewController.swift in Sources */,
+ 				7BCAEE3D26A4A88400075507 /* StudentHomepageViewController.swift in Sources */,
++				7BCD5F8526B1C20F0096621E /* SplashViewController.swift in Sources */,
+ 				7BCA3DF826AEF74C0068895E /* JsonInterface.swift in Sources */,
+ 				7BCD5F7F26B0A2630096621E /* SchedulingDataConstants.swift in Sources */,
+ 				7BCAEE6926A4AACB00075507 /* RevisionViewController.swift in Sources */,
+@@ -317,6 +328,7 @@
+ 				7BCAEE6D26A5B74700075507 /* Revision.swift in Sources */,
+ 				7BCAEE3B26A4A88400075507 /* SceneDelegate.swift in Sources */,
+ 				7BCD5F8326B1A0540096621E /* TeacherHomepageViewController.swift in Sources */,
++				7BCD5F8726B1C4B00096621E /* Extensions.swift in Sources */,
+ 			);
+ 			runOnlyForDeploymentPostprocessing = 0;
+ 		};
+diff --git a/Langdacity/Base.lproj/Main.storyboard b/Langdacity/Base.lproj/Main.storyboard
+index a7be441..59e1979 100644
+--- a/Langdacity/Base.lproj/Main.storyboard
++++ b/Langdacity/Base.lproj/Main.storyboard
+@@ -1,5 +1,5 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DNE-PL-xHE">
++<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9bI-iD-lMo">
+     <device id="retina6_1" orientation="portrait" appearance="light"/>
+     <dependencies>
+         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18092"/>
+@@ -25,12 +25,30 @@
+                                     <action selector="ReviseButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eho-bM-3u1"/>
+                                 </connections>
+                             </button>
++                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hey, Student" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bh1-Ae-re9">
++                                <rect key="frame" x="43" y="127" width="329" height="37"/>
++                                <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
++                                <nil key="textColor"/>
++                                <nil key="highlightedColor"/>
++                            </label>
++                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome back!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNB-Kf-FII">
++                                <rect key="frame" x="43" y="172" width="329" height="29"/>
++                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
++                                <color key="textColor" red="0.4196078479" green="0.25490197539999998" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
++                                <nil key="highlightedColor"/>
++                            </label>
+                         </subviews>
+                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                         <constraints>
++                            <constraint firstItem="Bh1-Ae-re9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="43" id="13u-ga-vEo"/>
++                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Bh1-Ae-re9" secondAttribute="trailing" constant="42" id="Idb-jd-ixm"/>
++                            <constraint firstItem="xNB-Kf-FII" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="43" id="Qpz-Jl-fiN"/>
+                             <constraint firstItem="KqB-F0-Cv5" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="WUE-Bn-41e"/>
++                            <constraint firstItem="xNB-Kf-FII" firstAttribute="top" secondItem="Bh1-Ae-re9" secondAttribute="bottom" constant="8" symbolic="YES" id="X3j-mX-zdy"/>
++                            <constraint firstItem="Bh1-Ae-re9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="39" id="kpQ-UM-bAi"/>
+                             <constraint firstItem="KqB-F0-Cv5" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="n7v-gu-K37"/>
++                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xNB-Kf-FII" secondAttribute="trailing" constant="42" id="p6z-qP-4CM"/>
+                         </constraints>
+                     </view>
+                     <navigationItem key="navigationItem" id="zTp-gZ-9Sd"/>
+@@ -41,7 +59,7 @@
+                 </viewController>
+                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+             </objects>
+-            <point key="canvasLocation" x="945" y="88"/>
++            <point key="canvasLocation" x="1855.072463768116" y="87.723214285714278"/>
+         </scene>
+         <!--Revision View Controller-->
+         <scene sceneID="PoV-Oa-s15">
+@@ -69,31 +87,51 @@
+                             </label>
+                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="60g-Lb-3BE">
+                                 <rect key="frame" x="188" y="522" width="38" height="30"/>
++                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                 <accessibility key="accessibilityConfiguration" identifier="Easy"/>
+-                                <state key="normal" title="Good"/>
++                                <state key="normal" title="Good">
++                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
++                                </state>
+                                 <connections>
+                                     <action selector="difficultyButtonTapped:" destination="dPg-MB-5yh" eventType="touchUpInside" id="gZc-fx-sod"/>
+                                 </connections>
+                             </button>
+                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aC8-0e-qeX">
+                                 <rect key="frame" x="72" y="522" width="39" height="30"/>
++                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                                 <accessibility key="accessibilityConfiguration" identifier="Again"/>
+-                                <state key="normal" title="Again"/>
++                                <state key="normal" title="Again">
++                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
++                                </state>
+                                 <connections>
+                                     <action selector="difficultyButtonTapped:" destination="dPg-MB-5yh" eventType="touchUpInside" id="4IE-R5-eay"/>
+                                 </connections>
+                             </button>
+                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EY7-ME-Roi">
+                                 <rect key="frame" x="314.5" y="522" width="33" height="30"/>
++                                <color key="backgroundColor" systemColor="systemTealColor"/>
+                                 <accessibility key="accessibilityConfiguration" identifier="Hard"/>
+-                                <state key="normal" title="Easy"/>
++                                <state key="normal" title="Easy">
++                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
++                                </state>
+                                 <connections>
+                                     <action selector="difficultyButtonTapped:" destination="dPg-MB-5yh" eventType="touchUpInside" id="ZPs-O2-ZQN"/>
+                                 </connections>
+                             </button>
++                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t3d-jt-Z3F">
++                                <rect key="frame" x="165" y="831" width="85" height="41"/>
++                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
++                                <accessibility key="accessibilityConfiguration" identifier="RemainingNotes"/>
++                                <string key="text">Remaining:
++0</string>
++                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
++                                <nil key="textColor"/>
++                                <nil key="highlightedColor"/>
++                            </label>
+                         </subviews>
+                         <viewLayoutGuide key="safeArea" id="NZZ-1y-FQ6"/>
+                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
++                        <gestureRecognizers/>
+                         <constraints>
+                             <constraint firstItem="Cnc-Sq-r9F" firstAttribute="top" secondItem="NZZ-1y-FQ6" secondAttribute="top" constant="175" id="1Vr-hq-87J"/>
+                             <constraint firstItem="Cnc-Sq-r9F" firstAttribute="centerX" secondItem="NZZ-1y-FQ6" secondAttribute="centerX" id="5kC-6I-zj8"/>
+@@ -110,9 +148,13 @@
+                             <constraint firstItem="bQi-ec-41A" firstAttribute="height" secondItem="Cnc-Sq-r9F" secondAttribute="height" id="tNm-Ol-CEj"/>
+                             <constraint firstItem="60g-Lb-3BE" firstAttribute="centerX" secondItem="NZZ-1y-FQ6" secondAttribute="centerX" id="yN8-do-6eS"/>
+                         </constraints>
++                        <connections>
++                            <outletCollection property="gestureRecognizers" destination="KPc-8S-l2X" appends="YES" id="Dn5-yw-OHf"/>
++                        </connections>
+                     </view>
+                     <navigationItem key="navigationItem" id="HXY-98-T52"/>
+                     <connections>
++                        <outlet property="NotesRemaining" destination="t3d-jt-Z3F" id="ITO-HE-MMu"/>
+                         <outlet property="difficulty" destination="60g-Lb-3BE" id="gKx-jp-zGO"/>
+                         <outlet property="translateFrom" destination="Cnc-Sq-r9F" id="4ec-T6-DhO"/>
+                         <outlet property="translateTo" destination="bQi-ec-41A" id="b9f-ut-ypg"/>
+@@ -122,6 +164,11 @@
+                     </connections>
+                 </viewController>
+                 <placeholder placeholderIdentifier="IBFirstResponder" id="zHr-rm-g0V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
++                <tapGestureRecognizer id="KPc-8S-l2X">
++                    <connections>
++                        <action selector="tapAction:" destination="dPg-MB-5yh" id="7Rx-am-Isi"/>
++                    </connections>
++                </tapGestureRecognizer>
+             </objects>
+             <point key="canvasLocation" x="1981" y="887"/>
+         </scene>
+@@ -132,14 +179,30 @@
+                     <view key="view" contentMode="scaleToFill" id="eXV-Gd-gqb">
+                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
++                        <subviews>
++                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Well done!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyA-Bn-ajR">
++                                <rect key="frame" x="97" y="431" width="221" height="34"/>
++                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
++                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
++                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
++                                <nil key="highlightedColor"/>
++                            </label>
++                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You've revised all there is to revise for now :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qS-TV-qSK">
++                                <rect key="frame" x="97" y="473" width="221" height="66"/>
++                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
++                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
++                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
++                                <nil key="highlightedColor"/>
++                            </label>
++                        </subviews>
+                         <viewLayoutGuide key="safeArea" id="tNt-mp-kH6"/>
+-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
++                        <color key="backgroundColor" red="0.2941176593" green="0.35294118520000001" blue="0.48235297199999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                     </view>
+                     <navigationItem key="navigationItem" id="0h3-Ea-Ubx"/>
+                 </viewController>
+                 <placeholder placeholderIdentifier="IBFirstResponder" id="c20-3b-hKF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+             </objects>
+-            <point key="canvasLocation" x="945" y="887"/>
++            <point key="canvasLocation" x="944.92753623188412" y="886.60714285714278"/>
+         </scene>
+         <!--Login View Controller-->
+         <scene sceneID="Cfo-ml-RXM">
+@@ -149,37 +212,92 @@
+                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                         <subviews>
+-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qkz-am-LtT">
+-                                <rect key="frame" x="179.5" y="369" width="55" height="30"/>
+-                                <state key="normal" title="Teacher"/>
+-                                <connections>
+-                                    <segue destination="oHs-0Y-UYy" kind="show" id="hG1-2j-VRP"/>
+-                                </connections>
+-                            </button>
+                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U1m-sG-ggB">
+-                                <rect key="frame" x="179.5" y="541" width="55" height="30"/>
++                                <rect key="frame" x="179.5" y="786" width="55" height="30"/>
+                                 <state key="normal" title="Student"/>
+                                 <connections>
+                                     <segue destination="BYZ-38-t0r" kind="show" id="NUq-0N-VYW"/>
+                                 </connections>
+                             </button>
++                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jrz-lj-Pyo">
++                                <rect key="frame" x="153.5" y="364" width="107" height="48"/>
++                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="40"/>
++                                <color key="textColor" red="0.4196078479" green="0.25490197539999998" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
++                                <nil key="highlightedColor"/>
++                            </label>
++                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="fbx-pX-F7z">
++                                <rect key="frame" x="32" y="434" width="350" height="40"/>
++                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
++                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
++                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
++                                <textInputTraits key="textInputTraits"/>
++                                <userDefinedRuntimeAttributes>
++                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
++                                        <real key="value" value="17"/>
++                                    </userDefinedRuntimeAttribute>
++                                </userDefinedRuntimeAttributes>
++                            </textField>
++                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="RHM-vK-TY6">
++                                <rect key="frame" x="32" y="482" width="350" height="40"/>
++                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
++                                <constraints>
++                                    <constraint firstAttribute="height" constant="40" id="mwJ-fa-oMN"/>
++                                </constraints>
++                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
++                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
++                                <textInputTraits key="textInputTraits"/>
++                                <userDefinedRuntimeAttributes>
++                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
++                                        <real key="value" value="17"/>
++                                    </userDefinedRuntimeAttribute>
++                                </userDefinedRuntimeAttributes>
++                            </textField>
++                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="RS8-o1-lVr">
++                                <rect key="frame" x="132" y="552" width="150" height="50"/>
++                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
++                                <color key="backgroundColor" red="0.4196078479" green="0.25490197539999998" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
++                                <state key="normal" title="LOG IN">
++                                    <color key="titleColor" red="0.93725490570000003" green="0.86666667460000002" blue="0.83529412749999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
++                                    <color key="titleShadowColor" red="0.93725490570000003" green="0.86666667460000002" blue="0.83529412749999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
++                                </state>
++                                <userDefinedRuntimeAttributes>
++                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
++                                        <real key="value" value="25"/>
++                                    </userDefinedRuntimeAttribute>
++                                </userDefinedRuntimeAttributes>
++                            </button>
++                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qkz-am-LtT">
++                                <rect key="frame" x="179.5" y="735" width="55" height="30"/>
++                                <state key="normal" title="Teacher"/>
++                                <connections>
++                                    <segue destination="oHs-0Y-UYy" kind="show" id="hG1-2j-VRP"/>
++                                </connections>
++                            </button>
+                         </subviews>
+                         <viewLayoutGuide key="safeArea" id="8F8-86-14V"/>
+-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
++                        <color key="backgroundColor" red="0.93725490570000003" green="0.86666667460000002" blue="0.83529412749999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                         <constraints>
+-                            <constraint firstItem="qkz-am-LtT" firstAttribute="top" secondItem="8F8-86-14V" secondAttribute="top" constant="281" id="99R-EH-dDB"/>
+-                            <constraint firstItem="qkz-am-LtT" firstAttribute="centerX" secondItem="8F8-86-14V" secondAttribute="centerX" id="ICZ-w3-ktY"/>
+-                            <constraint firstItem="U1m-sG-ggB" firstAttribute="centerX" secondItem="8F8-86-14V" secondAttribute="centerX" id="Mdk-oP-BCw"/>
+-                            <constraint firstItem="U1m-sG-ggB" firstAttribute="height" secondItem="qkz-am-LtT" secondAttribute="height" id="Mio-do-qdg"/>
+-                            <constraint firstItem="U1m-sG-ggB" firstAttribute="width" secondItem="qkz-am-LtT" secondAttribute="width" id="j5Z-QO-RbZ"/>
+-                            <constraint firstItem="U1m-sG-ggB" firstAttribute="top" secondItem="qkz-am-LtT" secondAttribute="bottom" constant="142" id="jtb-Zp-9vO"/>
++                            <constraint firstAttribute="trailing" secondItem="RHM-vK-TY6" secondAttribute="trailing" constant="32" id="5Mv-8W-sGp"/>
++                            <constraint firstItem="RS8-o1-lVr" firstAttribute="top" secondItem="RHM-vK-TY6" secondAttribute="bottom" constant="30" id="6A6-3T-aMW"/>
++                            <constraint firstItem="RHM-vK-TY6" firstAttribute="top" secondItem="fbx-pX-F7z" secondAttribute="bottom" constant="8" symbolic="YES" id="95Z-JF-33z"/>
++                            <constraint firstItem="U1m-sG-ggB" firstAttribute="top" secondItem="qkz-am-LtT" secondAttribute="bottom" constant="21" id="BLQ-YO-ZaZ"/>
++                            <constraint firstItem="qkz-am-LtT" firstAttribute="centerX" secondItem="U1m-sG-ggB" secondAttribute="centerX" id="C4W-mU-J2X"/>
++                            <constraint firstItem="8F8-86-14V" firstAttribute="bottom" secondItem="U1m-sG-ggB" secondAttribute="bottom" constant="46" id="Giq-tV-17C"/>
++                            <constraint firstItem="8F8-86-14V" firstAttribute="trailing" secondItem="fbx-pX-F7z" secondAttribute="trailing" constant="32" id="JxT-mn-2h8"/>
++                            <constraint firstItem="qkz-am-LtT" firstAttribute="top" secondItem="RS8-o1-lVr" secondAttribute="bottom" constant="133" id="U3N-Ud-JqE"/>
++                            <constraint firstItem="fbx-pX-F7z" firstAttribute="leading" secondItem="8F8-86-14V" secondAttribute="leading" constant="32" id="Z7W-dz-ctG"/>
++                            <constraint firstItem="RHM-vK-TY6" firstAttribute="leading" secondItem="uj6-DX-1X9" secondAttribute="leading" constant="32" id="fdn-y3-pgd"/>
++                            <constraint firstItem="jrz-lj-Pyo" firstAttribute="centerX" secondItem="8F8-86-14V" secondAttribute="centerX" id="hJT-vF-WTH"/>
++                            <constraint firstItem="fbx-pX-F7z" firstAttribute="top" secondItem="jrz-lj-Pyo" secondAttribute="bottom" constant="22" id="j5F-la-MbJ"/>
++                            <constraint firstItem="U1m-sG-ggB" firstAttribute="centerX" secondItem="8F8-86-14V" secondAttribute="centerX" id="ojP-yb-rC5"/>
++                            <constraint firstItem="jrz-lj-Pyo" firstAttribute="top" secondItem="8F8-86-14V" secondAttribute="top" constant="276" id="z1k-yK-KXJ"/>
+                         </constraints>
+                     </view>
+                     <navigationItem key="navigationItem" id="Fh7-3W-anq"/>
+                 </viewController>
+                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZyN-O0-hpW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+             </objects>
+-            <point key="canvasLocation" x="-175" y="-265"/>
++            <point key="canvasLocation" x="734.78260869565224" y="-265.17857142857144"/>
+         </scene>
+         <!--Teacher Homepage View Controller-->
+         <scene sceneID="qmS-6N-9gn">
+@@ -188,32 +306,113 @@
+                     <view key="view" contentMode="scaleToFill" id="RMa-wr-feS">
+                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
++                        <subviews>
++                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Hey, Teacher" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6lf-OG-6An">
++                                <rect key="frame" x="20" y="110" width="374" height="37"/>
++                                <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
++                                <nil key="textColor"/>
++                                <nil key="highlightedColor"/>
++                            </label>
++                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Welcome back!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLS-J9-dLc">
++                                <rect key="frame" x="20" y="155" width="374" height="29"/>
++                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
++                                <color key="textColor" red="0.4196078479" green="0.25490197539999998" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
++                                <nil key="highlightedColor"/>
++                            </label>
++                        </subviews>
+                         <viewLayoutGuide key="safeArea" id="kaz-lv-HFx"/>
+                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
++                        <constraints>
++                            <constraint firstItem="6lf-OG-6An" firstAttribute="top" secondItem="kaz-lv-HFx" secondAttribute="top" constant="22" id="Hk4-1A-RH2"/>
++                            <constraint firstItem="kaz-lv-HFx" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6lf-OG-6An" secondAttribute="trailing" symbolic="YES" id="VZf-oN-4uJ"/>
++                            <constraint firstItem="kaz-lv-HFx" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xLS-J9-dLc" secondAttribute="trailing" symbolic="YES" id="WLk-u9-Gad"/>
++                            <constraint firstItem="xLS-J9-dLc" firstAttribute="top" secondItem="6lf-OG-6An" secondAttribute="bottom" constant="8" symbolic="YES" id="gSS-Mh-NaV"/>
++                            <constraint firstItem="6lf-OG-6An" firstAttribute="leading" secondItem="RMa-wr-feS" secondAttribute="leadingMargin" id="l5g-7f-wuj"/>
++                            <constraint firstItem="6lf-OG-6An" firstAttribute="leading" secondItem="xLS-J9-dLc" secondAttribute="leading" id="xvv-9G-sNj"/>
++                        </constraints>
+                     </view>
+                     <navigationItem key="navigationItem" id="Axv-m1-HbL"/>
+                 </viewController>
+                 <placeholder placeholderIdentifier="IBFirstResponder" id="jfd-pm-HBg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+             </objects>
+-            <point key="canvasLocation" x="945" y="-678"/>
++            <point key="canvasLocation" x="1855.072463768116" y="-678.34821428571422"/>
++        </scene>
++        <!--Splash View Controller-->
++        <scene sceneID="HuS-mE-IlD">
++            <objects>
++                <viewController storyboardIdentifier="Splash" id="sHN-bO-uni" customClass="SplashViewController" customModule="Langdacity" customModuleProvider="target" sceneMemberID="viewController">
++                    <view key="view" contentMode="scaleToFill" id="OH9-Ac-BUo">
++                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
++                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
++                        <subviews>
++                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="5ge-M2-cdn">
++                                <rect key="frame" x="132" y="535" width="150" height="50"/>
++                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
++                                <color key="backgroundColor" red="0.92549026010000002" green="0.87058818339999999" blue="0.8392156959" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
++                                <state key="normal" title="GET STARTED">
++                                    <color key="titleColor" red="0.4196078479" green="0.25490197539999998" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
++                                    <color key="titleShadowColor" red="0.4196078479" green="0.25490197539999998" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
++                                </state>
++                                <userDefinedRuntimeAttributes>
++                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
++                                        <real key="value" value="25"/>
++                                    </userDefinedRuntimeAttribute>
++                                </userDefinedRuntimeAttributes>
++                                <connections>
++                                    <segue destination="kXH-qg-vHK" kind="show" id="GLO-XP-jCe"/>
++                                </connections>
++                            </button>
++                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learn foreign languages with the expert guidance of your classroom teacher" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdJ-kG-iei">
++                                <rect key="frame" x="47" y="443" width="320" height="71"/>
++                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
++                                <color key="textColor" red="0.63921570780000003" green="0.50980395079999996" blue="0.54509806630000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
++                                <nil key="highlightedColor"/>
++                            </label>
++                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Langdacity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ci-f5-idn">
++                                <rect key="frame" x="54" y="401" width="306" height="34"/>
++                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
++                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
++                                <nil key="highlightedColor"/>
++                            </label>
++                        </subviews>
++                        <viewLayoutGuide key="safeArea" id="vif-cB-cjv"/>
++                        <color key="backgroundColor" red="0.4196078479" green="0.25490197539999998" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
++                        <constraints>
++                            <constraint firstItem="tdJ-kG-iei" firstAttribute="leading" secondItem="vif-cB-cjv" secondAttribute="leading" constant="47" id="Fse-iz-h8T"/>
++                            <constraint firstItem="5ge-M2-cdn" firstAttribute="top" secondItem="tdJ-kG-iei" secondAttribute="bottom" constant="21" id="GXc-PX-mvm"/>
++                            <constraint firstItem="6ci-f5-idn" firstAttribute="centerY" secondItem="OH9-Ac-BUo" secondAttribute="centerY" constant="-30" id="fkT-bp-4Yf"/>
++                            <constraint firstItem="tdJ-kG-iei" firstAttribute="top" secondItem="6ci-f5-idn" secondAttribute="bottom" constant="8" id="imW-JL-yLR"/>
++                            <constraint firstItem="tdJ-kG-iei" firstAttribute="centerX" secondItem="vif-cB-cjv" secondAttribute="centerX" id="k8t-sR-GPL"/>
++                            <constraint firstItem="5ge-M2-cdn" firstAttribute="centerX" secondItem="vif-cB-cjv" secondAttribute="centerX" id="oA9-Np-1o3"/>
++                            <constraint firstItem="6ci-f5-idn" firstAttribute="centerX" secondItem="vif-cB-cjv" secondAttribute="centerX" id="zmK-Cu-XCG"/>
++                        </constraints>
++                    </view>
++                    <navigationItem key="navigationItem" id="2ha-1l-HYf"/>
++                    <connections>
++                        <outlet property="GetStartedButton" destination="5ge-M2-cdn" id="nAQ-QS-wdA"/>
++                    </connections>
++                </viewController>
++                <placeholder placeholderIdentifier="IBFirstResponder" id="AlW-V5-deQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
++            </objects>
++            <point key="canvasLocation" x="-31.884057971014496" y="-265.17857142857144"/>
+         </scene>
+         <!--Navigation Controller-->
+-        <scene sceneID="Smg-he-144">
++        <scene sceneID="tch-7X-Gqq">
+             <objects>
+-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DNE-PL-xHE" sceneMemberID="viewController">
++                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9bI-iD-lMo" sceneMemberID="viewController">
+                     <toolbarItems/>
+-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lkj-OY-qvx">
++                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aSa-Yd-cRF">
+                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                         <autoresizingMask key="autoresizingMask"/>
+                     </navigationBar>
+                     <nil name="viewControllers"/>
+                     <connections>
+-                        <segue destination="kXH-qg-vHK" kind="relationship" relationship="rootViewController" id="kFe-Cm-Gf0"/>
++                        <segue destination="sHN-bO-uni" kind="relationship" relationship="rootViewController" id="Xje-KF-fnD"/>
+                     </connections>
+                 </navigationController>
+-                <placeholder placeholderIdentifier="IBFirstResponder" id="O4k-Kf-yke" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
++                <placeholder placeholderIdentifier="IBFirstResponder" id="c2P-QS-aOY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+             </objects>
+-            <point key="canvasLocation" x="-1086" y="-265"/>
++            <point key="canvasLocation" x="-942.02898550724649" y="-265.17857142857144"/>
+         </scene>
+     </scenes>
+     <resources>
+@@ -226,5 +425,14 @@
+         <systemColor name="systemGray6Color">
+             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+         </systemColor>
++        <systemColor name="systemGreenColor">
++            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
++        </systemColor>
++        <systemColor name="systemRedColor">
++            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
++        </systemColor>
++        <systemColor name="systemTealColor">
++            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
++        </systemColor>
+     </resources>
+ </document>
+diff --git a/Langdacity/Controller/RevisionViewController.swift b/Langdacity/Controller/RevisionViewController.swift
+index 9bf1198..392a161 100644
+--- a/Langdacity/Controller/RevisionViewController.swift
++++ b/Langdacity/Controller/RevisionViewController.swift
+@@ -8,7 +8,10 @@
+ import UIKit
+ 
+ class RevisionViewController: UIViewController {
+-        
++    
++    //TODO: update this label when [Notes] array in Revision is updated
++    @IBOutlet var NotesRemaining: UILabel!
++    
+     @IBOutlet var translateFrom: UILabel!
+     
+     @IBOutlet var translateTo: UILabel!
+@@ -17,6 +20,13 @@ class RevisionViewController: UIViewController {
+     
+     @IBOutlet var difficulty: UIButton!
+     
++    @IBAction func tapAction(_ sender: Any) {
++        translateTo.isHidden = false
++        for UIButton in difficultyButtons {
++            UIButton.isHidden = false
++        }
++    }
++    
+     let rc = Revision.getInstance()
+     
+     var noteToDisplay: Note {
+@@ -27,10 +37,17 @@ class RevisionViewController: UIViewController {
+     override func viewDidLoad() {
+         super.viewDidLoad()
+         
+-//        let noteToDisplay = rc.getFirstNote()!
++        setToHidden()
+         updateLabels()
+     }
+     
++    func setToHidden() {
++        translateTo.isHidden = true
++        for UIButton in difficultyButtons {
++            UIButton.isHidden = true
++        }
++    }
++    
+     @IBAction func difficultyButtonTapped(_ sender: UIButton) {
+         let buttonTitle = sender.currentTitle
+         
+@@ -60,6 +77,7 @@ class RevisionViewController: UIViewController {
+                         
+         if rc.getFirstNote() != nil {
+             updateLabels()
++            setToHidden()
+         } else {
+             print("end of revision!")
+             
+diff --git a/Langdacity/Model/Extensions.swift b/Langdacity/Model/Extensions.swift
+new file mode 100644
+index 0000000..412f3ce
+--- /dev/null
++++ b/Langdacity/Model/Extensions.swift
+@@ -0,0 +1,33 @@
++//
++//  Extensions.swift
++//  Langdacity
++//
++//  Created by Paul Willis on 28/07/2021.
++//
++
++import Foundation
++import UIKit
++
++
++@IBDesignable extension UIButton {
++
++    @IBInspectable var cornerRadius: CGFloat {
++        set {
++            layer.cornerRadius = newValue
++        }
++        get {
++            return layer.cornerRadius
++        }
++    }
++}
++
++//@IBDesignable extension UITextField {
++//
++//    @IBInspectable var cornerRadius: CGFloat {
++//        set {
++//            layer.cornerRadius = newValue
++//        }
++//        get {
++//            return layer.cornerRadius
++//        }
++//    }
+diff --git a/Langdacity/Model/JsonInterface.swift b/Langdacity/Model/JsonInterface.swift
+index 75e4275..c775df5 100644
+--- a/Langdacity/Model/JsonInterface.swift
++++ b/Langdacity/Model/JsonInterface.swift
+@@ -9,7 +9,7 @@ import Foundation
+ 
+ class JsonInterface {
+     
+-    static func decodeLessonCardsFromJSON() -> [Card]? {
++    static func decodeLessonCardsFromJSON(fileName file: String) -> [Card]? {
+         guard
+             let path = Bundle.main.path(forResource: "Lesson01", ofType: "json"),
+             let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+diff --git a/Langdacity/Model/Revision.swift b/Langdacity/Model/Revision.swift
+index f7edeb9..e508d89 100644
+--- a/Langdacity/Model/Revision.swift
++++ b/Langdacity/Model/Revision.swift
+@@ -12,19 +12,18 @@ class Revision {
+     private static let instance = Revision()
+     
+     private(set) var cards = [Card]()
+-    private(set) var notesToRevise = [Note]()
+-        
+-//    private var helloWorldTimer = Timer.scheduledTimer(timeInterval: 60.0, target: .self, selector: #selector(self.perMinuteUpdate()), userInfo: nil, repeats: true)
+-    
+-//    var timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) {
+-//        (_) in
+-//        self.notesToRevise = getNotesToRevise()
+-//    }
+-    
++    private(set) var notesToRevise = [Note]() {
++        didSet {
++            print("notesToRevise array changed")
++            
++        }
++    }
++            
+     weak var timer: Timer?
+     
+     private init() {
+-        let array = JsonInterface.decodeLessonCardsFromJSON()
++        // TODO: repeat for every lesson to be loaded
++        let array = JsonInterface.decodeLessonCardsFromJSON(fileName: "Lesson01")
+         if array != nil {
+             self.cards = array!
+         }
+@@ -41,8 +40,8 @@ class Revision {
+     
+     private func startRevisionUpdateTimer() {
+         stopTimer() // prevents accidental second timer creation
+-        timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [weak self] _ in
+-            print("test")
++        timer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { _ in
++            print("Checking notes to revise ...")
+             let instance = Revision.getInstance()
+             instance.notesToRevise = instance.getNotesToRevise()
+         }
+diff --git a/Langdacity/Model/UnlockedLessons.json b/Langdacity/Model/UnlockedLessons.json
+new file mode 100644
+index 0000000..e69de29
+diff --git a/Langdacity/Model/jsonInterface.swift b/Langdacity/Model/jsonInterface.swift
+index 75e4275..c775df5 100644
+--- a/Langdacity/Model/jsonInterface.swift
++++ b/Langdacity/Model/jsonInterface.swift
+@@ -9,7 +9,7 @@ import Foundation
+ 
+ class JsonInterface {
+     
+-    static func decodeLessonCardsFromJSON() -> [Card]? {
++    static func decodeLessonCardsFromJSON(fileName file: String) -> [Card]? {
+         guard
+             let path = Bundle.main.path(forResource: "Lesson01", ofType: "json"),
+             let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+diff --git a/SplashViewController.swift b/SplashViewController.swift
+new file mode 100644
+index 0000000..778b32e
+--- /dev/null
++++ b/SplashViewController.swift
+@@ -0,0 +1,21 @@
++//
++//  SplashViewController.swift
++//  Langdacity
++//
++//  Created by Paul Willis on 28/07/2021.
++//
++
++import UIKit
++
++@IBDesignable
++class SplashViewController: UIViewController {
++
++    @IBOutlet var GetStartedButton: UIButton!
++    
++    override func viewDidLoad() {
++        super.viewDidLoad()
++
++//        GetStartedButton.layer.cornerRadius = 5
++    }
++    
++}
