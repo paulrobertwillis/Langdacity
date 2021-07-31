@@ -15,7 +15,7 @@ class Revision {
     private(set) var notesToRevise = [Note]() {
         didSet {
             print("notesToRevise array changed")
-            self.cards = JsonInterface2.decodeLessonCardsFromJSON(fileName: "Lesson01")!
+            self.cards = JsonInterface.decodeLessonCardsFromJSON(fileName: "Lesson01")!
         }
     }
             
@@ -23,7 +23,7 @@ class Revision {
     
     private init() {
         // TODO: repeat for every lesson to be loaded
-        let array = JsonInterface2.decodeLessonCardsFromJSON(fileName: "Lesson01")
+        let array = JsonInterface.decodeLessonCardsFromJSON(fileName: "Lesson01")
         if array != nil {
             self.cards = array!
         }

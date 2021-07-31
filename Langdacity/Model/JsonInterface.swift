@@ -7,7 +7,7 @@
 
 import Foundation
 
-class JsonInterface2 {
+class JsonInterface {
     
     static func decodeLessonCardsFromJSON(fileName: String) -> [Card]? {
         guard
