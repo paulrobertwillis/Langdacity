@@ -7,9 +7,9 @@
 
 import Foundation
 
-class JsonInterface {
+class JsonInterface2 {
     
-    static func decodeLessonCardsFromJSON() -> [Card]? {
+    static func decodeLessonCardsFromJSON(fileName: String) -> [Card]? {
         guard
             let path = Bundle.main.path(forResource: "Lesson01", ofType: "json"),
             let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
