@@ -84,11 +84,33 @@ class JsonInterface {
         
         do {
             let data = try encoder.encode(teacher)
-//            data.printJSON()
+            data.printJSON()
             try data.write(to: fileURL)
         } catch {
             // handle error
             print("Failed to write JSON data: \(error.localizedDescription)")
         }
     }
+    
+    static func encodeToJSON(user: User) {
+        // find URL of lesson
+        guard let fileURL = Bundle.main.url(forResource: user.UUID, withExtension: "json")
+        else {
+            print("Error finding file")
+            return }
+                
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        encoder.outputFormatting = .prettyPrinted
+        
+        do {
+            let data = try encoder.encode(user)
+            data.printJSON()
+            try data.write(to: fileURL)
+        } catch {
+            // handle error
+            print("Failed to write JSON data: \(error.localizedDescription)")
+        }
+    }
+
 }

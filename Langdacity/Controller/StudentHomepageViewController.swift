@@ -9,6 +9,8 @@ import UIKit
 
 class StudentHomepageViewController: UIViewController {
     
+    var user: Student?
+    
     let revision = Revision.getInstance()
     
     override func viewDidLoad() {

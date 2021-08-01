@@ -9,7 +9,7 @@ import Foundation
 
 class Server {
     private(set) var teachers: [String:Teacher]
-    private(set) var students: [Int:Student]
+    private(set) var students: [String:Student]
     private(set) var lessons: [String] // TODO: Make lessons into objects?
     private(set) var classes: [Int:Class]
     
@@ -23,8 +23,13 @@ class Server {
     }
     
     static func getInstance() -> Server {
+//        print(instance.teachers)
+//        print(instance.students)
+//        print(instance.classes)
+        
         return instance
     }
+    
     
     // temporary functions to generate template data
     private static func createTeachers() -> [String:Teacher] {
@@ -43,30 +48,17 @@ class Server {
         dictionary[teacher5.UUID] = teacher5
         
         return dictionary
-        
-//        let class1 = Class(name: "7Fr1", language: .french)
-//
-//        let student1 = Student(forename: "Sarah", surname: "Bell", classUUID: class1.UUID)
-//        let student2 = Student(forename: "Student2", surname: "Surname", classUUID: class1.UUID)
-//        let student3 = Student(forename: "Student3", surname: "Surname", classUUID: class1.UUID)
-//        let student4 = Student(forename: "Student4", surname: "Surname", classUUID: class1.UUID)
-//        let student5 = Student(forename: "Student5", surname: "Surname", classUUID: class1.UUID)
-//
-//        class1.students.append(student1)
-//        class1.students.append(student2)
-//        class1.students.append(student3)
-//        class1.students.append(student4)
-//        class1.students.append(student5)
     }
     
-    private static func createStudents() -> [Int:Student]{
-        let student1 = Student(forename: "Sarah", surname: "Bell")
-        let student2 = Student(forename: "Student2", surname: "Surname")
-        let student3 = Student(forename: "Student3", surname: "Surname")
-        let student4 = Student(forename: "Student4", surname: "Surname")
-        let student5 = Student(forename: "Student5", surname: "Surname")
+    private static func createStudents() -> [String:Student] {
+        do {
+            let student1 = try Student(forename: "Amanda", surname: "Student", email: "a.student@email.com")
+            let student2 = try Student(forename: "Bella", surname: "Student", email: "b.student@email.com")
+            let student3 = try Student(forename: "Clara", surname: "Student", email: "c.student@email.com")
+            let student4 = try Student(forename: "David", surname: "Student", email: "d.student@email.com")
+            let student5 = try Student(forename: "Erin", surname: "Student", email: "e.student@email.com")
 
-        var dictionary: [Int:Student] = [:]
+        var dictionary: [String:Student] = [:]
         
         dictionary[student1.UUID] = student1
         dictionary[student2.UUID] = student2
@@ -75,6 +67,13 @@ class Server {
         dictionary[student5.UUID] = student5
         
         return dictionary
+            
+        }
+        catch {
+            print("Error in createStudents() method of Server")
+        }
+        
+        return [:]
     }
     
     // TODO: Add lessons through this method
@@ -100,11 +99,20 @@ class Server {
         return dictionary
     }
     
-    func validate(email: String) {
-        validateUserAsTeacher(email: email)
+    private static func finalInit() {
+        
     }
     
-    func validateUserAsTeacher(email: String) -> Teacher? {
+    static func validate(email: String) -> User? {
+        if validateUserAsTeacher(email: email) != nil {
+            return validateUserAsTeacher(email: email)
+        }
+        
+        return nil
+        
+    }
+    
+    private static func validateUserAsTeacher(email: String) -> Teacher? {
         for value in Array(Server.getInstance().teachers.values) {
             if email == value.email {
                 return value

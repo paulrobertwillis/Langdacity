@@ -225,7 +225,7 @@
                                 <rect key="frame" x="179.5" y="786" width="55" height="30"/>
                                 <state key="normal" title="Student"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="NUq-0N-VYW"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="StudentHomepageSegue" id="NUq-0N-VYW"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jrz-lj-Pyo">
@@ -282,7 +282,7 @@
                                 <rect key="frame" x="179.5" y="735" width="55" height="30"/>
                                 <state key="normal" title="Teacher"/>
                                 <connections>
-                                    <segue destination="oHs-0Y-UYy" kind="show" id="hG1-2j-VRP"/>
+                                    <segue destination="oHs-0Y-UYy" kind="show" identifier="TeacherHomepageSegue" id="hG1-2j-VRP"/>
                                 </connections>
                             </button>
                         </subviews>

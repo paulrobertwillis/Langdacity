@@ -16,6 +16,7 @@
 		7B77862126B5DFA700E289EB /* ClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B77862026B5DFA700E289EB /* ClassViewController.swift */; };
 		7B77862326B5E99900E289EB /* StudentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B77862226B5E99900E289EB /* StudentTableViewController.swift */; };
 		7B77862526B6DA0600E289EB /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B77862426B6DA0600E289EB /* Server.swift */; };
+		7B77862926B6FC9400E289EB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B77862826B6FC9400E289EB /* User.swift */; };
 		7BCA3DF426ADA3310068895E /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA3DF326ADA3310068895E /* Note.swift */; };
 		7BCA3DF626ADDED90068895E /* Lesson01.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BCA3DF526ADDED90068895E /* Lesson01.json */; };
 		7BCA3DF826AEF74C0068895E /* JsonInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA3DF726AEF74C0068895E /* JsonInterface.swift */; };
@@ -66,6 +67,7 @@
 		7B77862026B5DFA700E289EB /* ClassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClassViewController.swift; path = Langdacity/ClassViewController.swift; sourceTree = SOURCE_ROOT; };
 		7B77862226B5E99900E289EB /* StudentTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StudentTableViewController.swift; path = Langdacity/StudentTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		7B77862426B6DA0600E289EB /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
+		7B77862826B6FC9400E289EB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7BCA3DF326ADA3310068895E /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		7BCA3DF526ADDED90068895E /* Lesson01.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Lesson01.json; sourceTree = "<group>"; };
 		7BCA3DF726AEF74C0068895E /* JsonInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonInterface.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				7B77862626B6DA0F00E289EB /* JSON */,
 				7B77861726B5B89300E289EB /* Class.swift */,
 				7B77861526B5B68500E289EB /* Teacher.swift */,
+				7B77862826B6FC9400E289EB /* User.swift */,
 				7B77861326B5915A00E289EB /* Student.swift */,
 				7BCAEE6A26A4B1A400075507 /* Card.swift */,
 				7BCA3DF326ADA3310068895E /* Note.swift */,
@@ -389,6 +392,7 @@
 				7BCD5F8326B1A0540096621E /* TeacherHomepageViewController.swift in Sources */,
 				7BCD5F8726B1C4B00096621E /* Extensions.swift in Sources */,
 				7B77861426B5915A00E289EB /* Student.swift in Sources */,
+				7B77862926B6FC9400E289EB /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

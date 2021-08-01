@@ -7,17 +7,13 @@
 
 import Foundation
 
-class Teacher: CustomStringConvertible, Codable {
-    var description: String { return "Teacher: \(UUID)"}
+class Teacher: User {
+//    override var description: String { return "Teacher: \(UUID)"}
     
-    var title: title
-    var forename: String
-    var surname: String
-    var UUID: String
+    var title: titleEnum
     var classes: [Class]
-    var email: String
     
-    enum title: String, Codable {
+    enum titleEnum: String, Codable {
         case Mr = "Mr"
         case Ms = "Ms"
         case Miss = "Miss"
@@ -26,16 +22,29 @@ class Teacher: CustomStringConvertible, Codable {
     
     static var identifierFactory = 0
 
-    init(title: title, forename: String, surname: String, email: String, classes: [Class] = []) throws {
+    init(title: titleEnum, forename: String, surname: String, email: String, classes: [Class] = []) throws {
         self.title = title
-        self.forename = forename
-        self.surname = surname
-        self.UUID = try Teacher.createUniqueIdentifier()
         // TODO: make class UUIDs an array
         self.classes = classes
-        self.email = email
+        
+        try super.init(forename: forename, surname: surname, email: email)
+        
+        self.UUID = try Teacher.createUniqueIdentifier()
     }
     
+    enum CodingKeys: CodingKey {
+        case title
+        case classes
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.title = try container.decode(titleEnum.self, forKey: .title)
+        self.classes = try container.decode([Class].self, forKey: .classes)
+        
+        try super.init(from: decoder)
+    }
+        
     static private func createUniqueIdentifier() throws -> String {
         Teacher.identifierFactory += 1
         
