@@ -105,6 +105,8 @@ class Server {
     
     static func validate(email: String) -> User? {
         if validateUserAsTeacher(email: email) != nil {
+            let teacher = validateUserAsTeacher(email: email)
+            JsonInterface.encodeToJSON(teacher: teacher!)
             return validateUserAsTeacher(email: email)
         }
         
@@ -115,6 +117,7 @@ class Server {
     private static func validateUserAsTeacher(email: String) -> Teacher? {
         for value in Array(Server.getInstance().teachers.values) {
             if email == value.email {
+                JsonInterface.encodeToJSON(teacher: value)
                 return value
             }
         }

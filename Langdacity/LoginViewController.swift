@@ -22,9 +22,9 @@ class LoginViewController: UIViewController {
         
         verifiedUser = user
         
-        let userAsTeacher = user as! Teacher
-        print(userAsTeacher.title)
-        JsonInterface.encodeToJSON(teacher: userAsTeacher)
+//        let userAsTeacher = user as! Teacher
+//        print(userAsTeacher.title)
+//        JsonInterface.encodeToJSON(teacher: userAsTeacher)
         
         if user is Teacher {
             performSegue(withIdentifier: "TeacherHomepageSegue", sender: self)
