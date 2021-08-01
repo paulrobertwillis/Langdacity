@@ -10,15 +10,22 @@ import Foundation
 struct Teacher: CustomStringConvertible, Codable {
     var description: String { return "Teacher: \(UUID)"}
     
-    var title: String
+    var title: title
     var forename: String
     var surname: String
     var UUID: String
     var classes: [Class]
     
+    enum title: String, Codable {
+        case Mr = "Mr"
+        case Ms = "Ms"
+        case Miss = "Miss"
+        case Mrs = "Mrs"
+    }
+    
     static var identifierFactory = 0
 
-    init(title: String, forename: String, surname: String, classes: [Class] = []) throws {
+    init(title: title, forename: String, surname: String, classes: [Class] = []) throws {
         self.title = title
         self.forename = forename
         self.surname = surname

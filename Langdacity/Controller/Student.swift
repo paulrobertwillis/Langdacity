@@ -13,12 +13,13 @@ class Student: CustomStringConvertible, Codable {
     var forename: String
     var surname: String
     var UUID: Int
-    var classUUID: Int
+    //TODO: Allow multiple classes through array
+    var classUUID: [Int]
     var points: Int
     
     static var identifierFactory = 0
 
-    init(forename: String, surname: String, classUUID: Int) {
+    init(forename: String, surname: String, classUUID: [Int] = []) {
         self.forename = forename
         self.surname = surname
         self.UUID = Student.createUniqueIdentifier()
