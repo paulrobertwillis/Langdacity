@@ -1,16 +1,33 @@
 //
-//  TeacherViewController.swift
+//  Server.swift
 //  Langdacity
 //
-//  Created by Paul Willis on 28/07/2021.
+//  Created by Paul Willis on 01/08/2021.
 //
 
-import UIKit
+import Foundation
 
-class TeacherHomepageViewController: UIViewController {
+class Server {
+    var teachers: [String: Teacher]
+    var students: [String: Student]
+    var lessons: [String] // TODO: Make lessons into objects?
+    
+    private static let instance = Server()
+
+    private init() {
+        self.teachers = [:]
+        self.students = [:]
+        self.lessons = []
+    }
+    
+    static func getInstance() -> Server {
+        return instance
+    }
+    
+    // temporary functions to generate template data
+    func createTeachers() {
         
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        
         
         let class1 = Class(name: "7Fr1", language: .french)
 
@@ -25,18 +42,14 @@ class TeacherHomepageViewController: UIViewController {
         class1.students.append(student3)
         class1.students.append(student4)
         class1.students.append(student5)
-        
-        var teacher: Teacher?
-        
-        // Creating a Teacher object that can be used to represent the server sending a new JSON to the app
-        if let loggedInTeacher = try? Teacher(title: "Mr", forename: "Adam", surname: "Smith", classes: [class1]) {
-            JsonInterface.encodeToJSON(teacher: loggedInTeacher)
-            
-            // Setting the Teacher object that is logged in to the loggedInTeacher constant that has been 'sent' from the server
-            teacher = JsonInterface.decodeTeacherFromJSON(teacherUUID: loggedInTeacher.UUID)
-        }
+    }
+    
+    func createStudents() {
         
     }
     
-
+    func createLessons() {
+        
+    }
+    
 }

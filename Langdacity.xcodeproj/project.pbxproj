@@ -14,6 +14,8 @@
 		7B77861D26B5BE9000E289EB /* PROF-0001.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B77861C26B5BE9000E289EB /* PROF-0001.json */; };
 		7B77861F26B5C43A00E289EB /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B77861E26B5C43A00E289EB /* Errors.swift */; };
 		7B77862126B5DFA700E289EB /* ClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B77862026B5DFA700E289EB /* ClassViewController.swift */; };
+		7B77862326B5E99900E289EB /* StudentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B77862226B5E99900E289EB /* StudentTableViewController.swift */; };
+		7B77862526B6DA0600E289EB /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B77862426B6DA0600E289EB /* Server.swift */; };
 		7BCA3DF426ADA3310068895E /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA3DF326ADA3310068895E /* Note.swift */; };
 		7BCA3DF626ADDED90068895E /* Lesson01.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BCA3DF526ADDED90068895E /* Lesson01.json */; };
 		7BCA3DF826AEF74C0068895E /* JsonInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA3DF726AEF74C0068895E /* JsonInterface.swift */; };
@@ -62,6 +64,8 @@
 		7B77861C26B5BE9000E289EB /* PROF-0001.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "PROF-0001.json"; sourceTree = "<group>"; };
 		7B77861E26B5C43A00E289EB /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		7B77862026B5DFA700E289EB /* ClassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClassViewController.swift; path = Langdacity/ClassViewController.swift; sourceTree = SOURCE_ROOT; };
+		7B77862226B5E99900E289EB /* StudentTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StudentTableViewController.swift; path = Langdacity/StudentTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		7B77862426B6DA0600E289EB /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		7BCA3DF326ADA3310068895E /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		7BCA3DF526ADDED90068895E /* Lesson01.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Lesson01.json; sourceTree = "<group>"; };
 		7BCA3DF726AEF74C0068895E /* JsonInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonInterface.swift; sourceTree = "<group>"; };
@@ -87,7 +91,7 @@
 		7BCD5F8026B1A03B0096621E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Langdacity/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
 		7BCD5F8226B1A0540096621E /* TeacherHomepageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherHomepageViewController.swift; sourceTree = "<group>"; };
 		7BCD5F8426B1C20F0096621E /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = SOURCE_ROOT; };
-		7BCD5F8626B1C4B00096621E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Langdacity/Model/Extensions.swift; sourceTree = SOURCE_ROOT; };
+		7BCD5F8626B1C4B00096621E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Langdacity/Model/Helper/Extensions.swift; sourceTree = SOURCE_ROOT; };
 		7BCD5F8C26B1E8D50096621E /* UnlockedLessons.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = UnlockedLessons.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,6 +126,28 @@
 				7BCA3DF526ADDED90068895E /* Lesson01.json */,
 			);
 			path = Lessons;
+			sourceTree = "<group>";
+		};
+		7B77862626B6DA0F00E289EB /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				7B77861926B5BBB700E289EB /* Lessons */,
+				7B77861C26B5BE9000E289EB /* PROF-0001.json */,
+				7BCD5F8C26B1E8D50096621E /* UnlockedLessons.json */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		7B77862726B6DD0E00E289EB /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				7B77861E26B5C43A00E289EB /* Errors.swift */,
+				7BCD5F8626B1C4B00096621E /* Extensions.swift */,
+				7BCA3DF726AEF74C0068895E /* JsonInterface.swift */,
+				7B77862426B6DA0600E289EB /* Server.swift */,
+				7BCD5F7E26B0A2630096621E /* SchedulingDataConstants.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		7BCAEE2C26A4A88400075507 = {
@@ -180,19 +206,14 @@
 		7BCAEE6E26A6059800075507 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7B77861926B5BBB700E289EB /* Lessons */,
+				7B77862726B6DD0E00E289EB /* Helper */,
+				7B77862626B6DA0F00E289EB /* JSON */,
 				7B77861726B5B89300E289EB /* Class.swift */,
 				7B77861526B5B68500E289EB /* Teacher.swift */,
-				7B77861E26B5C43A00E289EB /* Errors.swift */,
 				7B77861326B5915A00E289EB /* Student.swift */,
-				7BCD5F8626B1C4B00096621E /* Extensions.swift */,
 				7BCAEE6A26A4B1A400075507 /* Card.swift */,
-				7BCA3DF726AEF74C0068895E /* JsonInterface.swift */,
-				7B77861C26B5BE9000E289EB /* PROF-0001.json */,
 				7BCA3DF326ADA3310068895E /* Note.swift */,
 				7BCAEE6C26A5B74700075507 /* Revision.swift */,
-				7BCD5F7E26B0A2630096621E /* SchedulingDataConstants.swift */,
-				7BCD5F8C26B1E8D50096621E /* UnlockedLessons.json */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -200,6 +221,7 @@
 		7BCAEE7126A605AF00075507 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7B77862226B5E99900E289EB /* StudentTableViewController.swift */,
 				7B77862026B5DFA700E289EB /* ClassViewController.swift */,
 				7B77861126B49A7F00E289EB /* ClassListTableViewController.swift */,
 				7BCD5F8426B1C20F0096621E /* SplashViewController.swift */,
@@ -351,8 +373,10 @@
 				7BCAEE3D26A4A88400075507 /* StudentHomepageViewController.swift in Sources */,
 				7BCD5F8526B1C20F0096621E /* SplashViewController.swift in Sources */,
 				7BCA3DF826AEF74C0068895E /* JsonInterface.swift in Sources */,
+				7B77862526B6DA0600E289EB /* Server.swift in Sources */,
 				7BCD5F7F26B0A2630096621E /* SchedulingDataConstants.swift in Sources */,
 				7BCAEE6926A4AACB00075507 /* RevisionViewController.swift in Sources */,
+				7B77862326B5E99900E289EB /* StudentTableViewController.swift in Sources */,
 				7B77861F26B5C43A00E289EB /* Errors.swift in Sources */,
 				7BCA3DF426ADA3310068895E /* Note.swift in Sources */,
 				7BCA3DFC26AF1E390068895E /* NoNotesToReviseViewController.swift in Sources */,

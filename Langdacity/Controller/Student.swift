@@ -30,5 +30,9 @@ class Student: CustomStringConvertible, Codable {
         Student.identifierFactory += 1
         return Student.identifierFactory
     }
+    
+    func getFullName() -> String {
+        return forename + " " + surname
+    }
 
 }
