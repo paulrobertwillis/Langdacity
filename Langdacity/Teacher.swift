@@ -44,6 +44,14 @@ class Teacher: User {
         
         try super.init(from: decoder)
     }
+    
+    override public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(title, forKey: .title)
+            try container.encode(classes, forKey: .classes)
+        
+        try super.encode(to: encoder)
+    }
         
     static private func createUniqueIdentifier() throws -> String {
         Teacher.identifierFactory += 1

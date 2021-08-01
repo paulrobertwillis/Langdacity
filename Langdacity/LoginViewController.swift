@@ -21,11 +21,7 @@ class LoginViewController: UIViewController {
         guard let user = Server.validate(email: UsernameTextField.text!) else { return }
         
         verifiedUser = user
-        
-//        let userAsTeacher = user as! Teacher
-//        print(userAsTeacher.title)
-//        JsonInterface.encodeToJSON(teacher: userAsTeacher)
-        
+                
         if user is Teacher {
             performSegue(withIdentifier: "TeacherHomepageSegue", sender: self)
         } else if user is Student {

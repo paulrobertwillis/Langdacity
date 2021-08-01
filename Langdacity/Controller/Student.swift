@@ -42,6 +42,15 @@ class Student: User {
         
         try super.init(from: decoder)
     }
+    
+    override public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(classUUID, forKey: .classUUID)
+            try container.encode(points, forKey: .points)
+        
+        try super.encode(to: encoder)
+    }
+
 
     static private func createUniqueIdentifier(prefix: String) throws -> String {
         Student.identifierFactory += 1
