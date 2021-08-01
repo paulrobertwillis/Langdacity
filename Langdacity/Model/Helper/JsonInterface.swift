@@ -71,7 +71,7 @@ class JsonInterface {
         }
     }
     
-    static func encodeToJSON(teacher: Teacher) {
+    static func encodeToJSON(teacher: Teacher, shouldPrint: Bool = false) {
         // find URL of lesson
         guard let fileURL = Bundle.main.url(forResource: teacher.UUID, withExtension: "json")
         else {
@@ -84,7 +84,9 @@ class JsonInterface {
         
         do {
             let data = try encoder.encode(teacher)
-//            data.printJSON()
+            if shouldPrint == true {
+                data.printJSON()
+            }
             try data.write(to: fileURL)
         } catch {
             // handle error

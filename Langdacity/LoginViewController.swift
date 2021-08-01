@@ -46,5 +46,4 @@ class LoginViewController: UIViewController {
             nextViewController.user = verifiedUser as? Student
         }
     }
-
 }

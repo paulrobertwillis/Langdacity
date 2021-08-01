@@ -8,36 +8,36 @@
 import Foundation
 
 class Server {
-    private(set) var teachers: [String:Teacher]
-    private(set) var students: [String:Student]
-    private(set) var lessons: [String] // TODO: Make lessons into objects?
-    private(set) var classes: [Int:Class]
+    private(set) static var teachers: [String:Teacher] = createTeachers()
+    private(set) static var students: [String:Student] = createStudents()
+    private(set) static var lessons: [String] = [] // TODO: Make lessons into objects?
+    private(set) static var classes: [Int:Class] = createClasses()
     
-    private static let instance = Server()
-
-    private init() {
-        self.teachers = Server.createTeachers()
-        self.students = Server.createStudents()
-        self.lessons = []
-        self.classes = Server.createClasses()
-    }
-    
-    static func getInstance() -> Server {
-//        print(instance.teachers)
-//        print(instance.students)
-//        print(instance.classes)
-        
-        return instance
-    }
+//    private static let instance = Server()
+//
+//    private init() {
+//        self.teachers = Server.createTeachers()
+//        self.students = Server.createStudents()
+//        self.lessons = []
+//        self.classes = Server.createClasses()
+//    }
+//
+//    static func getInstance() -> Server {
+////        print(instance.teachers)
+////        print(instance.students)
+////        print(instance.classes)
+//        finalInit()
+//        return instance
+//    }
     
     
     // temporary functions to generate template data
     private static func createTeachers() -> [String:Teacher] {
-        let teacher1 = try! Teacher(title: .Mr, forename: "Adam", surname: "Bell", email: "a.bell@email.com")
-        let teacher2 = try! Teacher(title: .Mr, forename: "Bart", surname: "Bell", email: "b.bell@email.com")
-        let teacher3 = try! Teacher(title: .Mrs, forename: "Claire", surname: "Bell", email: "c.bell@email.com")
-        let teacher4 = try! Teacher(title: .Ms, forename: "Dianne", surname: "Bell", email: "d.bell@email.com")
-        let teacher5 = try! Teacher(title: .Miss, forename: "Ellen", surname: "Bell", email: "e.bell@email.com")
+        let teacher1 = try! Teacher(title: .Mr, forename: "Adam", surname: "Teacher", email: "a.teacher@email.com")
+        let teacher2 = try! Teacher(title: .Mr, forename: "Bart", surname: "Teacher", email: "b.teacher@email.com")
+        let teacher3 = try! Teacher(title: .Mrs, forename: "Claire", surname: "Teacher", email: "c.teacher@email.com")
+        let teacher4 = try! Teacher(title: .Ms, forename: "Dianne", surname: "Teacher", email: "d.teacher@email.com")
+        let teacher5 = try! Teacher(title: .Miss, forename: "Ellen", surname: "Teacher", email: "e.teacher@email.com")
 
         var dictionary: [String:Teacher] = [:]
         
@@ -99,8 +99,31 @@ class Server {
         return dictionary
     }
     
-    private static func finalInit() {
+    static func finalInit() {
+        var teacher: Teacher?
         
+        for value in Server.teachers.values {
+            if value.email == "a.teacher@email.com" {
+                teacher = value
+            }
+        }
+        
+        var classValues: [Class] = []
+        for value in Server.classes.values {
+            classValues.append(value)
+        }
+        classValues.sort()
+        teacher?.classes.append(contentsOf: classValues)
+
+    
+        var studentValues: [Student] = []
+        for value in Server.students.values {
+            studentValues.append(value)
+        }
+        studentValues.sort()
+        teacher?.classes[0].students.append(contentsOf: studentValues)
+        
+        JsonInterface.encodeToJSON(teacher: teacher!, shouldPrint: false)
     }
     
     static func validate(email: String) -> User? {
@@ -113,7 +136,7 @@ class Server {
     }
     
     private static func validateUserAsTeacher(email: String) -> Teacher? {
-        for value in Array(Server.getInstance().teachers.values) {
+        for value in Array(Server.teachers.values) {
             if email == value.email {
                 return value
             }

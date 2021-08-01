@@ -7,7 +7,15 @@
 
 import Foundation
 
-class Class: CustomStringConvertible, Codable {
+class Class: CustomStringConvertible, Codable, Comparable {
+    static func == (lhs: Class, rhs: Class) -> Bool {
+        return lhs.UUID == rhs.UUID
+    }
+    
+    static func < (lhs: Class, rhs: Class) -> Bool {
+        return lhs.name < rhs.name
+    }
+    
     var description: String { return "Class: \(UUID)"}
     
     var name: String

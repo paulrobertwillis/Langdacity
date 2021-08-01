@@ -7,7 +7,19 @@
 
 import Foundation
 
-class Student: User {
+class Student: User, Comparable {
+    static func == (lhs: Student, rhs: Student) -> Bool {
+        return lhs.UUID == rhs.UUID
+    }
+    
+    static func < (lhs: Student, rhs: Student) -> Bool {
+        if lhs.surname != rhs.surname {
+            return lhs.surname < rhs.surname
+        } else {
+            return lhs.getFullName() < rhs.getFullName()
+        }
+    }
+    
 //    override var description: String { return "\(forename) \(surname): #\(UUID)"}
 
 //    var forename: String
