@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Teacher: CustomStringConvertible, Codable {
+class Teacher: CustomStringConvertible, Codable {
     var description: String { return "Teacher: \(UUID)"}
     
     var title: title
@@ -15,6 +15,7 @@ struct Teacher: CustomStringConvertible, Codable {
     var surname: String
     var UUID: String
     var classes: [Class]
+    var email: String
     
     enum title: String, Codable {
         case Mr = "Mr"
@@ -25,13 +26,14 @@ struct Teacher: CustomStringConvertible, Codable {
     
     static var identifierFactory = 0
 
-    init(title: title, forename: String, surname: String, classes: [Class] = []) throws {
+    init(title: title, forename: String, surname: String, email: String, classes: [Class] = []) throws {
         self.title = title
         self.forename = forename
         self.surname = surname
         self.UUID = try Teacher.createUniqueIdentifier()
         // TODO: make class UUIDs an array
         self.classes = classes
+        self.email = email
     }
     
     static private func createUniqueIdentifier() throws -> String {

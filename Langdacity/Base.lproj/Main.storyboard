@@ -274,6 +274,9 @@
                                         <real key="value" value="25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="LogInButtonTapped:" destination="kXH-qg-vHK" eventType="touchUpInside" id="rwu-JA-c3t"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qkz-am-LtT">
                                 <rect key="frame" x="179.5" y="735" width="55" height="30"/>
@@ -303,6 +306,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Fh7-3W-anq"/>
+                    <connections>
+                        <outlet property="PasswordTextField" destination="RHM-vK-TY6" id="jJ3-lW-P4P"/>
+                        <outlet property="UsernameTextField" destination="fbx-pX-F7z" id="KUX-d2-bKS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZyN-O0-hpW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

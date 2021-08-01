@@ -8,10 +8,10 @@
 import Foundation
 
 class Server {
-    var teachers: [String:Teacher]
-    var students: [Int:Student]
-    var lessons: [String] // TODO: Make lessons into objects?
-    var classes: [Int:Class]
+    private(set) var teachers: [String:Teacher]
+    private(set) var students: [Int:Student]
+    private(set) var lessons: [String] // TODO: Make lessons into objects?
+    private(set) var classes: [Int:Class]
     
     private static let instance = Server()
 
@@ -28,11 +28,11 @@ class Server {
     
     // temporary functions to generate template data
     private static func createTeachers() -> [String:Teacher] {
-        let teacher1 = try! Teacher(title: .Mr, forename: "Adam", surname: "Bell")
-        let teacher2 = try! Teacher(title: .Mr, forename: "Bart", surname: "Bell")
-        let teacher3 = try! Teacher(title: .Mrs, forename: "Claire", surname: "Bell")
-        let teacher4 = try! Teacher(title: .Ms, forename: "Dianne", surname: "Bell")
-        let teacher5 = try! Teacher(title: .Miss, forename: "Ellen", surname: "Bell")
+        let teacher1 = try! Teacher(title: .Mr, forename: "Adam", surname: "Bell", email: "a.bell@email.com")
+        let teacher2 = try! Teacher(title: .Mr, forename: "Bart", surname: "Bell", email: "b.bell@email.com")
+        let teacher3 = try! Teacher(title: .Mrs, forename: "Claire", surname: "Bell", email: "c.bell@email.com")
+        let teacher4 = try! Teacher(title: .Ms, forename: "Dianne", surname: "Bell", email: "d.bell@email.com")
+        let teacher5 = try! Teacher(title: .Miss, forename: "Ellen", surname: "Bell", email: "e.bell@email.com")
 
         var dictionary: [String:Teacher] = [:]
         
@@ -100,4 +100,25 @@ class Server {
         return dictionary
     }
     
+    func validate(email: String) {
+        validateUserAsTeacher(email: email)
+    }
+    
+    func validateUserAsTeacher(email: String) -> Teacher? {
+        for value in Array(Server.getInstance().teachers.values) {
+            if email == value.email {
+                return value
+            }
+        }
+        return nil
+    }
+    
+//    func validateUserAsStudent(email: String) -> Student? {
+//        for value in Array(Server.getInstance().students.values) {
+//            if email == value.email {
+//                return value
+//            }
+//        }
+//        return nil
+//    }
 }

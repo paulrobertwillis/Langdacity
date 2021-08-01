@@ -46,5 +46,6 @@
   "forename" : "Adam",
   "title" : "Mr",
   "surname" : "Smith",
-  "UUID" : "PROF-0001"
+  "UUID" : "PROF-0001",
+  "email": "a.smith@email.com"
 }
