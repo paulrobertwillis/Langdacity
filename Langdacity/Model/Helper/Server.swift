@@ -123,16 +123,26 @@ class Server {
         studentValues.sort()
         teacher?.classes[0].students.append(contentsOf: studentValues)
         
-        JsonInterface.encodeToJSON(teacher: teacher!, shouldPrint: false)
+        JsonInterface.encodeToJsonAndWriteToFile(teacher: teacher!, shouldPrint: false)
     }
     
-    static func validate(email: String) -> User? {
+//    static func validate(email: String) -> User? {
+//        if validateUserAsTeacher(email: email) != nil {
+//            return validateUserAsTeacher(email: email)
+//        }
+//        
+//        return nil
+//    }
+    
+    static func validate(email: String) -> Data? {
         if validateUserAsTeacher(email: email) != nil {
-            return validateUserAsTeacher(email: email)
+            let teacher = validateUserAsTeacher(email: email)!
+            return JsonInterface.encodeToJsonAsData(teacher: teacher)
+        } else if validateUserAsStudent(email: email) != nil {
+            let student = validateUserAsStudent(email: email)!
+            return JsonInterface.encodeToJsonAsData(student: student)
         }
-        
         return nil
-        
     }
     
     private static func validateUserAsTeacher(email: String) -> Teacher? {
@@ -144,12 +154,12 @@ class Server {
         return nil
     }
     
-//    func validateUserAsStudent(email: String) -> Student? {
-//        for value in Array(Server.getInstance().students.values) {
-//            if email == value.email {
-//                return value
-//            }
-//        }
-//        return nil
-//    }
+    private static func validateUserAsStudent(email: String) -> Student? {
+        for value in Array(Server.students.values) {
+            if email == value.email {
+                return value
+            }
+        }
+        return nil
+    }
 }

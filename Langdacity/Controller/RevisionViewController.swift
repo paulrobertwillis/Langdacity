@@ -72,7 +72,7 @@ class RevisionViewController: UIViewController {
                 
                         
         // save the new note and all cards in its lesson to JSON
-        JsonInterface.encodeToJSON(cards: rc.cards, lessonName: "Lesson01")
+        JsonInterface.encodeToJsonAndWriteToFile(cards: rc.cards, lessonName: "Lesson01")
                 
         rc.removeFirstNoteFromRevision()
                         

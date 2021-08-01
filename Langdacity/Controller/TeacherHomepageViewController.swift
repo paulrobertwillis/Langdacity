@@ -16,7 +16,6 @@ class TeacherHomepageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         GreetingLabel.text = "Hey, \(user!.title) \(user!.surname)"
-//        user?.classes.sort()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

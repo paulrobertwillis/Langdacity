@@ -23,7 +23,7 @@ class Revision {
     
     private init() {
         // TODO: repeat for every lesson to be loaded
-        let array = JsonInterface.decodeLessonCardsFromJSON(lessonName: "Lesson01")
+        let array = JsonInterface.decodeLessonCardsFromJson(lessonName: "Lesson01")
         if array != nil {
             self.cards = array!
         }

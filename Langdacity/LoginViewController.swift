@@ -18,13 +18,23 @@ class LoginViewController: UIViewController {
     @IBAction func LogInButtonTapped(_ sender: Any) {
         guard UsernameTextField.hasText else { return }
         
-        guard let user = Server.validate(email: UsernameTextField.text!) else { return }
+//        guard let user = Server.validate(email: UsernameTextField.text!) else { return }
+//
+//        verifiedUser = user
+//
+//        if user is Teacher {
+//            performSegue(withIdentifier: "TeacherHomepageSegue", sender: self)
+//        } else if user is Student {
+//            performSegue(withIdentifier: "StudentHomepageSegue", sender: self)
+//        }
         
-        verifiedUser = user
-                
-        if user is Teacher {
+        guard let userData = Server.validate(email: UsernameTextField.text!) else { return }
+        
+        if let user = JsonInterface.decodeTeacherFromJsonData(data: userData) {
+            verifiedUser = user
             performSegue(withIdentifier: "TeacherHomepageSegue", sender: self)
-        } else if user is Student {
+        } else if let user = JsonInterface.decodeStudentFromJsonData(data: userData) {
+            verifiedUser = user
             performSegue(withIdentifier: "StudentHomepageSegue", sender: self)
         }
     }
