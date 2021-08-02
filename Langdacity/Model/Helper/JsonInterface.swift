@@ -70,6 +70,29 @@ class JsonInterface {
         return nil
     }
     
+    static func decodeStudentFromJson(studentUUID: String) -> Student? {
+        guard
+            let path = Bundle.main.path(forResource: studentUUID, ofType: "json"),
+            let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+        else {
+            print("Error: cannot locate JSON file")
+            return nil
+        }
+
+        do {
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            let student: Student = try decoder.decode(Student.self, from: data)
+            return student
+        } catch {
+            // handle error
+            print("error in decoding JSON file")
+        }
+
+        return nil
+    }
+
+    
     static func decodeTeacherFromJsonData(data: Data) -> Teacher? {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
@@ -121,6 +144,29 @@ class JsonInterface {
         }
     }
     
+    static func encodeToJsonAndWriteToFile(student: Student, shouldPrint: Bool = false) {
+        // find URL
+        guard let fileURL = Bundle.main.url(forResource: "student", withExtension: "json") else {
+            print("Error finding file: student.json")
+            return }
+                
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        encoder.outputFormatting = .prettyPrinted
+        
+        do {
+            let data = try encoder.encode(student)
+            if shouldPrint == true {
+                data.printJSON()
+            }
+
+            try data.write(to: fileURL)
+        } catch {
+            // handle error
+            print("Failed to write JSON data: \(error.localizedDescription)")
+        }
+    }
+    
     static func encodeToJsonAndWriteToFile(teacher: Teacher, shouldPrint: Bool = false) {
         // find URL
         guard let fileURL = Bundle.main.url(forResource: teacher.UUID, withExtension: "json")
@@ -128,12 +174,10 @@ class JsonInterface {
             print("Error finding file")
             return
         }
-        
         guard let data = encodeToJsonAsData(teacher: teacher) else {
             print("Error encoding JSON to Data")
             return
         }
-        
         do {
             if shouldPrint == true {
                 data.printJSON()

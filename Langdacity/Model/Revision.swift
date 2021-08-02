@@ -12,13 +12,12 @@ class Revision {
     private static let instance = Revision()
     
     // TODO: Remove this cards array?
-    private(set) var cards = [Card]()
+//    private(set) var cards = [Card]()
     private(set) var notesToRevise = [Note]() {
         didSet {
-//            print("notesToRevise array set")
-//            self.cards = JsonInterface.decodeLessonCardsFromJSON(fileName: "Lesson01")!
         }
     }
+    private var user: Student
             
     weak var timer: Timer?
     
@@ -28,6 +27,8 @@ class Revision {
         if array != nil {
             self.cards = array!
         }
+        self.user = JsonInterface.decodeStudentFromJson(studentUUID: "student")!
+        
         self.notesToRevise = getNotesToRevise()
         //TODO: remove print statements
         for card in cards {

@@ -15,6 +15,7 @@ class StudentHomepageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        JsonInterface.encodeToJsonAndWriteToFile(student: user!)
     }
         
     @IBAction func ReviseButtonTapped(_ sender: Any) {
