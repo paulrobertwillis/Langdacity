@@ -10,26 +10,8 @@ import Foundation
 class Server {
     private(set) static var teachers: [String:Teacher] = createTeachers()
     private(set) static var students: [String:Student] = createStudents()
-    private(set) static var lessons: [String] = [] // TODO: Make lessons into objects?
+    private(set) static var lessons: [String:Lesson] = createLessons()
     private(set) static var classes: [Int:Class] = createClasses()
-    
-//    private static let instance = Server()
-//
-//    private init() {
-//        self.teachers = Server.createTeachers()
-//        self.students = Server.createStudents()
-//        self.lessons = []
-//        self.classes = Server.createClasses()
-//    }
-//
-//    static func getInstance() -> Server {
-////        print(instance.teachers)
-////        print(instance.students)
-////        print(instance.classes)
-//        finalInit()
-//        return instance
-//    }
-    
     
     // temporary functions to generate template data
     private static func createTeachers() -> [String:Teacher] {
@@ -62,7 +44,6 @@ class Server {
             student1.addNote(note: card.notes[0])
             student1.addNote(note: card.notes[1])
             
-
             var dictionary: [String:Student] = [:]
             
             dictionary[student1.UUID] = student1
@@ -82,8 +63,38 @@ class Server {
     }
     
     // TODO: Add lessons through this method
-    private static func createLessons() {
+    private static func createLessons() -> [String:Lesson] {
+        do {
+            let card1 = Card(english: "english1", french: "french1")
+            let card2 = Card(english: "english2", french: "french2")
+            let card3 = Card(english: "english3", french: "french3")
+            let card4 = Card(english: "english4", french: "french4")
+            let card5 = Card(english: "english5", french: "french5")
+            
+            let card6 = Card(english: "english6", french: "french6")
+            let card7 = Card(english: "english7", french: "french7")
+            let card8 = Card(english: "english8", french: "french8")
+            let card9 = Card(english: "english9", french: "french9")
+            let card10 = Card(english: "english10", french: "french10")
+
+            let cardArray = [card1, card2, card3, card4, card5]
+            let cardArray2 = [card6, card7, card8, card9, card10]
+            
+            let lesson1 = try Lesson(cards: cardArray)
+            let lesson2 = try Lesson(cards: cardArray2)
+            
+            var dictionary: [String:Lesson] = [:]
+            
+            dictionary[lesson1.UUID] = lesson1
+            dictionary[lesson2.UUID] = lesson2
+            
+            return dictionary
+        }
+        catch {
+            print("Error in createStudents() method of Server")
+        }
         
+        return [:]
     }
     
     private static func createClasses() -> [Int:Class] {
@@ -119,7 +130,6 @@ class Server {
         }
         classValues.sort()
         teacher?.classes.append(contentsOf: classValues)
-
     
         var studentValues: [Student] = []
         for value in Server.students.values {
@@ -127,18 +137,10 @@ class Server {
         }
         studentValues.sort()
         teacher?.classes[0].students.append(contentsOf: studentValues)
-        
+                
         JsonInterface.encodeToJsonAndWriteToFile(teacher: teacher!, shouldPrint: false)
     }
-    
-//    static func validate(email: String) -> User? {
-//        if validateUserAsTeacher(email: email) != nil {
-//            return validateUserAsTeacher(email: email)
-//        }
-//        
-//        return nil
-//    }
-    
+        
     static func validate(email: String) -> Data? {
         if validateUserAsTeacher(email: email) != nil {
             let teacher = validateUserAsTeacher(email: email)!
@@ -173,12 +175,7 @@ class Server {
         guard let dictionary = JsonInterface.decodeNoteDictionaryFromJsonData(data: data) else { return }
         print(dictionary)
     }
-    
-//    /// Send data to the server as a
-//    private static func sendData(dictionary: [String:Note], studentUUID: String, note: Note) {
-//
-//    }
-    
+        
     /// Fetch data from the server as a Data object
     static func fetchData() -> Data? {
         return nil

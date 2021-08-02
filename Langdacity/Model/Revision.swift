@@ -12,7 +12,7 @@ class Revision {
     private static let instance = Revision()
     
     // TODO: Remove this cards array?
-//    private(set) var cards = [Card]()
+    private(set) var cards = [Card]()
     private(set) var notesToRevise = [Note]() {
         didSet {
         }
