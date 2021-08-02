@@ -22,6 +22,8 @@ class Revision {
     weak var timer: Timer?
     
     private init() {
+        
+        
         // TODO: repeat for every lesson to be loaded
         let array = JsonInterface.decodeLessonCardsFromJson(lessonName: "Lesson01")
         if array != nil {
