@@ -9,6 +9,23 @@ import Foundation
 
 class JsonInterface {
     
+//    public enum JSON: Codable, Equatable {
+//        public init(from decoder: Decoder) throws {
+//            <#code#>
+//        }
+//
+//        public func encode(to encoder: Encoder) throws {
+//            <#code#>
+//        }
+//
+//        case string(String)
+//        case number(Float)
+//        case object([String:JSON])
+//        case array([JSON])
+//        case bool(Bool)
+//        case null
+//    }
+    
     static func decodeLessonCardsFromJson(lessonName lesson: String) -> [Card]? {
         guard
             let path = Bundle.main.path(forResource: lesson, ofType: "json"),
@@ -74,6 +91,18 @@ class JsonInterface {
         
         return student
     }
+    
+    static func decodeNoteDictionaryFromJsonData(data: Data) -> [String:Note]? {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+
+        guard let dictionary = try? decoder.decode(Dictionary<String, Note>.self, from: data) else {
+            return nil
+        }
+
+        return dictionary
+    }
+
 
     static func encodeToJsonAndWriteToFile(cards: [Card], lessonName fileName: String) {
         // find URL
@@ -151,6 +180,26 @@ class JsonInterface {
             print("Failed to write JSON to data: \(error.localizedDescription)")
         }
         return nil
+    }
+    
+    // Encodes a Dictionary<String, Note> to Json as a Data object.
+    static func encodeToJsonAsData(dictionary: [String:Note], shouldPrint: Bool = false) -> Data? {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        encoder.outputFormatting = .prettyPrinted
+        
+        do {
+            let data = try encoder.encode(dictionary)
+            if shouldPrint == true {
+                data.printJSON()
+            }
+            return data
+        } catch {
+            // handle error
+            print("Failed to write JSON to data: \(error.localizedDescription)")
+        }
+        return nil
+
     }
 
 

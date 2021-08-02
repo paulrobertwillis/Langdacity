@@ -163,10 +163,16 @@ class Server {
         return nil
     }
     
-    /// Send data to the server as a Data object
-    static func sendData(data: Data) {
-        
+    /// Send data to the server as a Data object. Data must be a JSON of a dictionary containing a Student's UUID as a String, and a Note as a Note.
+    static func sendNoteData(data: Data) {
+        guard let dictionary = JsonInterface.decodeNoteDictionaryFromJsonData(data: data) else { return }
+        print(dictionary)
     }
+    
+//    /// Send data to the server as a
+//    private static func sendData(dictionary: [String:Note], studentUUID: String, note: Note) {
+//
+//    }
     
     /// Fetch data from the server as a Data object
     static func fetchData() -> Data? {

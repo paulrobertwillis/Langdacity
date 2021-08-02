@@ -26,4 +26,11 @@ class StudentHomepageViewController: UIViewController {
             performSegue(withIdentifier: "NoNotesToReviseSegue", sender: self)
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ReviseTextSegue" {
+            let nextViewController = segue.destination as! RevisionViewController
+            nextViewController.user = user
+        }
+    }
 }

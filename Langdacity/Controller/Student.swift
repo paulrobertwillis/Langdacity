@@ -22,9 +22,6 @@ class Student: User, Comparable {
     
 //    override var description: String { return "\(forename) \(surname): #\(UUID)"}
 
-//    var forename: String
-//    var surname: String
-//    var UUID: String
     //TODO: Allow multiple classes through array
     var classUUID: [Int]
     var points: Int

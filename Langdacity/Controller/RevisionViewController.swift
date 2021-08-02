@@ -9,6 +9,8 @@ import UIKit
 
 class RevisionViewController: UIViewController {
     
+    var user: User?
+    
     @IBOutlet var revisionInstructions: UILabel!
     //TODO: update this label when [Notes] array in Revision is updated
     @IBOutlet var NotesRemaining: UILabel!
@@ -74,8 +76,15 @@ class RevisionViewController: UIViewController {
                 
                         
         // save the new note and all cards in its lesson to JSON
-        JsonInterface.encodeToJsonAndWriteToFile(cards: rc.cards, lessonName: "Lesson01")
-                
+//        JsonInterface.encodeToJsonAndWriteToFile(cards: rc.cards, lessonName: "Lesson01")
+        
+        
+        // TODO: Address issue where lack of Internet connection will cause program to fail
+        let noteDictionary: [String:Note] = [user!.UUID:noteToDisplay]
+        guard let data = JsonInterface.encodeToJsonAsData(dictionary: noteDictionary) else { return }
+        Server.sendNoteData(data: data)
+        
+        
         rc.removeFirstNoteFromRevision()
                         
         if rc.getFirstNote() != nil {
