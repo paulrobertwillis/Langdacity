@@ -19,6 +19,11 @@
 		7B77862926B6FC9400E289EB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B77862826B6FC9400E289EB /* User.swift */; };
 		7B77862B26B84B6C00E289EB /* student.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B77862A26B84B6C00E289EB /* student.json */; };
 		7B77862D26B8505F00E289EB /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B77862C26B8505F00E289EB /* Lesson.swift */; };
+		7B77862F26B8731A00E289EB /* LSSN-0001.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B77862E26B8731A00E289EB /* LSSN-0001.json */; };
+		7B77863126B874A600E289EB /* LSSN-0002.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B77863026B874A600E289EB /* LSSN-0002.json */; };
+		7B77863326B874B600E289EB /* LSSN-0003.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B77863226B874B600E289EB /* LSSN-0003.json */; };
+		7B77863526B874C300E289EB /* LSSN-0004.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B77863426B874C300E289EB /* LSSN-0004.json */; };
+		7B77863726B874CE00E289EB /* LSSN-0005.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B77863626B874CE00E289EB /* LSSN-0005.json */; };
 		7BCA3DF426ADA3310068895E /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA3DF326ADA3310068895E /* Note.swift */; };
 		7BCA3DF626ADDED90068895E /* Lesson01.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BCA3DF526ADDED90068895E /* Lesson01.json */; };
 		7BCA3DF826AEF74C0068895E /* JsonInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA3DF726AEF74C0068895E /* JsonInterface.swift */; };
@@ -72,6 +77,11 @@
 		7B77862826B6FC9400E289EB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7B77862A26B84B6C00E289EB /* student.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = student.json; path = Langdacity/Model/JSON/student.json; sourceTree = SOURCE_ROOT; };
 		7B77862C26B8505F00E289EB /* Lesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lesson.swift; sourceTree = "<group>"; };
+		7B77862E26B8731A00E289EB /* LSSN-0001.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "LSSN-0001.json"; sourceTree = "<group>"; };
+		7B77863026B874A600E289EB /* LSSN-0002.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "LSSN-0002.json"; sourceTree = "<group>"; };
+		7B77863226B874B600E289EB /* LSSN-0003.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "LSSN-0003.json"; sourceTree = "<group>"; };
+		7B77863426B874C300E289EB /* LSSN-0004.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "LSSN-0004.json"; sourceTree = "<group>"; };
+		7B77863626B874CE00E289EB /* LSSN-0005.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "LSSN-0005.json"; sourceTree = "<group>"; };
 		7BCA3DF326ADA3310068895E /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		7BCA3DF526ADDED90068895E /* Lesson01.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Lesson01.json; sourceTree = "<group>"; };
 		7BCA3DF726AEF74C0068895E /* JsonInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonInterface.swift; sourceTree = "<group>"; };
@@ -130,6 +140,11 @@
 			isa = PBXGroup;
 			children = (
 				7BCA3DF526ADDED90068895E /* Lesson01.json */,
+				7B77862E26B8731A00E289EB /* LSSN-0001.json */,
+				7B77863026B874A600E289EB /* LSSN-0002.json */,
+				7B77863226B874B600E289EB /* LSSN-0003.json */,
+				7B77863426B874C300E289EB /* LSSN-0004.json */,
+				7B77863626B874CE00E289EB /* LSSN-0005.json */,
 			);
 			path = Lessons;
 			sourceTree = "<group>";
@@ -346,10 +361,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B77863526B874C300E289EB /* LSSN-0004.json in Resources */,
+				7B77863126B874A600E289EB /* LSSN-0002.json in Resources */,
 				7BCAEE4526A4A88500075507 /* LaunchScreen.storyboard in Resources */,
 				7BCAEE4226A4A88500075507 /* Assets.xcassets in Resources */,
+				7B77863726B874CE00E289EB /* LSSN-0005.json in Resources */,
 				7BCA3DF626ADDED90068895E /* Lesson01.json in Resources */,
+				7B77863326B874B600E289EB /* LSSN-0003.json in Resources */,
 				7BCD5F8D26B1E8D50096621E /* UnlockedLessons.json in Resources */,
+				7B77862F26B8731A00E289EB /* LSSN-0001.json in Resources */,
 				7B77861D26B5BE9000E289EB /* PROF-0001.json in Resources */,
 				7BCAEE4026A4A88400075507 /* Main.storyboard in Resources */,
 				7B77862B26B84B6C00E289EB /* student.json in Resources */,

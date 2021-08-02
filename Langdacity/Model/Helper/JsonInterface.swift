@@ -9,6 +9,11 @@ import Foundation
 
 class JsonInterface {
     
+    enum JSONErrors: Error {
+        case cannotFindFileURL
+        case cannotEncodeToData
+    }
+    
 //    public enum JSON: Codable, Equatable {
 //        public init(from decoder: Decoder) throws {
 //            <#code#>
@@ -187,6 +192,37 @@ class JsonInterface {
         catch {
             // handle error
             print("Failed to write JSON data: \(error.localizedDescription)")
+        }
+    }
+    
+    static func encodeToJsonAndWriteToFile(lesson: Lesson, shouldPrint: Bool = false) {
+        do {
+            // find URL
+            guard let fileURL = Bundle.main.url(forResource: lesson.UUID, withExtension: "json")
+            else {
+                throw JSONErrors.cannotFindFileURL
+            }
+            
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .iso8601
+            encoder.outputFormatting = .prettyPrinted
+            
+            guard let data = try? encoder.encode(lesson) else {
+                throw JSONErrors.cannotEncodeToData
+            }
+            
+            if shouldPrint == true {
+                data.printJSON()
+            }
+
+            try data.write(to: fileURL)
+            
+        } catch JSONErrors.cannotFindFileURL {
+            print("Error in \(self) method \(#function): cannot find file URL")
+        } catch JSONErrors.cannotEncodeToData {
+            print("Error in \(self) method \(#function): cannot encode \(lesson) to data")
+        } catch {
+            print("Unknown error in \(self) method \(#function)")
         }
     }
     

@@ -25,6 +25,7 @@ class LoginViewController: UIViewController {
             performSegue(withIdentifier: "TeacherHomepageSegue", sender: self)
         } else if let user = JsonInterface.decodeStudentFromJsonData(data: userData) {
             verifiedUser = user
+            JsonInterface.encodeToJsonAndWriteToFile(student: user) // Save Student data to JSON for use by the application. Mimicking it being 'fetched' from server
             performSegue(withIdentifier: "StudentHomepageSegue", sender: self)
         }
     }

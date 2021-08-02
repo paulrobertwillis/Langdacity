@@ -139,6 +139,14 @@ class Server {
         teacher?.classes[0].students.append(contentsOf: studentValues)
                 
         JsonInterface.encodeToJsonAndWriteToFile(teacher: teacher!, shouldPrint: false)
+        
+        // Give student1 ("Amanda Student") access to Lesson01
+        for value in Array(Server.students.values) {
+            if value.email == "a.student@email.com" {
+                value.accessibleLessons.append("LSSN-0001")
+            }
+        }
+        
     }
         
     static func validate(email: String) -> Data? {
@@ -177,7 +185,48 @@ class Server {
     }
         
     /// Fetch data from the server as a Data object
-    static func fetchData() -> Data? {
+    static func fetchLessons(data: Data) -> Data? {
+        enum fetchErrors: Error {
+            case cannotDecodeStringArrayFromData
+            case cannotEncodeLessonArrayToData
+        }
+        
+        let decoder = JSONDecoder()
+        let encoder = JSONEncoder()
+        
+        do {
+            // decode received data to String array
+            guard let lessonStrings = try? decoder.decode([String].self, from: data) else {
+                throw fetchErrors.cannotDecodeStringArrayFromData
+            }
+            
+            // find all lessons that have UUIDs matching indices of String array
+            var lessonArray: [Lesson] = []
+            for string in lessonStrings {
+                for key in Server.lessons.keys {
+                    if key == string {
+                        // add those lessons to an array
+                        lessonArray.append(Server.lessons[key]!)
+                    }
+                }
+            }
+            
+            // encode Lesson array to Data
+            guard let lessonData = try? encoder.encode(lessonArray) else {
+                throw fetchErrors.cannotEncodeLessonArrayToData
+            }
+            
+            // return array
+            return lessonData
+            
+        } catch fetchErrors.cannotDecodeStringArrayFromData {
+            print("Error in \(self): cannot decode String array from data")
+        } catch fetchErrors.cannotEncodeLessonArrayToData {
+            print("Error in \(self): cannot encode Lesson array to data")
+        } catch {
+            print("Unknown error when fetching lessons")
+        }
+
         return nil
     }
 }

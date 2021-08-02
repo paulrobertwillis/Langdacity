@@ -25,15 +25,17 @@ class Student: User, Comparable {
     var classUUID: [Int]
     var points: Int
     var notesRevising: [String:Date]
+    var accessibleLessons: [String]
     
     static var identifierFactory = 0
 
-    init(forename: String, surname: String, email: String, classUUID: [Int] = []) throws {
+    init(forename: String, surname: String, email: String, classUUID: [Int] = [], lessons: [String] = []) throws {
 //        self.forename = forename
 //        self.surname = surname
         self.classUUID = classUUID
         self.points = 0
         self.notesRevising = [:]
+        self.accessibleLessons = lessons
         
         try super.init(forename: forename, surname: surname, email: email)
         
@@ -44,6 +46,7 @@ class Student: User, Comparable {
         case classUUID
         case points
         case notesRevising
+        case accessibleLessons
     }
     
     required init(from decoder: Decoder) throws {
@@ -51,15 +54,17 @@ class Student: User, Comparable {
         self.classUUID = try container.decode([Int].self, forKey: .classUUID)
         self.points = try container.decode(Int.self, forKey: .points)
         self.notesRevising = try container.decode([String:Date].self, forKey: .notesRevising)
+        self.accessibleLessons = try container.decode([String].self, forKey: .accessibleLessons)
         
         try super.init(from: decoder)
     }
     
     override public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(classUUID, forKey: .classUUID)
-            try container.encode(points, forKey: .points)
-            try container.encode(notesRevising, forKey: .notesRevising)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(classUUID, forKey: .classUUID)
+        try container.encode(points, forKey: .points)
+        try container.encode(notesRevising, forKey: .notesRevising)
+        try container.encode(accessibleLessons, forKey: .accessibleLessons)
         
         try super.encode(to: encoder)
     }
