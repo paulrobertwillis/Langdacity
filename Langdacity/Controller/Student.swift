@@ -22,9 +22,9 @@ class Student: User, Comparable {
     
 //    override var description: String { return "\(forename) \(surname): #\(UUID)"}
 
-    //TODO: Allow multiple classes through array
     var classUUID: [Int]
     var points: Int
+    var notesRevising: [String:Date]
     
     static var identifierFactory = 0
 
@@ -33,6 +33,7 @@ class Student: User, Comparable {
 //        self.surname = surname
         self.classUUID = classUUID
         self.points = 0
+        self.notesRevising = [:]
         
         try super.init(forename: forename, surname: surname, email: email)
         
@@ -42,12 +43,14 @@ class Student: User, Comparable {
     enum CodingKeys: CodingKey {
         case classUUID
         case points
+        case notesRevising
     }
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.classUUID = try container.decode([Int].self, forKey: .classUUID)
         self.points = try container.decode(Int.self, forKey: .points)
+        self.notesRevising = try container.decode([String:Date].self, forKey: .notesRevising)
         
         try super.init(from: decoder)
     }
@@ -56,6 +59,7 @@ class Student: User, Comparable {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(classUUID, forKey: .classUUID)
             try container.encode(points, forKey: .points)
+            try container.encode(notesRevising, forKey: .notesRevising)
         
         try super.encode(to: encoder)
     }
@@ -91,6 +95,25 @@ class Student: User, Comparable {
     
     func getFullName() -> String {
         return forename + " " + surname
+    }
+    
+    /// Adds Note to Dictionary by getting its UUID from the Note object
+    func addNote(note: Note) {
+        let noteUUID = note.UUID
+//        notesRevising[noteUUID] = Date()
+//        print(notesRevising[noteUUID]!)
+        addNote(noteUUID: noteUUID)
+    }
+    
+    /// Adds Note to Dictionary using its UUID
+    func addNote(noteUUID: String) {
+        if !noteUUID.hasPrefix("NOTE-") {
+            print("Error in adding note to \(self)")
+            return
+        }
+        notesRevising[noteUUID] = Date()
+        print("\(self) note \(noteUUID) next revision time/date: \(notesRevising[noteUUID]!)")
+
     }
 
 }

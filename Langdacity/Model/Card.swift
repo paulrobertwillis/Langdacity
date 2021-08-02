@@ -38,12 +38,12 @@ class Card: CustomStringConvertible, Codable {
         createNotes()
     }
     
-    func createNotes() {
+    private func createNotes() {
         //TODO: remove hardcoded "toFrench"/"toEnglish" values
-        if let note = Note.createNote(card: self, direction: "toFrench") {
+        if let note = try? Note.createNote(card: self, direction: "toFrench") {
             notes.append(note)
         }
-        if let note = Note.createNote(card: self, direction: "toEnglish") {
+        if let note = try? Note.createNote(card: self, direction: "toEnglish") {
             notes.append(note)
         }
     }

@@ -11,7 +11,7 @@
                 "interval": 1,
                 "learningStatus": "learning",
                 "stepsIndex": 0,
-                "UUID": 1
+                "UUID": "NOTE-00001"
             },
             {
                 "translateFrom": "salut",
@@ -21,7 +21,7 @@
                 "interval": 1,
                 "learningStatus": "learning",
                 "stepsIndex": 0,
-                "UUID": 2
+                "UUID": "NOTE-00002"
             }
         ]
     }

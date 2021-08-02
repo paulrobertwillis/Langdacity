@@ -8,7 +8,7 @@
 import Foundation
 
 class Note: CustomStringConvertible, Codable {
-    var description: String { return "Note \(UUID)"}
+    var description: String { return UUID }
     
     let translateFrom: String
     let translateTo: String
@@ -17,7 +17,7 @@ class Note: CustomStringConvertible, Codable {
     var interval: Int
     var learningStatus: status
     var stepsIndex: Int
-    var UUID: Int
+    var UUID: String
 //    let card: Card
     
     enum status: String, Codable {
@@ -28,7 +28,7 @@ class Note: CustomStringConvertible, Codable {
     
     static var identifierFactory = 0
 
-    private init(parentCard: Card) {
+    private init(parentCard: Card) throws {
         let newNoteVariables = schedulingDataConstants().newNoteVariables
         
         self.translateFrom = parentCard.english
@@ -38,27 +38,52 @@ class Note: CustomStringConvertible, Codable {
         self.interval = newNoteVariables.graduatingInterval // calculated from global constant
         self.learningStatus = status.learning
         self.stepsIndex = 0
-        self.UUID = Note.createUniqueIdentifier()
+        self.UUID = try Note.createUniqueIdentifier(prefix: "NOTE-")
 //        self.card = parentCard
     }
     
-    static func createNote(card: Card, direction: String) -> Note? {
+    static func createNote(card: Card, direction: String) throws -> Note? {
         //TODO: replace hardcoded "toFrench"/"toEnglish" values
         //TODO: replace hardcoded "language" value
         if direction == "toFrench" {
-            return Note.init(parentCard: card)
+            return try Note.init(parentCard: card)
         } else if direction == "toEnglish" {
-            return Note.init(parentCard: card)
+            return try Note.init(parentCard: card)
         } else {
             return nil
         }
     }
     
-    static private func createUniqueIdentifier() -> Int {
+    static private func createUniqueIdentifier(prefix: String) throws -> String {
         Note.identifierFactory += 1
-        return Note.identifierFactory
+        
+//        let prefix = "USER-"
+        let id = Note.identifierFactory
+        
+        guard id >= 1 else {
+            throw Errors.uuidErrors.valueTooLow(minValue: 1, actualValue: id)
+        }
+        
+        guard id <= 9999 else {
+            throw Errors.uuidErrors.valueTooHigh(maxValue: 9999, actualValue: id)
+        }
+        
+        switch id {
+        case 1...9:
+            return "\(prefix)0000" + String(id)
+        case 10...99:
+            return "\(prefix)000" + String(id)
+        case 100...999:
+            return "\(prefix)00" + String(id)
+        case 1000...9999:
+            return "\(prefix)0" + String(id)
+        case 10000...100_000:
+            return "\(prefix)" + String(id)
+        default:
+            throw Errors.uuidErrors.valueNotInteger(actualValue: String(id))
+        }
     }
-            
+
     func setDateNextRevise(days: Int) {
         let currentDate = Date()
         let modifiedDate = Calendar.current.date(byAdding: .day, value: days, to: currentDate)!

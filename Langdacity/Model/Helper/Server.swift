@@ -57,16 +57,21 @@ class Server {
             let student3 = try Student(forename: "Clara", surname: "Student", email: "c.student@email.com")
             let student4 = try Student(forename: "David", surname: "Student", email: "d.student@email.com")
             let student5 = try Student(forename: "Erin", surname: "Student", email: "e.student@email.com")
+            
+            let card = Card(english: "hi", french: "salut")
+            student1.addNote(note: card.notes[0])
+            student1.addNote(note: card.notes[1])
+            
 
-        var dictionary: [String:Student] = [:]
-        
-        dictionary[student1.UUID] = student1
-        dictionary[student2.UUID] = student2
-        dictionary[student3.UUID] = student3
-        dictionary[student4.UUID] = student4
-        dictionary[student5.UUID] = student5
-        
-        return dictionary
+            var dictionary: [String:Student] = [:]
+            
+            dictionary[student1.UUID] = student1
+            dictionary[student2.UUID] = student2
+            dictionary[student3.UUID] = student3
+            dictionary[student4.UUID] = student4
+            dictionary[student5.UUID] = student5
+            
+            return dictionary
             
         }
         catch {
