@@ -7,7 +7,15 @@
 
 import Foundation
 
-class Note: CustomStringConvertible, Codable {
+class Note: CustomStringConvertible, Codable, Comparable {
+    static func == (lhs: Note, rhs: Note) -> Bool {
+        return lhs.UUID == rhs.UUID
+    }
+    
+    static func < (lhs: Note, rhs: Note) -> Bool {
+        return lhs.UUID < rhs.UUID
+    }
+    
     var description: String { return UUID }
     
     let translateFrom: String
@@ -27,10 +35,15 @@ class Note: CustomStringConvertible, Codable {
     }
     
     static var identifierFactory = 0
+    
+    private enum initError: Error {
+        case directionInvalid
+    }
 
-    private init(parentCard: Card) throws {
+    private init(parentCard: Card, direction: String) throws {
         let newNoteVariables = schedulingDataConstants().newNoteVariables
         
+        if direction == "toFrench" {
         self.translateFrom = parentCard.english
         self.translateTo = parentCard.french
         self.dateNextRevise = Date(timeIntervalSinceNow: 0)
@@ -39,16 +52,27 @@ class Note: CustomStringConvertible, Codable {
         self.learningStatus = status.learning
         self.stepsIndex = 0
         self.UUID = try Note.createUniqueIdentifier(prefix: "NOTE-")
+            
+        } else {
+        self.translateFrom = parentCard.french
+        self.translateTo = parentCard.english
+        self.dateNextRevise = Date(timeIntervalSinceNow: 0)
+        self.easeFactor = newNoteVariables.startingEase // calculated from global constant
+        self.interval = newNoteVariables.graduatingInterval // calculated from global constant
+        self.learningStatus = status.learning
+        self.stepsIndex = 0
+        self.UUID = try Note.createUniqueIdentifier(prefix: "NOTE-")
 //        self.card = parentCard
+        }
     }
     
     static func createNote(card: Card, direction: String) throws -> Note? {
         //TODO: replace hardcoded "toFrench"/"toEnglish" values
         //TODO: replace hardcoded "language" value
         if direction == "toFrench" {
-            return try Note.init(parentCard: card)
+            return try Note.init(parentCard: card, direction: "toFrench")
         } else if direction == "toEnglish" {
-            return try Note.init(parentCard: card)
+            return try Note.init(parentCard: card, direction: "toEnglish")
         } else {
             return nil
         }

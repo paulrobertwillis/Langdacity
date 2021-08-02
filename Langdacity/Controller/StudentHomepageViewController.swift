@@ -13,11 +13,11 @@ class StudentHomepageViewController: UIViewController {
     var notes: [Note] = []
     var notesToRevise: [Note] = []
     weak var timer: Timer?
+
+    @IBOutlet var GreetingLabel: UILabel!
     
-    let revision = Revision.getInstance()
-        
     @IBAction func ReviseButtonTapped(_ sender: Any) {
-        if revision.notesToRevise.count > 0 {
+        if notesToRevise.count > 0 {
             // segue to RevisionViewController
             performSegue(withIdentifier: "ReviseTextSegue", sender: self)
         } else {
@@ -29,44 +29,38 @@ class StudentHomepageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        GreetingLabel.text = "Hey, \(user!.forename)"
+        
         fetchLessonDataFromServer()
-//        startRevisionUpdateTimer()
+        startRevisionUpdateTimer()
         notesToRevise = getNotesToRevise()
-
-        for note in notes {
-            print(note)
-        }
         
-        
-        
-//        for noteUUID in user!.notesRevising.keys {
-//        }
         
     }
+    
+//    deinit {
+//        stopTimer()
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ReviseTextSegue" {
             let nextViewController = segue.destination as! RevisionViewController
             nextViewController.user = user
+            nextViewController.delegate = self
         }
     }
-    
-    enum StudentHomepageErrors: Error {
-        case noteNotBeingRevised(noteOutOfSync: String)
+        
+    private func startRevisionUpdateTimer() {
+        stopTimer() // prevents accidental second timer creation
+        timer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { _ in
+            print("Checking notes to revise ...")
+            self.notesToRevise = self.getNotesToRevise()
+        }
     }
-    
-//    private func startRevisionUpdateTimer() {
-//        stopTimer() // prevents accidental second timer creation
-//        timer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { _ in
-//            print("Checking notes to revise ...")
-//            let instance = Revision.getInstance()
-//            instance.notesToRevise = instance.getNotesToRevise()
-//        }
-//    }
-//
-//    func stopTimer() {
-//        timer?.invalidate()
-//    }
+
+    func stopTimer() {
+        timer?.invalidate()
+    }
     
     func fetchLessonDataFromServer() {
         enum fetchError: Error {
@@ -122,6 +116,11 @@ class StudentHomepageViewController: UIViewController {
         }
     }
     
+    enum StudentHomepageErrors: Error {
+        case date(date: Date?)
+        case noteNotBeingRevised(noteExpected: Note)
+    }
+    
     func getNotesToRevise() -> [Note] {
         var notesArray = [Note]()
         let calendar = Calendar.current
@@ -131,10 +130,14 @@ class StudentHomepageViewController: UIViewController {
             if notes.count == 0 {
                 return notesArray
             }
-            
+                        
             for note in notes {
+                if !user!.notesRevising.keys.contains(note.UUID) {
+                    throw StudentHomepageErrors.noteNotBeingRevised(noteExpected: note)
+                }
+                
                 guard let dateNextRevise = user!.notesRevising[note.UUID] else {
-                    throw StudentHomepageErrors.noteNotBeingRevised(noteOutOfSync: note.UUID)
+                    throw StudentHomepageErrors.date(date: user!.notesRevising[note.UUID])
                 }
                 
                 if note.learningStatus == .learnt && calendar.isDateInToday(dateNextRevise) {
@@ -147,8 +150,10 @@ class StudentHomepageViewController: UIViewController {
                     }
                 }
             }
-        } catch StudentHomepageErrors.noteNotBeingRevised(let noteOutOfSync) {
-            print("Error in \(self) method \(#function): Note \(noteOutOfSync)")
+        } catch StudentHomepageErrors.noteNotBeingRevised(let noteExpected) {
+            print("Error in \(self) method \(#function): Note \(noteExpected) not found in student's revision list")
+        } catch StudentHomepageErrors.date(let date) {
+            print("Error in \(self) method \(#function): \(String(describing: date))")
         } catch {
             print("Error in \(self) method \(#function): Unknown error")
         }
@@ -156,20 +161,16 @@ class StudentHomepageViewController: UIViewController {
         return notesArray
     }
 
-//    func getCards() -> [Card]? {
-//        return cards
-//    }
-//
-//    func getFirstNote() -> Note? {
-//        if notesToRevise.count > 0 {
-//            return notesToRevise[0]
-//        }
-//        return nil
-//    }
-//
-//    func removeFirstNoteFromRevision() {
-//        if notesToRevise.count > 0 {
-//            notesToRevise.removeFirst()
-//        }
-//    }
+    func getFirstNote() -> Note? {
+        if notesToRevise.count > 0 {
+            return notesToRevise[0]
+        }
+        return nil
+    }
+
+    func removeFirstNoteFromRevision() {
+        if notesToRevise.count > 0 {
+            notesToRevise.removeFirst()
+        }
+    }
 }

@@ -30,23 +30,22 @@ class RevisionViewController: UIViewController {
         }
     }
     
-    let rc = Revision.getInstance()
-    
     var noteToDisplay: Note {
-        return rc.getFirstNote()!
+        delegate.getFirstNote()!
     }
+    
+    weak var delegate: StudentHomepageViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setToHidden()
         updateLabels()
-        
     }
     
-    deinit {
-        rc.stopTimer()
-    }
+//    deinit {
+//        delegate.stopTimer()
+//    }
     
     func setToHidden() {
         translateTo.isHidden = true
@@ -78,17 +77,16 @@ class RevisionViewController: UIViewController {
         // save the new note and all cards in its lesson to JSON
 //        JsonInterface.encodeToJsonAndWriteToFile(cards: rc.cards, lessonName: "Lesson01")
         
-        
         // TODO: Address issue where lack of Internet connection will cause program to fail
         let noteDictionary: [String:Note] = [user!.UUID:noteToDisplay]
+        
         guard let data = JsonInterface.encodeToJsonAsData(dictionary: noteDictionary) else { return }
         Server.sendNoteData(data: data)
         
-        
-        rc.removeFirstNoteFromRevision()
+        delegate.removeFirstNoteFromRevision()
                         
-        if rc.getFirstNote() != nil {
-//            noteToDisplay = rc.getFirstNote()!
+        if delegate.getFirstNote() != nil {
+//            noteToDisplay = delegate.getFirstNote()!
             updateLabels()
             setToHidden()
         } else {
@@ -147,8 +145,6 @@ class RevisionViewController: UIViewController {
         let newNote = data.newNoteVariables
         let review = data.reviewVariables
         
-
-
         switch buttonTitle {
         case "Again":
             noteToDisplay.learningStatus = .relearning

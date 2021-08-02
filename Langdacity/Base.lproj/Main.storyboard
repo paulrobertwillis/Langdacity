@@ -53,6 +53,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="zTp-gZ-9Sd"/>
                     <connections>
+                        <outlet property="GreetingLabel" destination="Bh1-Ae-re9" id="3Zm-XK-T0R"/>
                         <segue destination="dPg-MB-5yh" kind="show" identifier="ReviseTextSegue" id="1dA-2f-lmg"/>
                         <segue destination="mF9-CY-O2B" kind="show" identifier="NoNotesToReviseSegue" id="e5z-8R-NsT"/>
                     </connections>
@@ -234,7 +235,7 @@
                                 <color key="textColor" red="0.4196078479" green="0.25490197539999998" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="a.teacher@email.com" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="fbx-pX-F7z">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="a.student@email.com" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="fbx-pX-F7z">
                                 <rect key="frame" x="32" y="434" width="350" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

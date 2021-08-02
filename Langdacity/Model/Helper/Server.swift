@@ -40,9 +40,9 @@ class Server {
             let student4 = try Student(forename: "David", surname: "Student", email: "d.student@email.com")
             let student5 = try Student(forename: "Erin", surname: "Student", email: "e.student@email.com")
             
-            let card = Card(english: "hi", french: "salut")
-            student1.addNote(note: card.notes[0])
-            student1.addNote(note: card.notes[1])
+//            let card = Card(english: "hi", french: "salut")
+//            student1.addNote(note: card.notes[0])
+//            student1.addNote(note: card.notes[1])
             
             var dictionary: [String:Student] = [:]
             
@@ -141,12 +141,32 @@ class Server {
         JsonInterface.encodeToJsonAndWriteToFile(teacher: teacher!, shouldPrint: false)
         
         // Give student1 ("Amanda Student") access to Lesson01
-        for value in Array(Server.students.values) {
-            if value.email == "a.student@email.com" {
-                value.accessibleLessons.append("LSSN-0001")
-            }
+//        for value in Array(Server.students.values) {
+//            if value.email == "a.student@email.com" {
+//                value.accessibleLessons.append("LSSN-0001")
+//            }
+//        }
+        giveStudentLessonAccess(student: "STDT-0001", lesson: "LSSN-0001")
+        
+    }
+    
+    /// Gives a student access to a lesson, taking the student's UUID and the lesson's UUID as parameters. Also adds the lesson's notes to the student's account
+    static func giveStudentLessonAccess(student studentUUID: String, lesson lessonUUID: String) {
+        guard let student = Server.students[studentUUID] else {
+            return
         }
         
+        guard let lesson = Server.lessons[lessonUUID] else {
+            return
+        }
+        
+        student.accessibleLessons.append(lessonUUID)
+        
+        for card in lesson.cards {
+            for note in card.notes {
+                student.notesRevising[note.UUID] = Date()
+            }
+        }
     }
         
     static func validate(email: String) -> Data? {
@@ -181,7 +201,8 @@ class Server {
     /// Send data to the server as a Data object. Data must be a JSON of a dictionary containing a Student's UUID as a String, and a Note as a Note.
     static func sendNoteData(data: Data) {
         guard let dictionary = JsonInterface.decodeNoteDictionaryFromJsonData(data: data) else { return }
-        print(dictionary)
+        
+        // TODO: Finish this method!
     }
         
     /// Fetch data from the server as a Data object
