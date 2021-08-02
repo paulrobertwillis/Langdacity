@@ -17,17 +17,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func LogInButtonTapped(_ sender: Any) {
         guard UsernameTextField.hasText else { return }
-        
-//        guard let user = Server.validate(email: UsernameTextField.text!) else { return }
-//
-//        verifiedUser = user
-//
-//        if user is Teacher {
-//            performSegue(withIdentifier: "TeacherHomepageSegue", sender: self)
-//        } else if user is Student {
-//            performSegue(withIdentifier: "StudentHomepageSegue", sender: self)
-//        }
-        
+                
         guard let userData = Server.validate(email: UsernameTextField.text!) else { return }
         
         if let user = JsonInterface.decodeTeacherFromJsonData(data: userData) {
@@ -41,11 +31,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
     }
-    
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "TeacherHomepageSegue" {

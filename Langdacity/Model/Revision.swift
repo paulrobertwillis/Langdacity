@@ -49,10 +49,6 @@ class Revision {
     func stopTimer() {
         timer?.invalidate()
     }
-
-//    deinit {
-//        stopTimer()
-//    }
         
     static func getInstance() -> Revision {
         return instance

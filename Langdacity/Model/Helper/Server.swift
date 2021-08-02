@@ -162,4 +162,14 @@ class Server {
         }
         return nil
     }
+    
+    /// Send data to the server as a Data object
+    static func sendData(data: Data) {
+        
+    }
+    
+    /// Fetch data from the server as a Data object
+    static func fetchData() -> Data? {
+        return nil
+    }
 }

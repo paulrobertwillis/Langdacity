@@ -9,7 +9,6 @@ import UIKit
 
 class RevisionViewController: UIViewController {
     
-    
     @IBOutlet var revisionInstructions: UILabel!
     //TODO: update this label when [Notes] array in Revision is updated
     @IBOutlet var NotesRemaining: UILabel!
@@ -43,6 +42,9 @@ class RevisionViewController: UIViewController {
         
     }
     
+    deinit {
+        rc.stopTimer()
+    }
     
     func setToHidden() {
         translateTo.isHidden = true
