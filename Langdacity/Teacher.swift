@@ -11,7 +11,7 @@ class Teacher: User {
 //    override var description: String { return "Teacher: \(UUID)"}
     
     var title: titleEnum
-    var classes: [Class]
+    var classes: [String]
     
     enum titleEnum: String, Codable {
         case Mr = "Mr"
@@ -22,7 +22,7 @@ class Teacher: User {
     
     static var identifierFactory = 0
 
-    init(title: titleEnum, forename: String, surname: String, email: String, classes: [Class] = []) throws {
+    init(title: titleEnum, forename: String, surname: String, email: String, classes: [String] = []) throws {
         self.title = title
         // TODO: make class UUIDs an array
         self.classes = classes
@@ -40,7 +40,7 @@ class Teacher: User {
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.title = try container.decode(titleEnum.self, forKey: .title)
-        self.classes = try container.decode([Class].self, forKey: .classes)
+        self.classes = try container.decode([String].self, forKey: .classes)
         
         try super.init(from: decoder)
     }

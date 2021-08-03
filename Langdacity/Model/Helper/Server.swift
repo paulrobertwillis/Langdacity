@@ -11,7 +11,7 @@ class Server {
     private(set) static var teachers: [String:Teacher] = createTeachers()
     private(set) static var students: [String:Student] = createStudents()
     private(set) static var lessons: [String:Lesson] = createLessons()
-    private(set) static var classes: [Int:Class] = createClasses()
+    private(set) static var classes: [String:Class] = createClasses()
     
     // temporary functions to generate template data
     private static func createTeachers() -> [String:Teacher] {
@@ -97,22 +97,29 @@ class Server {
         return [:]
     }
     
-    private static func createClasses() -> [Int:Class] {
-        let class1 = Class(name: "8Fr1", language: .french)
-        let class2 = Class(name: "8Fr2", language: .french)
-        let class3 = Class(name: "8Fr3", language: .french)
-        let class4 = Class(name: "8Fr4", language: .french)
-        let class5 = Class(name: "8Fr5", language: .french)
+    private static func createClasses() -> [String:Class] {
+        do {
+            let class1 = try Class(name: "8Fr1", language: .french)
+            let class2 = try Class(name: "8Fr2", language: .french)
+            let class3 = try Class(name: "8Fr3", language: .french)
+            let class4 = try Class(name: "8Fr4", language: .french)
+            let class5 = try Class(name: "8Fr5", language: .french)
 
-        var dictionary: [Int:Class] = [:]
+            var dictionary: [String:Class] = [:]
+            
+            dictionary[class1.UUID] = class1
+            dictionary[class2.UUID] = class2
+            dictionary[class3.UUID] = class3
+            dictionary[class4.UUID] = class4
+            dictionary[class5.UUID] = class5
+            
+            return dictionary
+            
+        } catch {
+            print("Error in createClasses() method of Server")
+        }
         
-        dictionary[class1.UUID] = class1
-        dictionary[class2.UUID] = class2
-        dictionary[class3.UUID] = class3
-        dictionary[class4.UUID] = class4
-        dictionary[class5.UUID] = class5
-        
-        return dictionary
+        return [:]
     }
     
     static func finalInit() {
@@ -124,30 +131,41 @@ class Server {
             }
         }
         
-        var classValues: [Class] = []
-        for value in Server.classes.values {
+        var classValues: [String] = []
+        for value in Server.classes.keys {
             classValues.append(value)
         }
         classValues.sort()
         teacher?.classes.append(contentsOf: classValues)
     
-        var studentValues: [Student] = []
-        for value in Server.students.values {
+        var studentValues: [String] = []
+        for value in Server.students.keys {
             studentValues.append(value)
         }
         studentValues.sort()
-        teacher?.classes[0].students.append(contentsOf: studentValues)
+                
+        // UUID of class where students should be added
+        let targetClassUUID = teacher!.classes[0]
+        
+        // targetClass where students should be added, taken from Server dictionary of classes using targetClassUUID
+//        guard let targetClass = Server.classes[targetClassUUID] else { return }
+        
+        // for every String in studentValues, add the String to the class's Student list
+        for student in studentValues {
+            Server.addStudentToClass(student: student, cls: targetClassUUID)
+//            targetClass.students.append(student)
+        }
+                
+//        teacher?.classes[0].students.append(contentsOf: studentValues)
                 
         JsonInterface.encodeToJsonAndWriteToFile(teacher: teacher!, shouldPrint: false)
         
-        // Give student1 ("Amanda Student") access to Lesson01
-//        for value in Array(Server.students.values) {
-//            if value.email == "a.student@email.com" {
-//                value.accessibleLessons.append("LSSN-0001")
-//            }
-//        }
         giveStudentLessonAccess(student: "STDT-0001", lesson: "LSSN-0001")
         
+    }
+    
+    static func addStudentToClass(student studentUUID: String, cls classUUID: String) {
+        Server.classes[classUUID]?.students.append(studentUUID)
     }
     
     /// Gives a student access to a lesson, taking the student's UUID and the lesson's UUID as parameters. Also adds the lesson's notes to the student's account
@@ -266,6 +284,96 @@ class Server {
             print("Error in \(self): cannot decode String array from data")
         } catch fetchErrors.cannotEncodeLessonArrayToData {
             print("Error in \(self): cannot encode Lesson array to data")
+        } catch {
+            print("Unknown error when fetching lessons")
+        }
+
+        return nil
+    }
+    
+    static func fetchStudents(data: Data) -> Data? {
+        enum fetchErrors: Error {
+            case cannotDecodeStringArrayFromData
+            case cannotEncodeStudentArrayToData
+        }
+        
+        let decoder = JSONDecoder()
+        let encoder = JSONEncoder()
+        
+        do {
+            // decode received data to String array
+            guard let studentStrings = try? decoder.decode([String].self, from: data) else {
+                throw fetchErrors.cannotDecodeStringArrayFromData
+            }
+                        
+            // find all students that have UUIDs matching indices of String array
+            var studentArray: [Student] = []
+            for string in studentStrings {
+                for key in Server.students.keys {
+                    if key == string {
+                        // add those students to an array
+                        studentArray.append(Server.students[key]!)
+                    }
+                }
+            }
+                        
+            // encode Lesson array to Data
+            guard let studentData = try? encoder.encode(studentArray) else {
+                throw fetchErrors.cannotEncodeStudentArrayToData
+            }
+            
+            // return array as data
+            return studentData
+            
+        } catch fetchErrors.cannotDecodeStringArrayFromData {
+            print("Error in \(self): cannot decode String array from data")
+        } catch fetchErrors.cannotEncodeStudentArrayToData {
+            print("Error in \(self): cannot encode Student array to data")
+        } catch {
+            print("Unknown error when fetching lessons")
+        }
+
+        return nil
+    }
+
+    static func fetchClasses(data: Data) -> Data? {
+        enum fetchErrors: Error {
+            case cannotDecodeStringArrayFromData
+            case cannotEncodeClassArrayToData
+        }
+        
+        let decoder = JSONDecoder()
+        let encoder = JSONEncoder()
+        
+        do {
+            // decode received data to String array
+            guard let classStrings = try? decoder.decode([String].self, from: data) else {
+                throw fetchErrors.cannotDecodeStringArrayFromData
+            }
+            
+            // find all students that have UUIDs matching indices of String array
+            var classArray: [Class] = []
+            for string in classStrings {
+                for key in Server.classes.keys {
+                    if key == string {
+                        // add those students to an array
+                        classArray.append(Server.classes[key]!)
+                    }
+                }
+            }
+            
+            // encode Lesson array to Data
+            guard let classData = try? encoder.encode(classArray) else {
+                throw fetchErrors.cannotEncodeClassArrayToData
+            }
+            
+            // return array
+            return classData
+            
+        } catch fetchErrors.cannotDecodeStringArrayFromData {
+            print("Error in \(self): cannot decode String array from data")
+        } catch fetchErrors.cannotEncodeClassArrayToData {
+            print("Error in \(self): cannot encode Class array to data")
         } catch {
             print("Unknown error when fetching lessons")
         }

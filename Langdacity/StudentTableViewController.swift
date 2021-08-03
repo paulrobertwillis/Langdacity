@@ -9,19 +9,24 @@ import UIKit
 
 class StudentTableViewController: UITableViewController {
     
-    var students: [Student] = []
+    var students: [Student]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return students.count
+        if students != nil {
+            return students!.count
+        }
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Student", for: indexPath)
-        cell.textLabel?.text = students[indexPath.row].getFullName()
+        cell.textLabel?.text = try students?[indexPath.row].getFullName()
 
         return cell
     }

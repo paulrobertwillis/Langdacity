@@ -11,6 +11,7 @@ class ClassListTableViewController: UITableViewController {
     
     //TODO: Extract this from user defaults?
     var user: Teacher?
+    var classes: [Class]?
 
     
     override func viewDidLoad() {
@@ -25,7 +26,7 @@ class ClassListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Class", for: indexPath)
-        cell.textLabel?.text = user!.classes[indexPath.row].name
+        cell.textLabel?.text = classes![indexPath.row].name
                 
         return cell
     }
@@ -38,8 +39,8 @@ class ClassListTableViewController: UITableViewController {
         let nextViewController = segue.destination as! ClassViewController
         guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
         
-        nextViewController.title = user!.classes[indexPath.row].name
-        nextViewController.classObj = user!.classes[indexPath.row]
+        nextViewController.title = classes![indexPath.row].name
+        nextViewController.classObj = classes![indexPath.row]
     }
 
 

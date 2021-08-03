@@ -96,7 +96,10 @@ class JsonInterface {
 
         return nil
     }
-
+    
+    enum decodeFromDataErrors: Error {
+        case decodeFailed
+    }
     
     static func decodeTeacherFromJsonData(data: Data) -> Teacher? {
         let decoder = JSONDecoder()
@@ -116,10 +119,54 @@ class JsonInterface {
         guard let student = try? decoder.decode(Student.self, from: data) else {
             return nil
         }
-        
+
         return student
     }
     
+    static func decodeStudentArrayFromJsonData(data: Data) -> [Student]? {
+        do {
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            
+            guard let students = try? decoder.decode([Student].self, from: data) else {
+                throw decodeFromDataErrors.decodeFailed
+            }
+            
+            
+            
+            return students
+            
+        } catch decodeFromDataErrors.decodeFailed {
+            print("Error in \(self) function \(#function): Cannot decode data into Student array")
+        } catch {
+            print("Error in \(self) function \(#function): Unknown error")
+        }
+
+        return nil
+    }
+
+    static func decodeClassFromJsonData(data: Data) -> Class? {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        
+        guard let cls = try? decoder.decode(Class.self, from: data) else {
+            return nil
+        }
+        
+        return cls
+    }
+    
+    static func decodeClassArrayFromJsonData(data: Data) -> [Class]? {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        
+        guard let classes = try? decoder.decode([Class].self, from: data) else {
+            return nil
+        }
+        
+        return classes
+    }
+
     static func decodeNoteDictionaryFromJsonData(data: Data) -> [String:Note]? {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601

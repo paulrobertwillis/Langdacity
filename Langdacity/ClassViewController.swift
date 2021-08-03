@@ -13,13 +13,46 @@ class ClassViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let nextViewController = segue.destination as! StudentTableViewController
-        nextViewController.students = classObj!.students
+        enum prepareSegueErrors: Error {
+            case cannotEncodeArrayToData
+            case cannotFetchStudentsFromServer
+            case cannotDecodeStudentArrayFromData
+        }
         
+        do {
+            if segue.identifier == "ShowAllStudents" {
+                let nextViewController = segue.destination as! StudentTableViewController
+                
+                guard let dataToSend = JsonInterface.encodeToJsonAsData(stringArray: classObj!.students) else {
+                    throw prepareSegueErrors.cannotEncodeArrayToData
+                }
+                guard let dataFetched = Server.fetchStudents(data: dataToSend) else {
+                    throw prepareSegueErrors.cannotFetchStudentsFromServer
+                }
+//                guard let students = JsonInterface.decodeStudentArrayFromJsonData(data: dataFetched) else {
+//                    throw prepareSegueErrors.cannotDecodeStudentArrayFromData
+//                }
+                
+                let decoder = JSONDecoder()
+                let studentArray = try? decoder.decode([Student].self, from: dataFetched)
+                print("Student array: \(studentArray)")
+                
+//                nextViewController.students = students
+                print("successfully prepared")
+            }
+        } catch prepareSegueErrors.cannotEncodeArrayToData {
+            print("Error in \(self) function \(#function): Cannot encode array to data")
+        } catch prepareSegueErrors.cannotFetchStudentsFromServer {
+            print("Error in \(self) function \(#function): Cannot fetch student data from server")
+        } catch prepareSegueErrors.cannotDecodeStudentArrayFromData {
+            print("Error in \(self) function \(#function): Cannot decode data from server")
+        } catch {
+            print("Error in \(self) function \(#function): Unknown error")
+        }
     }
     
 

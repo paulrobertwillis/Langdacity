@@ -259,7 +259,7 @@
                                 <color key="textColor" red="0.4196078479" green="0.25490197539999998" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="a.student@email.com" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="fbx-pX-F7z">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="a.teacher@email.com" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="fbx-pX-F7z">
                                 <rect key="frame" x="32" y="434" width="350" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -444,7 +444,7 @@
                                 <rect key="frame" x="165.5" y="188" width="83" height="30"/>
                                 <state key="normal" title="All Students"/>
                                 <connections>
-                                    <segue destination="OCG-hw-NNi" kind="show" id="pge-SN-aao"/>
+                                    <segue destination="OCG-hw-NNi" kind="show" identifier="ShowAllStudents" id="pge-SN-aao"/>
                                 </connections>
                             </button>
                         </subviews>

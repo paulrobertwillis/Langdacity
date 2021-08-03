@@ -22,7 +22,7 @@ class Student: User, Comparable {
     
 //    override var description: String { return "\(forename) \(surname): #\(UUID)"}
 
-    var classUUID: [Int]
+    var classUUID: [String]
     var points: Int
     var notesRevising: [String:Date]
     var accessibleLessons: [String]
@@ -31,9 +31,7 @@ class Student: User, Comparable {
     
     static var identifierFactory = 0
 
-    init(forename: String, surname: String, email: String, classUUID: [Int] = [], lessons: [String] = []) throws {
-//        self.forename = forename
-//        self.surname = surname
+    init(forename: String, surname: String, email: String, classUUID: [String] = [], lessons: [String] = []) throws {
         self.classUUID = classUUID
         self.points = 0
         self.notesRevising = [:]
@@ -57,7 +55,7 @@ class Student: User, Comparable {
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.classUUID = try container.decode([Int].self, forKey: .classUUID)
+        self.classUUID = try container.decode([String].self, forKey: .classUUID)
         self.points = try container.decode(Int.self, forKey: .points)
         self.notesRevising = try container.decode([String:Date].self, forKey: .notesRevising)
         self.accessibleLessons = try container.decode([String].self, forKey: .accessibleLessons)
