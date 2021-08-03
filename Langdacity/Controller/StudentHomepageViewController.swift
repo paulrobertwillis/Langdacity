@@ -45,7 +45,7 @@ class StudentHomepageViewController: UIViewController {
         startRevisionUpdateTimer()
         notesToRevise = updateNotesToRevise()
         checkIfStudentHasCompletedDailyRevision()
-//        styleReviseButton()
+        styleReviseButton()
     }
     
 //    deinit {

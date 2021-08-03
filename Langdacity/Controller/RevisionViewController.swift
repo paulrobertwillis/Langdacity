@@ -38,6 +38,14 @@ class RevisionViewController: UIViewController {
         }
     }
     
+//    @objc func tapActionInView() {
+//        print("we are here")
+//        translateTo.isHidden = false
+//        for UIButton in difficultyButtons {
+//            UIButton.isHidden = false
+//        }
+//    }
+    
     var noteToDisplay: Note {
         delegate.getFirstNote()!
     }
@@ -49,6 +57,10 @@ class RevisionViewController: UIViewController {
         
         setToHidden()
         updateLabels()
+        
+//        let tapGesture = UITapGestureRecognizer()
+//        self.view.addGestureRecognizer(tapGesture)
+//        tapGesture.addTarget(self, action: #selector(tapActionInView))
     }
     
 //    deinit {
