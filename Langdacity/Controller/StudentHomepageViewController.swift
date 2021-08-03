@@ -45,7 +45,7 @@ class StudentHomepageViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ReviseTextSegue" {
             let nextViewController = segue.destination as! RevisionViewController
-            nextViewController.user = user
+//            nextViewController.user = user
             nextViewController.delegate = self
         }
     }

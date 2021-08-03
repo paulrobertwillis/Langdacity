@@ -9,7 +9,9 @@ import UIKit
 
 class RevisionViewController: UIViewController {
     
-    var user: User?
+    var user: User? {
+        delegate.user
+    }
     
     @IBOutlet var revisionInstructions: UILabel!
     //TODO: update this label when [Notes] array in Revision is updated
@@ -78,14 +80,14 @@ class RevisionViewController: UIViewController {
         } else {
             print("Error: \(LocalizedError.self)")
         }
-                
                         
         // save the new note and all cards in its lesson to JSON
 //        JsonInterface.encodeToJsonAndWriteToFile(cards: rc.cards, lessonName: "Lesson01")
         
         // TODO: Address issue where lack of Internet connection will cause program to fail
-        let noteDictionary: [String:Note] = [user!.UUID:noteToDisplay]
-        guard let data = JsonInterface.encodeToJsonAsData(dictionary: noteDictionary) else { return }
+        let dateAsString = noteToDisplay.dateNextRevise.getFormattedDate(format: "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ")
+        let array = [user!.UUID, noteToDisplay.UUID, dateAsString]
+        guard let data = JsonInterface.encodeToJsonAsData(stringArray: array) else { return }
         Server.sendNoteData(data: data)
         
         delegate.removeFirstNoteFromRevision()

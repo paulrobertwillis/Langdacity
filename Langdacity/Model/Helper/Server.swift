@@ -200,11 +200,31 @@ class Server {
     
     /// Send data to the server as a Data object. Data must be a JSON of a dictionary containing a Student's UUID as a String, and a Note as a Note.
     static func sendNoteData(data: Data) {
-        guard let dictionary = JsonInterface.decodeNoteDictionaryFromJsonData(data: data) else { return }
         
+        // decoding of data to String array
+        guard let array = JsonInterface.decodeNoteArrayFromJsonData(data: data) else { return }
         
+        var studentUUID: String
+        var noteUUID: String
+        var noteDateAsString: String
         
-        // TODO: Finish this method!
+        // separating out String array elements into individual variables
+        if array.count == 3 {
+            studentUUID = array[0]
+            noteUUID = array[1]
+            noteDateAsString = array[2]
+        } else {
+            return
+        }
+        
+        // convert the String representation of the date to a Date object
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        guard let noteRevisionDate = dateFormatter.date(from: noteDateAsString) else { return }
+
+        // find student with associated UUID and update the value of the note in their dictionary
+        let student = Server.students[studentUUID]
+        student?.notesRevising.updateValue(noteRevisionDate, forKey: noteUUID)
     }
         
     /// Fetch data from the server as a Data object

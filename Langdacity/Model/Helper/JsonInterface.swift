@@ -130,7 +130,17 @@ class JsonInterface {
 
         return dictionary
     }
+    
+    static func decodeNoteArrayFromJsonData(data: Data) -> [String]? {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
 
+        guard let array = try? decoder.decode([String].self, from: data) else {
+            return nil
+        }
+
+        return array
+    }
 
     static func encodeToJsonAndWriteToFile(cards: [Card], lessonName fileName: String) {
         // find URL
@@ -281,6 +291,47 @@ class JsonInterface {
         return nil
 
     }
+    
+    static func encodeToJsonAsData(stringArray: [String], shouldPrint: Bool = false) -> Data? {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        encoder.outputFormatting = .prettyPrinted
+        
+        do {
+            let data = try encoder.encode(stringArray)
+            if shouldPrint == true {
+                data.printJSON()
+            }
+            return data
+        } catch {
+            // handle error
+            print("Failed to write JSON to data: \(error.localizedDescription)")
+        }
+        return nil
+
+    }
+
+    
+    
+    
+//    static func encodeStudentNoteTupleAsData(tuple: (String, [String:Date]), shouldPrint: Bool = false) -> Data? {
+//        let encoder = JSONEncoder()
+//        encoder.dateEncodingStrategy = .iso8601
+//        encoder.outputFormatting = .prettyPrinted
+//
+//        do {
+//            let data = try encoder.encode(tuple)
+//            if shouldPrint == true {
+//                data.printJSON()
+//            }
+//            return data
+//        } catch {
+//            // handle error
+//            print("Failed to write JSON to data: \(error.localizedDescription)")
+//        }
+//        return nil
+//
+//    }
 
 
 }
