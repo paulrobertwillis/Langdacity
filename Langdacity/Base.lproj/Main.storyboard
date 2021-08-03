@@ -137,6 +137,27 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQB-E3-IIK">
+                                <rect key="frame" x="192" y="802" width="31" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemGreenColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K6N-u2-ywk">
+                                <rect key="frame" x="153" y="802" width="31" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rko-A9-auQ">
+                                <rect key="frame" x="231" y="802" width="31" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemTealColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="NZZ-1y-FQ6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -163,8 +184,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="HXY-98-T52"/>
                     <connections>
-                        <outlet property="NotesRemaining" destination="t3d-jt-Z3F" id="ITO-HE-MMu"/>
                         <outlet property="difficulty" destination="60g-Lb-3BE" id="gKx-jp-zGO"/>
+                        <outlet property="newNotesRemaining" destination="rko-A9-auQ" id="KUg-GS-c8G"/>
+                        <outlet property="notesRemaining" destination="t3d-jt-Z3F" id="ITO-HE-MMu"/>
+                        <outlet property="previouslySeenNotesRemaining" destination="sQB-E3-IIK" id="trc-XT-R4O"/>
+                        <outlet property="relearningNotesRemaining" destination="K6N-u2-ywk" id="nXq-32-2SP"/>
                         <outlet property="revisionInstructions" destination="OWG-9S-ArH" id="U77-AT-trr"/>
                         <outlet property="translateFrom" destination="Cnc-Sq-r9F" id="4ec-T6-DhO"/>
                         <outlet property="translateTo" destination="bQi-ec-41A" id="b9f-ut-ypg"/>
@@ -180,7 +204,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1981" y="887"/>
+            <point key="canvasLocation" x="1979.7101449275365" y="886.60714285714278"/>
         </scene>
         <!--No Notes To Revise View Controller-->
         <scene sceneID="op8-Du-iNj">

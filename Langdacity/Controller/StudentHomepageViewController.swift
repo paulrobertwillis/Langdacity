@@ -33,7 +33,7 @@ class StudentHomepageViewController: UIViewController {
         
         fetchLessonDataFromServer()
         startRevisionUpdateTimer()
-        notesToRevise = getNotesToRevise()
+        notesToRevise = updateNotesToRevise()
         
         
     }
@@ -54,7 +54,7 @@ class StudentHomepageViewController: UIViewController {
         stopTimer() // prevents accidental second timer creation
         timer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { _ in
             print("Checking notes to revise ...")
-            self.notesToRevise = self.getNotesToRevise()
+            self.notesToRevise = self.updateNotesToRevise()
         }
     }
 
@@ -121,7 +121,7 @@ class StudentHomepageViewController: UIViewController {
         case noteNotBeingRevised(noteExpected: Note)
     }
     
-    func getNotesToRevise() -> [Note] {
+    func updateNotesToRevise() -> [Note] {
         var notesArray = [Note]()
         let calendar = Calendar.current
 
@@ -160,6 +160,42 @@ class StudentHomepageViewController: UIViewController {
 
         return notesArray
     }
+    
+    enum cardLearningStatus {
+        case learning
+        case learnt
+        case relearning
+    }
+    
+    func getNotesToRevise() -> Int {
+        return notesToRevise.count
+    }
+    
+    func getNotesToRevise(cardLearningStatus: cardLearningStatus) -> Int {
+        var count = 0
+        
+        if cardLearningStatus == .learning {
+            for note in notesToRevise {
+                if note.learningStatus == .learning {
+                    count += 1
+                }
+            }
+        } else if cardLearningStatus == .learnt {
+            for note in notesToRevise {
+                if note.learningStatus == .learnt {
+                    count += 1
+                }
+            }
+        } else if cardLearningStatus == .relearning {
+            for note in notesToRevise {
+                if note.learningStatus == .relearning {
+                    count += 1
+                }
+            }
+        }
+        
+        return count
+    }
 
     func getFirstNote() -> Note? {
         if notesToRevise.count > 0 {
@@ -167,7 +203,7 @@ class StudentHomepageViewController: UIViewController {
         }
         return nil
     }
-
+    
     func removeFirstNoteFromRevision() {
         if notesToRevise.count > 0 {
             notesToRevise.removeFirst()

@@ -13,7 +13,7 @@ class RevisionViewController: UIViewController {
     
     @IBOutlet var revisionInstructions: UILabel!
     //TODO: update this label when [Notes] array in Revision is updated
-    @IBOutlet var NotesRemaining: UILabel!
+    @IBOutlet var notesRemaining: UILabel!
     
     @IBOutlet var translateFrom: UILabel!
     
@@ -22,6 +22,12 @@ class RevisionViewController: UIViewController {
     @IBOutlet var difficultyButtons: [UIButton]!
     
     @IBOutlet var difficulty: UIButton!
+    
+    @IBOutlet var newNotesRemaining: UILabel!
+    
+    @IBOutlet var previouslySeenNotesRemaining: UILabel!
+    
+    @IBOutlet var relearningNotesRemaining: UILabel!
     
     @IBAction func tapAction(_ sender: Any) {
         translateTo.isHidden = false
@@ -79,7 +85,6 @@ class RevisionViewController: UIViewController {
         
         // TODO: Address issue where lack of Internet connection will cause program to fail
         let noteDictionary: [String:Note] = [user!.UUID:noteToDisplay]
-        
         guard let data = JsonInterface.encodeToJsonAsData(dictionary: noteDictionary) else { return }
         Server.sendNoteData(data: data)
         
@@ -100,6 +105,13 @@ class RevisionViewController: UIViewController {
     func updateLabels() {
         translateFrom.text? = noteToDisplay.translateFrom
         translateTo.text? = noteToDisplay.translateTo
+        
+        let notes = delegate.getNotesToRevise()
+        notesRemaining.text? = "Remaining: \(notes)"
+        
+        newNotesRemaining.text? = String(delegate.getNotesToRevise(cardLearningStatus: .learning))
+        previouslySeenNotesRemaining.text? = String(delegate.getNotesToRevise(cardLearningStatus: .learnt))
+        relearningNotesRemaining.text? = String(delegate.getNotesToRevise(cardLearningStatus: .relearning))
     }
     
     // Source: code adapted from https://gist.github.com/riceissa/1ead1b9881ffbb48793565ce69d7dbdd

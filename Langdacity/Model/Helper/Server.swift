@@ -202,6 +202,8 @@ class Server {
     static func sendNoteData(data: Data) {
         guard let dictionary = JsonInterface.decodeNoteDictionaryFromJsonData(data: data) else { return }
         
+        
+        
         // TODO: Finish this method!
     }
         
