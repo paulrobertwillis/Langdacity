@@ -26,6 +26,8 @@ class Student: User, Comparable {
     var points: Int
     var notesRevising: [String:Date]
     var accessibleLessons: [String]
+    var hasCompletedDailyRevision: Bool
+    var revisionStreak: Int
     
     static var identifierFactory = 0
 
@@ -36,6 +38,8 @@ class Student: User, Comparable {
         self.points = 0
         self.notesRevising = [:]
         self.accessibleLessons = lessons
+        self.hasCompletedDailyRevision = false
+        self.revisionStreak = 0
         
         try super.init(forename: forename, surname: surname, email: email)
         
@@ -47,6 +51,8 @@ class Student: User, Comparable {
         case points
         case notesRevising
         case accessibleLessons
+        case hasCompletedDailyRevision
+        case revisionStreak
     }
     
     required init(from decoder: Decoder) throws {
@@ -55,6 +61,8 @@ class Student: User, Comparable {
         self.points = try container.decode(Int.self, forKey: .points)
         self.notesRevising = try container.decode([String:Date].self, forKey: .notesRevising)
         self.accessibleLessons = try container.decode([String].self, forKey: .accessibleLessons)
+        self.hasCompletedDailyRevision = try container.decode(Bool.self, forKey: .hasCompletedDailyRevision)
+        self.revisionStreak = try container.decode(Int.self, forKey: .revisionStreak)
         
         try super.init(from: decoder)
     }
@@ -65,6 +73,8 @@ class Student: User, Comparable {
         try container.encode(points, forKey: .points)
         try container.encode(notesRevising, forKey: .notesRevising)
         try container.encode(accessibleLessons, forKey: .accessibleLessons)
+        try container.encode(hasCompletedDailyRevision, forKey: .hasCompletedDailyRevision)
+        try container.encode(revisionStreak, forKey: .revisionStreak)
         
         try super.encode(to: encoder)
     }

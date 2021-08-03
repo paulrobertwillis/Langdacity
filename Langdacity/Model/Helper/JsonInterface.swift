@@ -289,7 +289,6 @@ class JsonInterface {
             print("Failed to write JSON to data: \(error.localizedDescription)")
         }
         return nil
-
     }
     
     static func encodeToJsonAsData(stringArray: [String], shouldPrint: Bool = false) -> Data? {
@@ -308,11 +307,8 @@ class JsonInterface {
             print("Failed to write JSON to data: \(error.localizedDescription)")
         }
         return nil
-
     }
 
-    
-    
     
 //    static func encodeStudentNoteTupleAsData(tuple: (String, [String:Date]), shouldPrint: Bool = false) -> Data? {
 //        let encoder = JSONEncoder()

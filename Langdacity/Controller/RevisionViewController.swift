@@ -9,7 +9,7 @@ import UIKit
 
 class RevisionViewController: UIViewController {
     
-    var user: User? {
+    var user: Student? {
         delegate.user
     }
     
@@ -98,6 +98,9 @@ class RevisionViewController: UIViewController {
             setToHidden()
         } else {
             print("end of revision!")
+            
+            // set student's hasCompletedDailyRevision variable to either true or false
+            delegate.checkIfStudentHasCompletedDailyRevision()
             
             // Sends back to previous view controller
             _ = navigationController?.popViewController(animated: true)

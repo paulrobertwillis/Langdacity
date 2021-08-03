@@ -272,4 +272,43 @@ class Server {
 
         return nil
     }
+    
+    static func sendDailyRevisionCompletionData(data: Data) {
+        // data contains student UUID as a String and student daily revision completion as a Bool value
+        
+        // decoding of data to String array
+        guard let array = JsonInterface.decodeNoteArrayFromJsonData(data: data) else { return }
+                
+        // separating out String array elements into individual variables
+        if array.count != 2 {
+            return
+        }
+        
+        let studentUUID = array[0]
+        let hasRevisedAsString = array[1]
+        
+        // convert the String representation of the Bool to a Bool
+        if hasRevisedAsString == "true" {
+            Server.students[studentUUID]?.hasCompletedDailyRevision = true
+        }
+    }
+    
+    static func sendRevisionStreak(data: Data) {
+        // data contains student UUID as a String and student daily revision completion as a Bool value
+        
+        // decoding of data to String array
+        guard let array = JsonInterface.decodeNoteArrayFromJsonData(data: data) else { return }
+                
+        // separating out String array elements into individual variables
+        if array.count != 2 {
+            return
+        }
+        
+        let studentUUID = array[0]
+        guard let revisionStreak = Int(array[1]) else { return }
+
+        // update student's revision streak
+        Server.students[studentUUID]?.revisionStreak = revisionStreak
+    }
+
 }

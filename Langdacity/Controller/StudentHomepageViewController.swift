@@ -34,8 +34,7 @@ class StudentHomepageViewController: UIViewController {
         fetchLessonDataFromServer()
         startRevisionUpdateTimer()
         notesToRevise = updateNotesToRevise()
-        
-        
+        checkIfStudentHasCompletedDailyRevision()
     }
     
 //    deinit {
@@ -208,5 +207,36 @@ class StudentHomepageViewController: UIViewController {
         if notesToRevise.count > 0 {
             notesToRevise.removeFirst()
         }
+    }
+        
+    func checkIfStudentHasCompletedDailyRevision() {
+        var hasCompleted = true
+        let calendar = Calendar.current
+        
+        for note in notes {
+            if calendar.isDateInToday(note.dateNextRevise) {
+                hasCompleted = false
+            }
+        }
+        
+        // if student has not completed daily revision, return from function
+        if hasCompleted == false {
+            return
+        }
+        
+        user?.hasCompletedDailyRevision = hasCompleted
+        
+        // update the hasCompletedDailyRevision variable for the student's account in the server
+        let stringArrayForDailyCompletion: [String] = [user!.UUID, "true"]
+        guard let data = JsonInterface.encodeToJsonAsData(stringArray: stringArrayForDailyCompletion) else { return }
+        Server.sendDailyRevisionCompletionData(data: data)
+        
+        // update the local revisionStreak variable
+        user!.revisionStreak += 1
+        
+        // update the revisionStreak variable for the student's account in the server
+        let stringArrayForRevisionStreak: [String] = [user!.UUID, String(user!.revisionStreak)]
+        guard let data = JsonInterface.encodeToJsonAsData(stringArray: stringArrayForRevisionStreak) else { return }
+        Server.sendRevisionStreak(data: data)
     }
 }
