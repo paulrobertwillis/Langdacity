@@ -33,16 +33,10 @@ class ClassViewController: UIViewController {
                 guard let dataFetched = Server.fetchStudents(data: dataToSend) else {
                     throw prepareSegueErrors.cannotFetchStudentsFromServer
                 }
-//                guard let students = JsonInterface.decodeStudentArrayFromJsonData(data: dataFetched) else {
-//                    throw prepareSegueErrors.cannotDecodeStudentArrayFromData
-//                }
-                
-                let decoder = JSONDecoder()
-                let studentArray = try? decoder.decode([Student].self, from: dataFetched)
-                print("Student array: \(studentArray)")
-                
-//                nextViewController.students = students
-                print("successfully prepared")
+                guard let students = JsonInterface.decodeStudentArrayFromJsonData(data: dataFetched) else {
+                    throw prepareSegueErrors.cannotDecodeStudentArrayFromData
+                }
+                nextViewController.students = students
             }
         } catch prepareSegueErrors.cannotEncodeArrayToData {
             print("Error in \(self) function \(#function): Cannot encode array to data")

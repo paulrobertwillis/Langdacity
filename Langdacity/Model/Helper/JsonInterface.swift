@@ -126,15 +126,12 @@ class JsonInterface {
     static func decodeStudentArrayFromJsonData(data: Data) -> [Student]? {
         do {
             let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
             
-            guard let students = try? decoder.decode([Student].self, from: data) else {
+            guard let studentArray = try? decoder.decode([Student].self, from: data) else {
                 throw decodeFromDataErrors.decodeFailed
             }
-            
-            
-            
-            return students
+                        
+            return studentArray
             
         } catch decodeFromDataErrors.decodeFailed {
             print("Error in \(self) function \(#function): Cannot decode data into Student array")
