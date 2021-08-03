@@ -309,6 +309,8 @@ class Server {
 
         // update student's revision streak
         Server.students[studentUUID]?.revisionStreak = revisionStreak
+        
+        //#warning there is no method or process to return a student's revision streak to 0 if they do not complete a day's revision
     }
 
 }
