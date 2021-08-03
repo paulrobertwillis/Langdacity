@@ -16,15 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KqB-F0-Cv5">
-                                <rect key="frame" x="169.5" y="454.5" width="75" height="41"/>
-                                <accessibility key="accessibilityConfiguration" identifier="ReviseButton"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Revise!"/>
-                                <connections>
-                                    <action selector="ReviseButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eho-bM-3u1"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hey, Student" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bh1-Ae-re9">
                                 <rect key="frame" x="43" y="127" width="329" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
@@ -37,6 +28,26 @@
                                 <color key="textColor" red="0.4196078479" green="0.25490197539999998" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" id="KqB-F0-Cv5">
+                                <rect key="frame" x="43" y="382" width="329" height="85"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.93725490570000003" green="0.86666667460000002" blue="0.83529412749999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <accessibility key="accessibilityConfiguration" identifier="ReviseButton"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal">
+                                    <string key="title">Notes to Revise:
+0</string>
+                                    <color key="titleColor" red="0.4196078479" green="0.25490197539999998" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="ReviseButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eho-bM-3u1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -44,16 +55,15 @@
                             <constraint firstItem="Bh1-Ae-re9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="43" id="13u-ga-vEo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Bh1-Ae-re9" secondAttribute="trailing" constant="42" id="Idb-jd-ixm"/>
                             <constraint firstItem="xNB-Kf-FII" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="43" id="Qpz-Jl-fiN"/>
-                            <constraint firstItem="KqB-F0-Cv5" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="WUE-Bn-41e"/>
                             <constraint firstItem="xNB-Kf-FII" firstAttribute="top" secondItem="Bh1-Ae-re9" secondAttribute="bottom" constant="8" symbolic="YES" id="X3j-mX-zdy"/>
                             <constraint firstItem="Bh1-Ae-re9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="39" id="kpQ-UM-bAi"/>
-                            <constraint firstItem="KqB-F0-Cv5" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="n7v-gu-K37"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xNB-Kf-FII" secondAttribute="trailing" constant="42" id="p6z-qP-4CM"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zTp-gZ-9Sd"/>
                     <connections>
                         <outlet property="GreetingLabel" destination="Bh1-Ae-re9" id="3Zm-XK-T0R"/>
+                        <outlet property="reviseButton" destination="KqB-F0-Cv5" id="nAy-bE-pYF"/>
                         <segue destination="dPg-MB-5yh" kind="show" identifier="ReviseTextSegue" id="1dA-2f-lmg"/>
                         <segue destination="mF9-CY-O2B" kind="show" identifier="NoNotesToReviseSegue" id="e5z-8R-NsT"/>
                     </connections>
@@ -259,7 +269,7 @@
                                 <color key="textColor" red="0.4196078479" green="0.25490197539999998" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="a.teacher@email.com" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="fbx-pX-F7z">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="a.student@email.com" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="fbx-pX-F7z">
                                 <rect key="frame" x="32" y="434" width="350" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

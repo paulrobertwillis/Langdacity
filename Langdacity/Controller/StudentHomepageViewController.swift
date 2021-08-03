@@ -11,10 +11,20 @@ class StudentHomepageViewController: UIViewController {
     
     var user: Student?
     var notes: [Note] = []
-    var notesToRevise: [Note] = []
+    var notesToRevise: [Note] = [] {
+        didSet {
+            if notesToRevise.count == 0 {
+                reviseButton.backgroundColor = .systemGray
+                reviseButton.titleLabel?.textColor = .systemGray2
+                reviseButton.isEnabled = false
+            }
+        }
+    }
     weak var timer: Timer?
 
     @IBOutlet var GreetingLabel: UILabel!
+    
+    @IBOutlet var reviseButton: UIButton!
     
     @IBAction func ReviseButtonTapped(_ sender: Any) {
         if notesToRevise.count > 0 {
@@ -35,6 +45,7 @@ class StudentHomepageViewController: UIViewController {
         startRevisionUpdateTimer()
         notesToRevise = updateNotesToRevise()
         checkIfStudentHasCompletedDailyRevision()
+//        styleReviseButton()
     }
     
 //    deinit {
@@ -59,6 +70,50 @@ class StudentHomepageViewController: UIViewController {
 
     func stopTimer() {
         timer?.invalidate()
+    }
+    
+    func styleReviseButton() {
+        
+        // Adapted from: https://stackoverflow.com/questions/30679370/swift-uibutton-with-two-lines-of-text
+        
+        //applying the line break mode
+        reviseButton?.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping;
+        let buttonText: NSString = "Notes to Revise:\n\(notesToRevise.count)" as NSString
+        
+        //centring text in button
+        reviseButton?.titleLabel?.textAlignment = NSTextAlignment.center
+
+        //getting the range to separate the button title strings
+        let newlineRange: NSRange = buttonText.range(of: "\n")
+
+        //getting both substrings
+        var substring1 = ""
+        var substring2 = ""
+
+        if(newlineRange.location != NSNotFound) {
+            substring1 = buttonText.substring(to: newlineRange.location)
+            substring2 = buttonText.substring(from: newlineRange.location)
+        }
+
+        //assigning different fonts to both substrings
+        let font1: UIFont = UIFont.systemFont(ofSize: 24, weight: .bold)
+        let attributes1 = [NSMutableAttributedString.Key.font: font1]
+        let attrString1 = NSMutableAttributedString(string: substring1, attributes: attributes1)
+
+        let font2: UIFont = UIFont.systemFont(ofSize: 18)
+        let attributes2 = [NSMutableAttributedString.Key.font: font2]
+        let attrString2 = NSMutableAttributedString(string: substring2, attributes: attributes2)
+
+        //appending both attributed strings
+        attrString1.append(attrString2)
+
+        //assigning the resultant attributed strings to the button
+        reviseButton?.setAttributedTitle(attrString1, for: [])
+        
+        if notesToRevise.count == 0 {
+            reviseButton.backgroundColor = .systemGray
+            reviseButton.titleLabel?.textColor = .systemGray2
+        }
     }
     
     func fetchLessonDataFromServer() {
