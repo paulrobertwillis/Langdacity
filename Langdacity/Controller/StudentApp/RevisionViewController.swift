@@ -157,6 +157,7 @@ class RevisionViewController: UIViewController {
                 noteToDisplay.interval = newNote.graduatingInterval
                 noteToDisplay.setDateNextRevise(days: noteToDisplay.interval)
             }
+            user?.points += 1
         case "Easy":
             // note graduates from 'learning' to 'learnt'
             noteToDisplay.learningStatus = .learnt
@@ -166,6 +167,7 @@ class RevisionViewController: UIViewController {
                 noteToDisplay.interval = newNote.easyInterval
             }
             noteToDisplay.setDateNextRevise(days: noteToDisplay.interval)
+            user?.points += 1
         default:
             print("Error")
         }
@@ -188,10 +190,12 @@ class RevisionViewController: UIViewController {
         case "Good":
             noteToDisplay.interval = (noteToDisplay.interval * noteToDisplay.easeFactor/100 * review.intervalModifier/100)
             noteToDisplay.setDateNextRevise(days: min(review.maximumInterval, noteToDisplay.interval)) // enforces maximum interval
+            user?.points += noteToDisplay.interval
         case "Easy":
             noteToDisplay.easeFactor += 15
             noteToDisplay.interval = (noteToDisplay.interval * noteToDisplay.easeFactor/100 * review.intervalModifier/100 * review.easyBonus/100)
             noteToDisplay.setDateNextRevise(days: min(review.maximumInterval, noteToDisplay.interval)) // enforces maximum interval
+            user?.points += noteToDisplay.interval
         default:
             print("Error")
         }
@@ -220,6 +224,7 @@ class RevisionViewController: UIViewController {
                 noteToDisplay.interval = max(lapse.minimumInterval, noteToDisplay.interval * lapse.newInterval/100)
                 noteToDisplay.setDateNextRevise(days: noteToDisplay.interval)
             }
+            user?.points += noteToDisplay.interval
         case "Easy":
             // TODO: remove this option and redesign storyboard around it?
             noteToDisplay.stepsIndex = 0
@@ -231,6 +236,7 @@ class RevisionViewController: UIViewController {
                 noteToDisplay.interval = max(lapse.minimumInterval, noteToDisplay.interval * review.intervalModifier/100)
                 noteToDisplay.setDateNextRevise(days: noteToDisplay.interval)
             }
+            user?.points += noteToDisplay.interval
         default:
             print("Error")
         }

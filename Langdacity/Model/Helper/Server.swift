@@ -421,6 +421,30 @@ class Server {
         //#warning there is no method or process to return a student's revision streak to 0 if they do not complete a day's revision
     }
     
+    static func sendPoints(data: Data) {
+        // data contains student UUID as a String and student points as a String
+        
+        do {
+            // decoding of data to String array
+            let decoder = JSONDecoder()
+                let array = try decoder.decode([String].self, from: data)
+                    
+            // separating out String array elements into individual variables
+            if array.count != 2 {
+                return
+            }
+            
+            let studentUUID = array[0]
+            guard let points = Int(array[1]) else { return }
+
+            // update student's points
+            Server.students[studentUUID]?.points = points
+            
+        } catch {
+            print("Error in \(self) function \(#function): Unknown error")
+        }
+    }
+    
     static func fetchClassLeaderboard(data: Data) -> Data? {
         let decoder = JSONDecoder()
         let encoder = JSONEncoder()

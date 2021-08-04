@@ -7,50 +7,9 @@
 
 import UIKit
 
-class StudentHomepageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return leaderboard!.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ClassLeaderboardTableViewCell", for: indexPath)
-        
-//        print(leaderboard!)
-//        print("Index \(indexPath.row): \(leaderboard![indexPath.row].key)")
-        
-        cell.textLabel?.text = leaderboard![indexPath.row].key
-        cell.detailTextLabel?.text = "\(leaderboard![indexPath.row].value)pts"
-        
-        
-        return cell
-    }
+class StudentHomepageViewController: UIViewController {
     
     var user: Student?
-    var leaderboard: [Dictionary<String, Int>.Element]? {
-        get {
-            do {
-                let decoder = JSONDecoder()
-                let encoder = JSONEncoder()
-                let dataToSend = try encoder.encode(user?.classUUID[0])
-                let dataFetched = Server.fetchClassLeaderboard(data: dataToSend)!
-                let leaderboardArray = try decoder.decode([String:Int].self, from: dataFetched)
-
-                let sortedLeaderboard = leaderboardArray.sorted { (first, second) -> Bool in
-                    if first.value > second.value {
-                        return first.value > second.value
-                    } else {
-                        return first.key < second.key
-                    }
-                }
-                return sortedLeaderboard
-                
-            } catch {
-                print("Error in \(self) function \(#function): Unknown error")
-            }
-            return nil
-        }
-    }
-    
     var notes: [Note] = []
     var notesToRevise: [Note] = []
     {
@@ -66,9 +25,7 @@ class StudentHomepageViewController: UIViewController, UITableViewDelegate, UITa
     @IBOutlet var stillRevisionToDoLabel: UILabel!
     
     @IBOutlet var reviseButton: UIButton!
-    
-    @IBOutlet var classLeaderboardTableView: UITableView!
-    
+        
     @IBAction func ReviseButtonTapped(_ sender: Any) {
         if notesToRevise.count > 0 {
             // segue to RevisionViewController
@@ -89,9 +46,6 @@ class StudentHomepageViewController: UIViewController, UITableViewDelegate, UITa
         notesToRevise = updateNotesToRevise()
         checkIfStudentHasCompletedDailyRevision()
         styleReviseButton()
-        
-        classLeaderboardTableView.delegate = self
-        classLeaderboardTableView.dataSource = self
     }
     
     deinit {
@@ -340,6 +294,16 @@ class StudentHomepageViewController: UIViewController, UITableViewDelegate, UITa
         let stringArrayForDailyCompletion: [String] = [user!.UUID, "true"]
         guard let data = JsonInterface.encodeToJsonAsData(stringArray: stringArrayForDailyCompletion) else { return }
         Server.sendDailyRevisionCompletionData(data: data)
+        
+        // update the points variable for the student's account in the server
+        let encoder = JSONEncoder()
+        let stringArrayforPoints: [String] = [user!.UUID, String(user!.points)]
+        do {
+            let dataToSend = try encoder.encode(stringArrayforPoints)
+            Server.sendPoints(data: dataToSend)
+        } catch {
+            print("Error in \(self) function \(#function): Unknown error")
+        }
         
         // update the local revisionStreak variable
         user!.revisionStreak += 1

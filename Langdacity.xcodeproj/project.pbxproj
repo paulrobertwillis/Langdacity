@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7B43AB4C26BAE5BC0024649B /* StudentClassListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B43AB4B26BAE5BC0024649B /* StudentClassListTableViewController.swift */; };
 		7B43AB4E26BAE7770024649B /* StudentClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B43AB4D26BAE7770024649B /* StudentClassViewController.swift */; };
+		7B43AB5126BB16F10024649B /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B43AB5026BB16F10024649B /* PageViewController.swift */; };
 		7B77861226B49A7F00E289EB /* TeacherClassListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B77861126B49A7F00E289EB /* TeacherClassListTableViewController.swift */; };
 		7B77861426B5915A00E289EB /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B77861326B5915A00E289EB /* Student.swift */; };
 		7B77861626B5B68500E289EB /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B77861526B5B68500E289EB /* Teacher.swift */; };
@@ -69,6 +70,7 @@
 /* Begin PBXFileReference section */
 		7B43AB4B26BAE5BC0024649B /* StudentClassListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentClassListTableViewController.swift; sourceTree = "<group>"; };
 		7B43AB4D26BAE7770024649B /* StudentClassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentClassViewController.swift; sourceTree = "<group>"; };
+		7B43AB5026BB16F10024649B /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		7B77861126B49A7F00E289EB /* TeacherClassListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TeacherClassListTableViewController.swift; path = Langdacity/Controller/TeacherApp/TeacherClassListTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		7B77861326B5915A00E289EB /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Student.swift; path = Langdacity/Controller/Student.swift; sourceTree = SOURCE_ROOT; };
 		7B77861526B5B68500E289EB /* Teacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Teacher.swift; path = Langdacity/Teacher.swift; sourceTree = SOURCE_ROOT; };
@@ -161,6 +163,14 @@
 				7B43AB4D26BAE7770024649B /* StudentClassViewController.swift */,
 			);
 			path = StudentApp;
+			sourceTree = "<group>";
+		};
+		7B43AB4F26BB16B10024649B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7B43AB5026BB16F10024649B /* PageViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		7B77861926B5BBB700E289EB /* Lessons */ = {
@@ -272,6 +282,7 @@
 		7BCAEE7126A605AF00075507 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7B43AB4F26BB16B10024649B /* Views */,
 				7BCD5F8426B1C20F0096621E /* SplashViewController.swift */,
 				7BCD5F8026B1A03B0096621E /* LoginViewController.swift */,
 				7B43AB4A26BAE5270024649B /* StudentApp */,
@@ -425,6 +436,7 @@
 				7B77862D26B8505F00E289EB /* Lesson.swift in Sources */,
 				7BCAEE3D26A4A88400075507 /* StudentHomepageViewController.swift in Sources */,
 				7BCD5F8526B1C20F0096621E /* SplashViewController.swift in Sources */,
+				7B43AB5126BB16F10024649B /* PageViewController.swift in Sources */,
 				7BCA3DF826AEF74C0068895E /* JsonInterface.swift in Sources */,
 				7B77862526B6DA0600E289EB /* Server.swift in Sources */,
 				7BCD5F7F26B0A2630096621E /* SchedulingDataConstants.swift in Sources */,

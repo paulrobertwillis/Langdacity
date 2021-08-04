@@ -16,18 +16,8 @@ class StudentClassListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print(user)
         
-        do {
-            let decoder = JSONDecoder()
-            let encoder = JSONEncoder()
-            let dataToSend = try encoder.encode(user?.classUUID)
-            let dataFetched = Server.fetchClasses(data: dataToSend)
-            classes = try decoder.decode([Class].self, from: dataFetched!)
-        } catch {
-            print("Error in \(self) function \(#function): Unknown error")
-        }
+        fetchClassesFromServer()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -54,9 +44,19 @@ class StudentClassListTableViewController: UITableViewController {
         guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
         
         nextViewController.title = classes![indexPath.row].name
+        nextViewController.delegate = self
+        nextViewController.classObj = classes![indexPath.row]
     }
-
-
-
-
+    
+    func fetchClassesFromServer() {
+        do {
+            let decoder = JSONDecoder()
+            let encoder = JSONEncoder()
+            let dataToSend = try encoder.encode(user?.classUUID)
+            let dataFetched = Server.fetchClasses(data: dataToSend)
+            classes = try decoder.decode([Class].self, from: dataFetched!)
+        } catch {
+            print("Error in \(self) function \(#function): Unknown error")
+        }
+    }
 }
