@@ -153,7 +153,6 @@ class Server {
         // for every String in studentValues, add the String to the class's Student list
         for student in studentValues {
             Server.addStudentToClass(student: student, cls: targetClassUUID)
-//            targetClass.students.append(student)
         }
                 
 //        teacher?.classes[0].students.append(contentsOf: studentValues)
@@ -166,6 +165,7 @@ class Server {
     
     static func addStudentToClass(student studentUUID: String, cls classUUID: String) {
         Server.classes[classUUID]?.students.append(studentUUID)
+        Server.students[studentUUID]?.classUUID.append(classUUID)
     }
     
     /// Gives a student access to a lesson, taking the student's UUID and the lesson's UUID as parameters. Also adds the lesson's notes to the student's account
@@ -419,6 +419,40 @@ class Server {
         Server.students[studentUUID]?.revisionStreak = revisionStreak
         
         //#warning there is no method or process to return a student's revision streak to 0 if they do not complete a day's revision
+    }
+    
+    static func fetchClassLeaderboard(data: Data) -> Data? {
+        let decoder = JSONDecoder()
+        let encoder = JSONEncoder()
+        
+        do {
+            // decode classUUID from data
+            let classUUID = try decoder.decode(String.self, from: data)
+            
+            // use classUUID to find students in the class
+            var studentNamesAndPoints: [String:Int] = [:]
+            
+            if Server.classes[classUUID] != nil {
+                for studentUUID in Server.classes[classUUID]!.students {
+                    let studentName = Server.students[studentUUID]!.getFullName()
+                    let points = Server.students[studentUUID]!.points
+                    
+                    // add to Dictionary of student names and their current scores
+                    studentNamesAndPoints[studentName] = points
+                }
+            }
+            
+            // encode Dictionary to Data
+            let dataToReturn = try encoder.encode(studentNamesAndPoints)
+            
+            // return Data
+            return dataToReturn
+            
+        } catch {
+            print("Error in \(self) method \(#function): Unknown error")
+        }
+        
+        return nil
     }
 
 }

@@ -7,18 +7,18 @@
 
 import Foundation
 
-class Student: User, Comparable {
-    static func == (lhs: Student, rhs: Student) -> Bool {
-        return lhs.UUID == rhs.UUID
-    }
-    
-    static func < (lhs: Student, rhs: Student) -> Bool {
-        if lhs.surname != rhs.surname {
-            return lhs.surname < rhs.surname
-        } else {
-            return lhs.getFullName() < rhs.getFullName()
-        }
-    }
+class Student: User {
+//    static func == (lhs: Student, rhs: Student) -> Bool {
+//        return lhs.UUID == rhs.UUID
+//    }
+//
+//    static func < (lhs: Student, rhs: Student) -> Bool {
+//        if lhs.surname != rhs.surname {
+//            return lhs.surname < rhs.surname
+//        } else {
+//            return lhs.getFullName() < rhs.getFullName()
+//        }
+//    }
     
 //    override var description: String { return "\(forename) \(surname): #\(UUID)"}
 
@@ -106,9 +106,9 @@ class Student: User, Comparable {
         }
     }
     
-    func getFullName() -> String {
-        return forename + " " + surname
-    }
+//    func getFullName() -> String {
+//        return forename + " " + surname
+//    }
     
     /// Adds Note to Dictionary by getting its UUID from the Note object
     func addNote(note: Note) {

@@ -19,7 +19,7 @@ class TeacherHomepageViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let nextViewController = segue.destination as! ClassListTableViewController
+        let nextViewController = segue.destination as! TeacherClassListTableViewController
         nextViewController.user = user!
         
         guard let dataToSend = JsonInterface.encodeToJsonAsData(stringArray: user!.classes) else { return }

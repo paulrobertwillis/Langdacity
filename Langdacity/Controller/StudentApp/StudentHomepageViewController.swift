@@ -7,9 +7,50 @@
 
 import UIKit
 
-class StudentHomepageViewController: UIViewController {
+class StudentHomepageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return leaderboard!.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ClassLeaderboardTableViewCell", for: indexPath)
+        
+//        print(leaderboard!)
+//        print("Index \(indexPath.row): \(leaderboard![indexPath.row].key)")
+        
+        cell.textLabel?.text = leaderboard![indexPath.row].key
+        cell.detailTextLabel?.text = "\(leaderboard![indexPath.row].value)pts"
+        
+        
+        return cell
+    }
     
     var user: Student?
+    var leaderboard: [Dictionary<String, Int>.Element]? {
+        get {
+            do {
+                let decoder = JSONDecoder()
+                let encoder = JSONEncoder()
+                let dataToSend = try encoder.encode(user?.classUUID[0])
+                let dataFetched = Server.fetchClassLeaderboard(data: dataToSend)!
+                let leaderboardArray = try decoder.decode([String:Int].self, from: dataFetched)
+
+                let sortedLeaderboard = leaderboardArray.sorted { (first, second) -> Bool in
+                    if first.value > second.value {
+                        return first.value > second.value
+                    } else {
+                        return first.key < second.key
+                    }
+                }
+                return sortedLeaderboard
+                
+            } catch {
+                print("Error in \(self) function \(#function): Unknown error")
+            }
+            return nil
+        }
+    }
+    
     var notes: [Note] = []
     var notesToRevise: [Note] = []
     {
@@ -48,16 +89,22 @@ class StudentHomepageViewController: UIViewController {
         notesToRevise = updateNotesToRevise()
         checkIfStudentHasCompletedDailyRevision()
         styleReviseButton()
+        
+        classLeaderboardTableView.delegate = self
+        classLeaderboardTableView.dataSource = self
     }
     
-//    deinit {
-//        stopTimer()
-//    }
+    deinit {
+        stopTimer()
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ReviseTextSegue" {
             let nextViewController = segue.destination as! RevisionViewController
             nextViewController.delegate = self
+        } else if segue.identifier == "ViewAllClassesSegue" {
+            let nextViewController = segue.destination as! StudentClassListTableViewController
+            nextViewController.user = user
         }
     }
         

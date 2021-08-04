@@ -7,7 +7,19 @@
 
 import Foundation
 
-class User: CustomStringConvertible, Codable {
+class User: CustomStringConvertible, Codable, Comparable {
+    static func == (lhs: User, rhs: User) -> Bool {
+        return lhs.UUID == rhs.UUID
+    }
+    
+    static func < (lhs: User, rhs: User) -> Bool {
+        if lhs.surname != rhs.surname {
+            return lhs.surname < rhs.surname
+        } else {
+            return lhs.getFullName() < rhs.getFullName()
+        }
+    }
+    
     var description: String { return UUID}
     
     var forename: String
@@ -51,6 +63,11 @@ class User: CustomStringConvertible, Codable {
 //            throw Errors.uuidErrors.valueNotInteger(actualValue: String(id))
 //        }
 //    }
+    
+    func getFullName() -> String {
+        return forename + " " + surname
+    }
+
 }
 
 

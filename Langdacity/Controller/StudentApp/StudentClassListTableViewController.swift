@@ -1,27 +1,41 @@
 //
-//  ClassListTableViewController.swift
+//  StudentClassListTableViewController.swift
 //  Langdacity
 //
-//  Created by Paul Willis on 30/07/2021.
+//  Created by Paul Willis on 04/08/2021.
 //
 
 import UIKit
 
-class ClassListTableViewController: UITableViewController {
+class StudentClassListTableViewController: UITableViewController {
     
     //TODO: Extract this from user defaults?
-    var user: Teacher?
+    var user: Student?
     var classes: [Class]?
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
+        print(user)
+        
+        do {
+            let decoder = JSONDecoder()
+            let encoder = JSONEncoder()
+            let dataToSend = try encoder.encode(user?.classUUID)
+            let dataFetched = Server.fetchClasses(data: dataToSend)
+            classes = try decoder.decode([Class].self, from: dataFetched!)
+        } catch {
+            print("Error in \(self) function \(#function): Unknown error")
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return user!.classes.count
+        if user != nil {
+            return user!.classUUID.count
+        }
+        
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -36,11 +50,10 @@ class ClassListTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let nextViewController = segue.destination as! ClassViewController
+        let nextViewController = segue.destination as! StudentClassViewController
         guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
         
         nextViewController.title = classes![indexPath.row].name
-        nextViewController.classObj = classes![indexPath.row]
     }
 
 

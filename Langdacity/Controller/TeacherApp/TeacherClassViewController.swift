@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ClassViewController: UIViewController {
+class TeacherClassViewController: UIViewController {
     
     var classObj: Class?
     
@@ -15,6 +15,11 @@ class ClassViewController: UIViewController {
         super.viewDidLoad()
                 
     }
+    
+    
+    
+    
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         enum prepareSegueErrors: Error {
@@ -25,7 +30,7 @@ class ClassViewController: UIViewController {
         
         do {
             if segue.identifier == "ShowAllStudents" {
-                let nextViewController = segue.destination as! StudentTableViewController
+                let nextViewController = segue.destination as! TeacherStudentTableViewController
                 
                 guard let dataToSend = JsonInterface.encodeToJsonAsData(stringArray: classObj!.students) else {
                     throw prepareSegueErrors.cannotEncodeArrayToData

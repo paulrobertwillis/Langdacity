@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StudentTableViewController: UITableViewController {
+class TeacherStudentTableViewController: UITableViewController {
     
     var students: [Student]?
 
