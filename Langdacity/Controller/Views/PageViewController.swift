@@ -5,13 +5,14 @@
 //  Created by Paul Willis on 04/08/2021.
 //
 
+import SwiftUI
+
 import UIKit
 
-class PageViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+struct PageViewController<Page: View>: UIViewControllerRepresentable {
 
-        // Do any additional setup after loading the view.
-    }
+    var pages: [Page]
+
+
 }
