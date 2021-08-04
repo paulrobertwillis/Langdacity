@@ -11,20 +11,22 @@ class StudentHomepageViewController: UIViewController {
     
     var user: Student?
     var notes: [Note] = []
-    var notesToRevise: [Note] = [] {
+    var notesToRevise: [Note] = []
+    {
         didSet {
-            if notesToRevise.count == 0 {
-                reviseButton.backgroundColor = .systemGray
-                reviseButton.titleLabel?.textColor = .systemGray2
-                reviseButton.isEnabled = false
-            }
+            styleReviseButton()
         }
     }
+    
     weak var timer: Timer?
 
     @IBOutlet var GreetingLabel: UILabel!
     
+    @IBOutlet var stillRevisionToDoLabel: UILabel!
+    
     @IBOutlet var reviseButton: UIButton!
+    
+    @IBOutlet var classLeaderboardTableView: UITableView!
     
     @IBAction func ReviseButtonTapped(_ sender: Any) {
         if notesToRevise.count > 0 {
@@ -55,7 +57,6 @@ class StudentHomepageViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ReviseTextSegue" {
             let nextViewController = segue.destination as! RevisionViewController
-//            nextViewController.user = user
             nextViewController.delegate = self
         }
     }
@@ -96,11 +97,11 @@ class StudentHomepageViewController: UIViewController {
         }
 
         //assigning different fonts to both substrings
-        let font1: UIFont = UIFont.systemFont(ofSize: 24, weight: .bold)
+        let font1: UIFont = UIFont.systemFont(ofSize: 16, weight: .regular)
         let attributes1 = [NSMutableAttributedString.Key.font: font1]
         let attrString1 = NSMutableAttributedString(string: substring1, attributes: attributes1)
 
-        let font2: UIFont = UIFont.systemFont(ofSize: 18)
+        let font2: UIFont = UIFont.systemFont(ofSize: 32, weight: .bold)
         let attributes2 = [NSMutableAttributedString.Key.font: font2]
         let attrString2 = NSMutableAttributedString(string: substring2, attributes: attributes2)
 
@@ -110,9 +111,13 @@ class StudentHomepageViewController: UIViewController {
         //assigning the resultant attributed strings to the button
         reviseButton?.setAttributedTitle(attrString1, for: [])
         
-        if notesToRevise.count == 0 {
+        
+        if notesToRevise.count > 0 {
+            reviseButton.isEnabled = true
+        } else if notesToRevise.count == 0 {
             reviseButton.backgroundColor = .systemGray
             reviseButton.titleLabel?.textColor = .systemGray2
+            reviseButton.isEnabled = false
         }
     }
     
@@ -279,7 +284,10 @@ class StudentHomepageViewController: UIViewController {
             return
         }
         
+        // otherwise, if student has completed daily revision:
+        
         user?.hasCompletedDailyRevision = hasCompleted
+        stillRevisionToDoLabel.text? = "Well done! There is nothing left to revise today"
         
         // update the hasCompletedDailyRevision variable for the student's account in the server
         let stringArrayForDailyCompletion: [String] = [user!.UUID, "true"]

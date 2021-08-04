@@ -58,6 +58,11 @@ class RevisionViewController: UIViewController {
         setToHidden()
         updateLabels()
         
+//        let myView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+//        myView.backgroundColor = .red
+//        myView.center = view.center
+//        view.addSubview(myView)
+//
 //        let tapGesture = UITapGestureRecognizer()
 //        self.view.addGestureRecognizer(tapGesture)
 //        tapGesture.addTarget(self, action: #selector(tapActionInView))
