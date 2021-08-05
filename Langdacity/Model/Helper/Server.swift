@@ -478,5 +478,13 @@ class Server {
         
         return nil
     }
+    
+    func addNewClassToTeacher(data: Data) {
+        // TODO: Finish method
+    }
+    
+    func addNewStudentToClassByInvite(data: Data) {
+        // TODO: Finish method
+    }
 
 }

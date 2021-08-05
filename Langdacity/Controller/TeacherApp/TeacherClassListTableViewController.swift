@@ -17,7 +17,20 @@ class TeacherClassListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editClassList))
+        
+    }
+    
+    @objc func editClassList() {
+        
+//        updateClassList()
+    }
+    
+    func updateClassList() {
+        guard let dataToSend = JsonInterface.encodeToJsonAsData(stringArray: user!.classes) else { return }
+        guard let dataFetched = Server.fetchClasses(data: dataToSend) else { return }
+        guard let fetchedClasses = JsonInterface.decodeClassArrayFromJsonData(data: dataFetched) else { return }
+        self.classes = fetchedClasses
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -41,6 +54,7 @@ class TeacherClassListTableViewController: UITableViewController {
         
         nextViewController.title = classes![indexPath.row].name
         nextViewController.classObj = classes![indexPath.row]
+        nextViewController.delegate = self
     }
 
 

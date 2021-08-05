@@ -8,6 +8,7 @@
 import UIKit
 
 class StudentClassViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return leaderboard!.count
     }
@@ -19,11 +20,6 @@ class StudentClassViewController: UIViewController, UITableViewDelegate, UITable
         let intPosition = indexPath.row + 1
         var stringPosition = ""
         
-//        if intPosition < 10 {
-//            stringPosition = "0\(intPosition)"
-//        } else {
-//            stringPosition = String(intPosition)
-//        }
         stringPosition = String(intPosition)
         
         // add -st, -nd, -rd, -th to int
@@ -36,7 +32,6 @@ class StudentClassViewController: UIViewController, UITableViewDelegate, UITable
         } else {
             stringPosition.append("th")
         }
-        print(stringPosition)
         
         cell.textLabel?.text = "\(stringPosition): \(leaderboard![indexPath.row].key)"
         cell.detailTextLabel?.text = "\(leaderboard![indexPath.row].value)pts"
@@ -73,8 +68,8 @@ class StudentClassViewController: UIViewController, UITableViewDelegate, UITable
 
         classLeaderboardTableView.delegate = self
         classLeaderboardTableView.dataSource = self
+        classLeaderboardTableView.rowHeight = 30
     }
-    
     
     
     func updateLeaderboard() -> [Dictionary<String, Int>.Element]? {

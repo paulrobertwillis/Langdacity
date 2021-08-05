@@ -18,6 +18,12 @@ class StudentClassListTableViewController: UITableViewController {
         super.viewDidLoad()
         
         fetchClassesFromServer()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Join Class", style: .plain, target: self, action: #selector(joinClass))
+    }
+    
+    @objc func joinClass() {
+        
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -14,6 +14,11 @@ class TeacherStudentTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Invite", style: .plain, target: self, action: #selector(addStudent))
+
+    }
+    
+    @objc func addStudent() {
         
     }
 
@@ -26,20 +31,17 @@ class TeacherStudentTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Student", for: indexPath)
-        cell.textLabel?.text = try students?[indexPath.row].getFullName()
+        cell.textLabel?.text = students?[indexPath.row].getFullName()
 
         return cell
     }
 
-
-
-
-    /*
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        let nextViewController = segue.destination
+        let senderCell = sender as! UITableViewCell
+        nextViewController.title = senderCell.textLabel?.text
     }
-    */
 
 }

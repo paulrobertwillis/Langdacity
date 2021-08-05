@@ -7,7 +7,17 @@
 
 import UIKit
 
-class StudentHomepageViewController: UIViewController {
+class StudentHomepageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Tasks", for: indexPath)
+        cell.textLabel?.text = todoTasks[indexPath.row]
+        return cell
+    }
     
     var user: Student?
     var notes: [Note] = []
@@ -18,13 +28,26 @@ class StudentHomepageViewController: UIViewController {
         }
     }
     
+    var todoTasks: [String] = [
+        "Complete daily revision",
+        "Score 500pts on Asteroid Strike by: 29 Aug",
+        "Score 350pts on Card Matcher by: 1 Sep"
+    ]
+    
     weak var timer: Timer?
 
     @IBOutlet var GreetingLabel: UILabel!
     
+    @IBOutlet var todoList: UITableView!
+    
     @IBOutlet var stillRevisionToDoLabel: UILabel!
     
     @IBOutlet var reviseButton: UIButton!
+    
+    @IBOutlet var classCollectionView: UICollectionView!
+    
+    
+    
         
     @IBAction func ReviseButtonTapped(_ sender: Any) {
         if notesToRevise.count > 0 {
@@ -46,6 +69,11 @@ class StudentHomepageViewController: UIViewController {
         notesToRevise = updateNotesToRevise()
         checkIfStudentHasCompletedDailyRevision()
         styleReviseButton()
+        
+        todoList.delegate = self
+        todoList.dataSource = self
+
+                
     }
     
     deinit {
