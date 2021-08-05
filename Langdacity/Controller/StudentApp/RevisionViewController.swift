@@ -147,7 +147,7 @@ class RevisionViewController: UIViewController {
         case "Again":
             noteToDisplay.stepsIndex = 0
             noteToDisplay.setDateNextRevise(minutes: newNote.newSteps[noteToDisplay.stepsIndex])
-        case "Good":
+        case "Hard":
             noteToDisplay.stepsIndex += 1
             if (noteToDisplay.stepsIndex) < newNote.newSteps.count {
                 noteToDisplay.setDateNextRevise(minutes: newNote.newSteps[noteToDisplay.stepsIndex])
@@ -187,7 +187,7 @@ class RevisionViewController: UIViewController {
             noteToDisplay.stepsIndex = 0
             noteToDisplay.easeFactor = 130 // hardcoded value that resets ease factor as percentage
             noteToDisplay.setDateNextRevise(minutes: newNote.newSteps[noteToDisplay.stepsIndex])
-        case "Good":
+        case "Hard":
             noteToDisplay.interval = (noteToDisplay.interval * noteToDisplay.easeFactor/100 * review.intervalModifier/100)
             noteToDisplay.setDateNextRevise(days: min(review.maximumInterval, noteToDisplay.interval)) // enforces maximum interval
             user?.points += noteToDisplay.interval
@@ -214,7 +214,7 @@ class RevisionViewController: UIViewController {
         case "Again":
             noteToDisplay.stepsIndex = 0
             noteToDisplay.setDateNextRevise(minutes: noteToDisplay.stepsIndex)
-        case "Good":
+        case "Hard":
             noteToDisplay.stepsIndex = 0
             if (noteToDisplay.stepsIndex) < lapse.lapseSteps.count {
                 noteToDisplay.setDateNextRevise(minutes: lapse.lapseSteps[noteToDisplay.stepsIndex])

@@ -16,40 +16,9 @@ class TeacherClassViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ClassLeaderboardTableViewCell", for: indexPath)
         
-        // create position of two digits as string
-        let intPosition = indexPath.row + 1
-        var stringPosition = ""
-        
-        stringPosition = String(intPosition)
-        
-        // add -st, -nd, -rd, -th to int
-        if stringPosition.hasSuffix("1") {
-            stringPosition.append("st")
-        } else if stringPosition.hasSuffix("2") {
-            stringPosition.append("nd")
-        } else if stringPosition.hasSuffix("3") {
-            stringPosition.append("rd")
-        } else {
-            stringPosition.append("th")
-        }
-        
-        cell.textLabel?.text = "\(stringPosition): \(leaderboard![indexPath.row].key)"
+        cell.textLabel?.text = "\(leaderboard![indexPath.row].key)"
         cell.detailTextLabel?.text = "\(leaderboard![indexPath.row].value)pts"
-        
-        if cell.textLabel?.text?.hasPrefix("1st") == true {
-            cell.backgroundColor = .systemYellow
-        } else if cell.textLabel?.text?.hasPrefix("2nd") == true {
-            cell.backgroundColor = .systemGray
-        } else if cell.textLabel?.text?.hasPrefix("3rd") == true {
-            cell.backgroundColor = .systemOrange
-        }
-            
-        if delegate?.user?.getFullName() == leaderboard![indexPath.row].key {
-            cell.textLabel?.font = UIFont.systemFont(ofSize: (cell.textLabel?.font.pointSize)!, weight: .bold)
-            cell.detailTextLabel?.font = UIFont.systemFont(ofSize: (cell.textLabel?.font.pointSize)!, weight: .bold)
-            
-        }
-        
+                    
         return cell
     }
     
@@ -86,11 +55,7 @@ class TeacherClassViewController: UIViewController, UITableViewDelegate, UITable
             let leaderboardArray = try decoder.decode([String:Int].self, from: dataFetched)
 
             let sortedLeaderboard = leaderboardArray.sorted { (first, second) -> Bool in
-                if first.value > second.value {
-                    return first.value > second.value
-                } else {
-                    return first.key < second.key
-                }
+                return first.key < second.key
             }
             return sortedLeaderboard
             
