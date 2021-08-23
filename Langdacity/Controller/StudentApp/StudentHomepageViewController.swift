@@ -46,9 +46,6 @@ class StudentHomepageViewController: UIViewController, UITableViewDelegate, UITa
     
     @IBOutlet var classCollectionView: UICollectionView!
     
-    
-    
-        
     @IBAction func ReviseButtonTapped(_ sender: Any) {
         if notesToRevise.count > 0 {
             // segue to RevisionViewController

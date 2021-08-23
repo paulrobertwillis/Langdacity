@@ -29,7 +29,7 @@ class Student: User {
     var hasCompletedDailyRevision: Bool
     var revisionStreak: Int
     
-    static var identifierFactory = 0
+    private static var identifierFactory = 0
 
     init(forename: String, surname: String, email: String, classUUID: [String] = [], lessons: [String] = []) throws {
         self.classUUID = classUUID

@@ -215,27 +215,21 @@ class RevisionViewController: UIViewController {
             noteToDisplay.stepsIndex = 0
             noteToDisplay.setDateNextRevise(minutes: noteToDisplay.stepsIndex)
         case "Hard":
-            noteToDisplay.stepsIndex = 0
+            noteToDisplay.stepsIndex += 1
             if (noteToDisplay.stepsIndex) < lapse.lapseSteps.count {
                 noteToDisplay.setDateNextRevise(minutes: lapse.lapseSteps[noteToDisplay.stepsIndex])
             } else {
                 // note re-graduates from 'relearning' to 'learnt'
                 noteToDisplay.learningStatus = .learnt
-                noteToDisplay.interval = max(lapse.minimumInterval, noteToDisplay.interval * lapse.newInterval/100)
+                noteToDisplay.interval = lapse.minimumInterval
                 noteToDisplay.setDateNextRevise(days: noteToDisplay.interval)
             }
             user?.points += noteToDisplay.interval
         case "Easy":
             // TODO: remove this option and redesign storyboard around it?
-            noteToDisplay.stepsIndex = 0
-            if (noteToDisplay.stepsIndex) < lapse.lapseSteps.count {
-                noteToDisplay.setDateNextRevise(minutes: lapse.lapseSteps[noteToDisplay.stepsIndex])
-            } else {
-                // note re-graduates from 'relearning' to 'learnt'
-                noteToDisplay.learningStatus = .learnt
-                noteToDisplay.interval = max(lapse.minimumInterval, noteToDisplay.interval * review.intervalModifier/100)
-                noteToDisplay.setDateNextRevise(days: noteToDisplay.interval)
-            }
+            noteToDisplay.learningStatus = .learnt
+            noteToDisplay.interval = max(lapse.minimumInterval, noteToDisplay.interval * review.intervalModifier/100)
+            noteToDisplay.setDateNextRevise(days: noteToDisplay.interval)
             user?.points += noteToDisplay.interval
         default:
             print("Error")

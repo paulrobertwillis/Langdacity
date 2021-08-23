@@ -23,7 +23,7 @@ class Class: CustomStringConvertible, Codable, Comparable {
     var language: language
     var UUID: String
     
-    static var identifierFactory = 0
+    private static var identifierFactory = 0
     
     enum language: String, Codable {
         case french

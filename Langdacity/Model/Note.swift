@@ -34,7 +34,7 @@ class Note: CustomStringConvertible, Codable, Comparable {
         case relearning
     }
     
-    static var identifierFactory = 0
+    private static var identifierFactory = 0
     
     private enum initError: Error {
         case directionInvalid

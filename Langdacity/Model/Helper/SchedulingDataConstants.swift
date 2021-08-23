@@ -24,7 +24,7 @@ class schedulingDataConstants {
     struct reviewVariables {
         var easyBonus = 130 // in percent
         var intervalModifier = 100 // in percent
-        var maximumInterval = 365 // in days
+        var maximumInterval = 36500 // in days
     }
     
     struct lapseVariables {

@@ -23,7 +23,10 @@ class StudentClassViewController: UIViewController, UITableViewDelegate, UITable
         stringPosition = String(intPosition)
         
         // add -st, -nd, -rd, -th to int
-        if stringPosition.hasSuffix("1") {
+        if stringPosition.hasSuffix("11") || stringPosition.hasSuffix("12") || stringPosition.hasSuffix("13") {
+            // account for irregularity of nos. 11, 12, 13
+            stringPosition.append("th")
+        } else if stringPosition.hasSuffix("1") {
             stringPosition.append("st")
         } else if stringPosition.hasSuffix("2") {
             stringPosition.append("nd")

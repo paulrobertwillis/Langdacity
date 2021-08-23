@@ -53,7 +53,7 @@ class Teacher: User {
         try super.encode(to: encoder)
     }
         
-    static private func createUniqueIdentifier() throws -> String {
+    private static func createUniqueIdentifier() throws -> String {
         Teacher.identifierFactory += 1
         
         let prefix = "PROF-"
